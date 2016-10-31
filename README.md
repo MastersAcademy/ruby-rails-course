@@ -46,7 +46,7 @@ Projects for teams(це загальні теми, вони будуть уто�
  * Bogdan Sergiienko(https://github.com/fritzvl)
  * Dmytro Piskovyi(https://github.com/piskovoy-dmitrij)
  * Dmytro Zhuk(https://github.com/ZhuChara2004)
- * Valentin Mezencev (https://github.com/)
+ * Valentyn Mesentsev (https://github.com/Mnilko)
 
 
 # Useful links
