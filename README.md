@@ -49,6 +49,7 @@ Projects for teams(це загальні теми, вони будуть уто�
  * Dmytro Piskovyi(https://github.com/piskovoy-dmitrij)
  * Dmytro Zhuk(https://github.com/ZhuChara2004)
  * Valentyn Mesentsev (https://github.com/Mnilko)
+ * Yuriy Shcherbyna (https://github.com/shcherb)
 
 
 # Useful links
