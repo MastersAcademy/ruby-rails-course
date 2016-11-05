@@ -1,1 +1,1 @@
-Q_Q Finaly ^-^
+Q_Q Finally ^-^
