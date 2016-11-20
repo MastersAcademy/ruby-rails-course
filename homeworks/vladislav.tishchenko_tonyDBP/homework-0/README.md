@@ -1,1 +1,0 @@
-Q_Q Finally ^-^
