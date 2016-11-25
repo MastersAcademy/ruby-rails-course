@@ -80,7 +80,7 @@ puts ""
 
 motorcycle = Vehicle_builder.new()
 
-class << 	motorcycle
+class << motorcycle
 
   def motorcycle_base()
     puts "Нарізати сталеві труби "
