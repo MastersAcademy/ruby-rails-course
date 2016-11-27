@@ -3,96 +3,126 @@ puts "Автомобільна фабрика демонструє паттер�
 
 class Vehicle_builder
 
-  def gathering_engine(liters)
-    puts "Взяти деталі двигуна об'ємом #{liters} літрів."
+  def initialize(liters, type, whels = 4, dampers = 4 )
+    @liters = liters
+    @type = type
+    @whels = whels
+    @dampers = dampers
+  end
+
+  def gathering_engine
+    puts "Взяти деталі двигуна об'ємом #{@liters} літрів."
     puts "Зібрати головку блоку циліндрів."
     puts "Зібрати блок."
     puts "Встановити поршньову."
     puts "Закрити піддоном."
-
   end
 
-  def gathering_car_body(type)
-    puts "Взяти елементи для автомобіля #{type}."
+  def gathering_car_body
+    puts "Взяти елементи для автомобіля #{@type}."
     puts "З’єднати готові елементи точковою зваркою."
     puts "Пофарбувати."
   end
 
-  def gathering_chassis(whel = 4, dampers = 4)
-    puts "Встановити #{whel} колеса на осі."
-    puts "Встановити #{dampers} амортизатори."
+  def gathering_chassis
+    puts "Встановити #{@whels} колеса на осі."
+    puts "Встановити #{@dampers} амортизатори."
   end
 
 end
 
-puts ""
-puts ""
-puts "Конвеєр автомобілів седан"
-puts ""
+class SpecialCarLine < Vehicle_builder
 
-sedanCar = Vehicle_builder.new()
-sedanCar.gathering_engine(1.5)
-sedanCar.gathering_car_body("седан")
-sedanCar.gathering_chassis
+  def initialize(liters, whels = 4, dampers = 4, material, material_form, connector)
+    @liters = liters
+    @whels = whels
+    @dampers = dampers
+    @material = material
+    @material_form = material_form
+    @connector = connector
+  end
 
-puts " *  *  *"
-puts ""
-puts "Конвеєр автомобілів універсал"
-puts ""
-
-universalCar = Vehicle_builder.new()
-universalCar.gathering_engine(1.5)
-universalCar.gathering_car_body("універсал")
-universalCar.gathering_chassis
-
-puts " *  *  *"
-puts ""
-puts "Конвеєр вантажних автомобілів"
-puts ""
-
-hevyCar = Vehicle_builder.new()
-
-class << hevyCar
-
-  def driver_cabin()
+  def driver_cabin
     puts "Зватити кабіну."
     puts "Встановити двері."
     puts "Встановити органи керування."
   end
 
-  def hevy_base()
-    puts "Нарізати сталеві профілі."
-    puts "Зігнути сталеві профілі."
-    puts "З’єднати профілі заклепками."
+  def vehicle_base
+    puts "Нарізати #{@material} #{@material_form}."
+    puts "Зігнути #{@material} #{@material_form}."
+    puts "З’єднати #{@material_form} #{@connector}."
   end
 
 end
 
-hevyCar.driver_cabin
-hevyCar.hevy_base
-hevyCar.gathering_engine(5.0)
-hevyCar.gathering_chassis(10, 6)
+puts ""
+puts ""
+puts "__ Конвеєр автомобілів седан __"
+puts ""
+
+sedanCar = Vehicle_builder.new(1.5, "ceдан")
+puts "_ Двигун _"
+sedanCar.gathering_engine
+puts "_ Кузов _"
+sedanCar.gathering_car_body
+puts "_ Ходова _"
+sedanCar.gathering_chassis
 
 puts " *  *  *"
 puts ""
-puts "Конвеєр мотоциклів"
+puts "__ Конвеєр автомобілів універсал __"
 puts ""
 
-motorcycle = Vehicle_builder.new()
+universalCar = Vehicle_builder.new(1.5, "універсал")
+puts "_ Двигун _"
+universalCar.gathering_engine
+puts "_ Кузов _"
+universalCar.gathering_car_body
+puts "_ Ходова _"
+universalCar.gathering_chassis
+
+puts " *  *  *"
+puts ""
+puts "__ Конвеєр вантажних автомобілів __"
+puts ""
+
+hevyCar = SpecialCarLine.new(5, 10, 6, "сталеві", "профілі", "заклепками")
+puts "_ Кабіна _"
+hevyCar.driver_cabin
+puts "_ Рама _"
+hevyCar.vehicle_base
+puts "_ Двигун _"
+hevyCar.gathering_engine
+puts "_ Ходова _"
+hevyCar.gathering_chassis
+
+ 
+puts " *  *  *"
+puts ""
+puts "__ Конвеєр мотоциклів __"
+puts ""
+
+motorcycle = SpecialCarLine.new(0.5, 2, 4, "сталеві", "труби", "зваркою")
 
 class << motorcycle
 
-  def motorcycle_base()
-    puts "Нарізати сталеві труби "
-    puts "Зігнути сталеві труби."
-    puts "З’єднати електродуговою зваркою."
+  def custom_equipment
+    puts "Встановити рацію."
+    puts "Встановити стробоскопи."
+    puts "Встановити сирену."
   end
 
 end
 
-motorcycle.gathering_engine(1)
-motorcycle.motorcycle_base
-motorcycle.gathering_chassis(2, 4)
+puts "_ Двигун _"
+motorcycle.gathering_engine
+puts "_ Рама _"
+motorcycle.vehicle_base
+puts "_ Ходова _"
+motorcycle.gathering_chassis
+puts "_ Додаткове обладнання _"
+motorcycle.custom_equipment
 
 
 
