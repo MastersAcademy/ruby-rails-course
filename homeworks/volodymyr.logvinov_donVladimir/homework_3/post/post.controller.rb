@@ -1,6 +1,6 @@
 class PostController
   def initialize(model, view, db)
-    @db = db.new()
+    @db = db.new
     @db.connect('My fake DB')
 
     @model = model
@@ -20,7 +20,7 @@ class PostController
 
   def show_posts
     posts = @db.get_all('posts')
-    if !posts.empty? then
+    unless posts.empty?
       puts "You have " + posts.length.to_s + (posts.length.to_i == 1 ? ' post' : ' posts')
       posts.each {|post|  @view.print(post)}
       return
