@@ -20,16 +20,16 @@ class FactoryBall
 
   def textile_ball(textile)
     case textile
-      when textile = 'Composite leather'
+      when 'Composite leather'
         puts 'Composite leather'
-      when textile = 'Microfiber'
+      when 'Microfiber'
         puts 'Microfiber '
-      when textile = 'Polyurethane'
+      when 'Polyurethane'
         puts 'Polyurethane'
-      when textile = 'Rubber'
+      when 'Rubber'
         puts 'Rubber'
       else
-        textile = 'Polyurethane default textile'
+        'Polyurethane default textile'
         puts 'default textile'
     end
 
@@ -39,13 +39,13 @@ class FactoryBall
 
   def color_ball(color)
     case color
-      when color = 'RED'
+      when 'RED'
         puts 'color RED'
-      when color = 'Green'
+      when 'Green'
         puts 'color Green'
-      when color = 'Yellow'
+      when 'Yellow'
         puts 'color Yellow'
-      when color = 'Yellow'
+      when 'Yellow'
         puts 'color Withe'
       else
         color = 'Withe'
