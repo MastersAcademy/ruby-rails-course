@@ -43,7 +43,8 @@ class Mentor < FanRuby
     if homework correct
     homework = done
     if homework wrong
-    homework = comments
+    comments
+    end
   end
 
 end
