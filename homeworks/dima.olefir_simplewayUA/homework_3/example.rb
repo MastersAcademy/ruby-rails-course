@@ -14,7 +14,7 @@ class Receptionist
 end
 
 class Patient < Receptionist
-  attr_reader :last_name, :first_name, :location, :medical_history, id_card
+  attr_reader :last_name, :first_name, :location, :medical_history, :id_card
 
   def initialize( last_name = "Петрович",
                   first_name = "Петр",
