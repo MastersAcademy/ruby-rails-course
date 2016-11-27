@@ -1,5 +1,5 @@
-audit =
-  class Audit_fuel
+
+  class AuditFuel
 
     def audit
       puts 'Перевірка наявності палива!'	
@@ -15,14 +15,12 @@ audit =
     puts fuel 
     puts 
     end
-
-  self
   end
 
-a = audit.new
+auditFuel = AuditFuel.new
 
-a.audit
-a.audit_fuel
+auditFuel.audit
+auditFuel.audit_fuel
 
 class Car
 
@@ -46,9 +44,24 @@ class Car
   	puts 'Першу передачу ввімкнено.'
   	puts  	
   end
+
+  def releaxse_clutch_pedal
+  	puts 'Відпускаєио педаль зчеплення.'
+  	puts
+  	puts 'Педаль зчеплення відпущено'
+  	puts
+  end
+
+    def press_gas
+    puts 'Натискаємо педаль газу'
+    puts
+    puts 'Педальгазу натиснута'
+    puts  	
+  end
 end
 
 car = Car.new
 car.actuation_machines
 car.press_clutch_pedal
 car.transmission
+car.press_gas
