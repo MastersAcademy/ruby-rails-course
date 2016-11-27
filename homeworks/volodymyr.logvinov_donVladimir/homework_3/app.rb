@@ -16,7 +16,7 @@ class App
       system "clear"
       puts  "1 - show posts",
             "2 - add new posts",
-            "q - quit/n"
+            "q - quit"
 
       puts "Select variant: "
 
