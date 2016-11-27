@@ -28,7 +28,7 @@ class Mentor < FanRuby
   attr_accessor :lecture, :detailed_answer, :task, :comments
 
   def lecture
-    puts "lecture"      
+    puts "lecture"
   end
 
   def depth_explanation
@@ -41,7 +41,7 @@ class Mentor < FanRuby
 
   def check_homework
     if homework correct
-    homework = done"
+    homework = done
     if homework wrong
     homework = comments
   end
@@ -53,7 +53,7 @@ class Student < FanRuby
   attr_accessor :homework
 
   def listen_lecture
-    pust "listen"
+    puts "listen"
   end
 
   def do_homework
