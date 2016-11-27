@@ -83,10 +83,10 @@ class Manager
   
 end
 
-user1 = User.new('afk', 'Rocky', 'Balboa', 'New-York', 40) 
+user1 = User.new('afk@bk.ru', 'Rocky', 'Balboa', 'New-York', 40) 
 user1.workwithweight(100)
-trainer1 = Trainer.new('fgf', 'Bilbo', 'Begins', 15) 
+trainer1 = Trainer.new('fooboo@mail.ru', 'Bilbo', 'Begins', 15) 
 trainer1.technique(50, 60)
 User.rest()
-manager1 = Manager.new('beastboy', 'Sasha', 'Grey')
+manager1 = Manager.new('beast@mail.ua', 'Sasha', 'Grey')
 manager1.timesup(12)
