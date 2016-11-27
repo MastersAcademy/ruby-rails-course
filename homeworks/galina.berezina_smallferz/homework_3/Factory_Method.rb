@@ -40,16 +40,14 @@ class Mentor < FanRuby
   end
 
   def check_homework
-    if :homework == true
-      done
-    end
-    if :homework == false
-      comments
+    if @homework
+      puts 'Done'
+    else
+      puts 'Comments'
     end
   end
 
 end
-
 
 class Student < FanRuby
 
@@ -60,7 +58,7 @@ class Student < FanRuby
   end
 
   def do_homework
-    puts "@homework"
+    @homework = true
   end
 
 end
@@ -68,21 +66,21 @@ end
 puts "=============================="
 puts "how its plan to work"
 
-m = class Mentor
-m.instance_eval do
+a = Mentor.new
+
+a.instance_eval do
   def coffee_break
     puts "drink coffee"
   end
 end
+
+b = Student.new
 
 class << Student
   def love_sleep
     puts "sleep"
   end
 end
-
-a = Mentor.new
-b = Student.new
 
 a.lecture
 
