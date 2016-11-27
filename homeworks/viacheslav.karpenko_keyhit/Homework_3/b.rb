@@ -1,7 +1,7 @@
 puts ""
 puts "Автомобільна фабрика демонструє паттерн BUILDER"
 
-class Vehicle_builder
+class VehicleBuilder
 
   def initialize(liters, type, whels = 4, dampers = 4 )
     @liters = liters
@@ -31,7 +31,7 @@ class Vehicle_builder
 
 end
 
-class SpecialCarLine < Vehicle_builder
+class SpecialCarLine < VehicleBuilder
 
   def initialize(liters, whels = 4, dampers = 4, material, material_form, connector)
     @liters = liters
@@ -61,7 +61,7 @@ puts ""
 puts "__ Конвеєр автомобілів седан __"
 puts ""
 
-sedanCar = Vehicle_builder.new(1.5, "ceдан")
+sedanCar = VehicleBuilder.new(1.5, "ceдан")
 puts "_ Двигун _"
 sedanCar.gathering_engine
 puts "_ Кузов _"
@@ -74,7 +74,7 @@ puts ""
 puts "__ Конвеєр автомобілів універсал __"
 puts ""
 
-universalCar = Vehicle_builder.new(1.5, "універсал")
+universalCar = VehicleBuilder.new(1.5, "універсал")
 puts "_ Двигун _"
 universalCar.gathering_engine
 puts "_ Кузов _"
@@ -123,6 +123,3 @@ puts "_ Ходова _"
 motorcycle.gathering_chassis
 puts "_ Додаткове обладнання _"
 motorcycle.custom_equipment
-
-
-
