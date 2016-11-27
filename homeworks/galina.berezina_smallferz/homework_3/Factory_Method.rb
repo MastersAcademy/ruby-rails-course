@@ -25,7 +25,7 @@ end
 
 class Mentor < FanRuby
 
-  attr_accessor :lecture, :detailed_answer, :task, :comments
+  attr_accessor :lecture, :detailed_answer, :task, :comments, :done
 
   def lecture
     puts "lecture"
@@ -40,14 +40,16 @@ class Mentor < FanRuby
   end
 
   def check_homework
-    if homework correct
-    homework = done
-    if homework wrong
-    comments
+    if :homework == true
+      done
+    end
+    if :homework == false
+      comments
     end
   end
 
 end
+
 
 class Student < FanRuby
 
@@ -58,15 +60,16 @@ class Student < FanRuby
   end
 
   def do_homework
-    puts "homework"
+    puts "@homework"
   end
 
 end
 
-a = Mentor.new
-b = Student.new
+puts "=============================="
+puts "how its plan to work"
 
-class << Mentor
+m = class Mentor
+m.instance_eval do
   def coffee_break
     puts "drink coffee"
   end
@@ -78,8 +81,8 @@ class << Student
   end
 end
 
-puts "=============================="
-puts "how its plan to work"
+a = Mentor.new
+b = Student.new
 
 a.lecture
 
@@ -96,4 +99,3 @@ b.do_homework
 
 a.check_homework
 a.coffee_break
-a.check_homework
