@@ -1,5 +1,5 @@
-﻿#Паттерн Mediator - менеджер является посредником
-#между посылкой, отправителем и получателем.
+# Pattern Mediator - the manager is the intermediary
+the sender and receiver.
 
 class Sender
 
