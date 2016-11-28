@@ -5,28 +5,64 @@ class Student
   attr_reader :stud_id, :stud_FIO, :stud_birth, :stud_adress
 
   def initialize
-    stud_id = stud_id
-    stud_FIO = stud_FIO
-    stud_birth = stud_birth
-    stud_adress = stud_adress
+    @stud_id = stud_id
+    @stud_FIO = stud_FIO
+    @stud_birth = stud_birth
+    @stud_adress = stud_adress
+  end
+
+  def student_base(stud_id, stud_FIO, stud_birth, stud_adress)
+    stud_b = stud_id, stud_FIO, stud_birth, stud_adress
+    puts "Student #{stud_FIO}"
+
   end
 end
 
-class Teacher
-  attr_reader :teach_id, :teach_FIO, :teach_lesson
+class Lesson < Student
+  attr_reader :name_lesson, :data_lesson
 
   def initialize
-    teach_id = teach_id
-    teach_FIO = teach_FIO
-    teach_lesson = teach_lesson
+    @name_lesson = name_lesson
+    @data_lesson = data_lesson
   end
-end
 
-class Lesson
-
-end
-
-class Journal
+  def lesson_base(name_lesson, data_lesson)
+    puts "The time of lesson #{name_lesson} is #{data_lesson}"
+    less_b = name_lesson, data_lesson
+  end
 
 end
 
+
+class Journal < Student
+  
+  def attendance(stud_id, stud_FIO, name_lesson, data_lesson)
+    attendance_base = stud_id, stud_FIO, name_lesson, data_lesson
+  
+    puts "Student #{stud_FIO} was present on lesson #{name_lesson} on #{data_lesson}"
+  end
+
+end
+
+class Teacher < Lesson
+  attr_reader :teach_id, :teach_FIO, :teach_lesson 
+
+  def teacher_card(teach_FIO, teach_id)
+    puts "Teacher of #{teach_lesson} is #{teach_FIO} number #{teach_id}"
+  end
+
+end
+
+
+
+
+var1 = Student.new
+var2 = Teacher.new
+var3 = Lesson.new
+var4 = Journal.new
+
+puts "== Lesson =="
+
+var1.student_base('25', 'Semenchenko Semen', '25.05.1995', 'Homenka 37 kv.4')
+var2.teacher_card('Guba Ivan Petrovich', '354657')
+var3.lesson_base('History', '28.11.2016')
