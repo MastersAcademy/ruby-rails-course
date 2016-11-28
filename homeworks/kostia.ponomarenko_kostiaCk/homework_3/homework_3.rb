@@ -1,21 +1,14 @@
 ﻿# Ruby example crm
-# https://repl.it/E6s8/21
+# https://repl.it/E6s8/23
 
 require 'date'
 
-class Customer
+class Human
+  attr_accessor :comment
   attr_reader :name
   
-  def initialize(name)
-    @name = name
-  end
-end
-
-class Manager
-  attr_reader :name
-  
-  def initialize(name)
-    @name = name
+  def initialize(name, comment)
+    @name, @comment = name, comment
   end
 end
 
@@ -56,8 +49,8 @@ class DocumentSalesGoods
   end
 end
 
-customer1 = Customer.new('Покупатель 1')
-manager1 = Manager.new('Менеджер Коля')
+customer1 = Human.new('Покупатель 1', 'покупатель')
+manager1 = Human.new('Менеджер Коля', 'менеджер')
 goods1 = Goods.new('Хлеб', 0.7, 8)
 goods2 = Goods.new('Пиво 05', 0.7, 12)
 goods3 = Goods.new('Клубника 1кг', 1, 30)
