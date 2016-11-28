@@ -13,4 +13,8 @@ class Cashier < Person
     Ticket.print_ticket chosen_film
   end 
 
+  def self.get_cashier
+    Cashier.new(name: "Cashier")
+  end
+
 end

@@ -1,14 +1,12 @@
 require_relative 'guest'
 require_relative 'cashier'
-require 'pry'
 
 class Cinema
 
-  @cashier = Cashier.new(name: "Cashier")
-  @guest = Guest.new(name: "Guest")
+  @cashier = Cashier.get_cashier
+  @guest = Guest.get_guest
 
   @films = Film.get_films.map(&:title)
-  binding.pry
 
   i = 0  
   while i != 1 do 
