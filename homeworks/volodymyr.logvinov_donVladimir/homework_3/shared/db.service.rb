@@ -1,6 +1,6 @@
 class DB
 
-  def initialize()
+  def initialize
     @memstore = Hash.new
 
     self
