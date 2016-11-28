@@ -23,13 +23,13 @@ class << mary
     puts 'Moo as a cow class, through the class eigenclass access'
   end
 end
-
-puts 'Class object changes through the eigenclass(meta-class)'
-puts '==================================================================='
-z.moo
+#
+# puts 'Class object changes through the eigenclass(meta-class)'
+# puts '==================================================================='
+# z.moo
 mary.moo
-puts
-puts "Z class is #{z.class}"
+# puts
+# puts "Z class is #{z.class}"
 
 y = mary.new
 puts 'Y moo is:'

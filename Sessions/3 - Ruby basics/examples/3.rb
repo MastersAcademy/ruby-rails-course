@@ -13,4 +13,3 @@ puts 'Expressions example'
 puts '==================================================================='
 puts a
 puts b
-puts

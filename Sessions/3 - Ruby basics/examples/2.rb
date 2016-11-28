@@ -13,7 +13,7 @@ class Foo
   end
 end
 
-foo = Foo.new(1)
+foo = Foo.new(5)
 bar = foo
 foo.change
 
@@ -21,4 +21,3 @@ puts 'Variables as a reference Ex.2'
 puts '==================================================================='
 puts bar.inspect
 puts foo.bar
-puts

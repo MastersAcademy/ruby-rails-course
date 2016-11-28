@@ -18,6 +18,5 @@ puts '======================================================================='
 sally.moo
 puts sally.class
 puts sally.public_methods.count
-
 puts dolly.public_methods.count
 puts dolly.class == sally.class

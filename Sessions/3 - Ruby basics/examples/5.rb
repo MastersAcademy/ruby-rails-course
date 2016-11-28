@@ -8,9 +8,14 @@ mary =
       puts 'Moo as a cow'
     end
 
+    def self.moo
+      puts 'Moo as a cow'
+    end
+
     self
   end
 
+puts mary.moo
 z = mary.new
 
 puts 'Class by value'

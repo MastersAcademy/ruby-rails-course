@@ -8,8 +8,7 @@ mary =
     attr_accessor :var1
 
     def moo
-      puts var1
-      puts 'Moo as a cow'
+      puts 'Moo as a version 1'
     end
 
     def self.moo
@@ -20,6 +19,7 @@ mary =
   end
 
 z = Cow.new
+puts z.moo
 
 mary.class_eval do
   def moo
@@ -35,7 +35,7 @@ puts
 # Instance-eval method
 mary.instance_eval do
   def moo
-    puts 'Moo via instance_eval'
+    puts 'Moo version 2'
   end
 end
 
