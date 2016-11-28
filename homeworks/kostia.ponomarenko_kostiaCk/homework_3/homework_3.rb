@@ -1,4 +1,5 @@
-# Ruby example crm
+﻿# Ruby example crm
+# https://repl.it/E6s8/21
 
 require 'date'
 
@@ -74,9 +75,9 @@ DocumentSales3.add(goods2, 15)
 
 puts "Всего документов: #{DocumentSales.count}"
 total = 0
-for docobj in DocumentSales.all
+DocumentSales.all.each { | docobj|
   puts ">> Документ #{docobj.number} (#{docobj.sum} грн.) " 
   docobj.salesGood.each { |i| puts " >#{i.goods.name} #{i.amount} шт. по #{i.price} грн." }
   total += docobj.sum
-end
+}
 "Сумма итог: #{total} грн."
