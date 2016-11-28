@@ -1,5 +1,6 @@
 require_relative 'guest'
 require_relative 'cashier'
+require 'pry'
 
 class Cinema
 
@@ -7,6 +8,7 @@ class Cinema
   @guest = Guest.new(name: "Guest")
 
   @films = Film.get_films.map(&:title)
+  binding.pry
 
   i = 0  
   while i != 1 do 
@@ -17,13 +19,13 @@ class Cinema
       @chosen_film = gets.chomp
       
       if @films.include?(@chosen_film)
-        @cashier.print_ticket @chosen_film
+        @cashier.sell_ticket @chosen_film
         puts "Thank you #{@guest.name}, take you ticket for film #{@chosen_film} \n\n"
         p
         puts "Next guest please :) !!! \n\n"
         ticket_sell = true
       else
-        puts "Film not chosen, please say again what film you want to see.\n\n"
+        puts "Film not chosen, please say again what film you want to see?\n\n"
       end 
     end 
   end
