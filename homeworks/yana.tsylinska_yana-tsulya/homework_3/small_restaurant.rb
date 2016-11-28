@@ -76,6 +76,7 @@ anna.food_array = arnold.food_array
 bill.cook(anna.food_array)
 anna.prepared_food = bill.give_food
 arnold.eat(anna.food_array)
+anna.give_check
 arnold.pay
 puts '==================================================================='
 puts ''
@@ -95,7 +96,5 @@ anna.food_array = sarra.food_array
 bill.cook(anna.food_array)
 anna.prepared_food = bill.give_food
 sarra.eat(anna.food_array)
+anna.give_check
 sarra.pay
-
-
-# puts arnold.food_array, anna.food_array
