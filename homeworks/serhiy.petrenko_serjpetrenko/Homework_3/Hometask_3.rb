@@ -1,76 +1,58 @@
-#Предметна область: Оформлення закордонного паспорту Державною міграційною службою
-
-class MigrationService #Державна міграційна служба
-
-  attr_reader :first_name, :surname
-
-  #Описано патерн "Information expert", ДМС, що володіє інфо-ю щодо вартості оформлення закордонного паспорту,
-  # терміном оформлення та терміном отримання
-
-  def initialize(first_name, surname)
-    @first_name = first_name
-    @surname = surname
-  end
-
-  def hello
-    puts "Welcome to the migration service.Registration of passports will be cost - 256 UAH.\nThe deadline for registration is 30 days.\nYou can use cash machine service for paying?."
-  end
-
-  def cash_machine_way(first_name, surname)
-    puts "#{first_name} #{surname} want to use cash machine for paying service"
-  end
-
-end
-
-class Cash_machine_service
-
-  attr_reader :check
-
-  def initialize(check)
-    @check = check
-  end
-
-  def second_initialize(first_name, surname)
-    puts "You are welcome at cash machine service interface, registration just take 5 minutes"
-    puts "Please enter your first name and surname"
-    puts "#{first_name} #{surname}"
-    puts 'Ok now you can pay for services'
-  end
-
-  #Метод, який описує роботу банкомату через, який проводиться оплата за оформлення паспорту.
-  # Тут використовується патерн "Controller", банкомат є контролером ми даємо гроші банкомату, задля того, щоб отримати чек,
-  # який буде посвідченням, оплати послуги оформлення
-
-  def cash_machine(check)
-    puts "Please insert money"
-    a = gets.chomp
-    if a.to_i == 256
-      puts "Your payment was been succesfully"
-    else
-      puts "You need to pay 256 UAH"
-    end
-    puts "Now take your #{check} and go to the employee"
+class Ingregients
+  attr_reader :set
+  def initialize
+    @set = {"Mojito" => 1, "Cuba libre" => 2 , "Black russian" => 3 , "Screwdriver" => 4}
   end
 end
 
-class Employee
+class In_shaker
+  def initialize
+    @ingredients = Ingregients.new
+  end
 
-  def final(check, first_name, surname)
-    puts "Good day #{first_name} #{surname}! Now you at the last stage of registration please give me your #{check} and take a photo it's just take a few minutes"
-    puts "Congratulations your passport will be ready in 30 days"
+  def run
+    greeting
+
+    begin
+      puts "Here is a coctails, you can choose one and we show ingredients:"
+      puts "Mojito - 1\nCuba libre - 2\nBlack russian - 3\nScrewdriver - 4\n"
+      puts "Make your choice: "
+      choice = gets.to_i
+
+      case choice
+        when 1
+          selection = "Mojito"
+          puts "Mojito: "
+          puts "White rum - 50 ml,\nlime - 2 slices,\nmint - 15 gr.,\nsimple syrup - 20 gr."
+          puts "Enjoy the cocktail!"
+        when 2
+          selection = "Cuba libre"
+          puts "Cuba libre: "
+          puts "Black rum - 50 ml\nCola - 150 ml\nFresh lime juice - 10 ml"
+          puts "Enjoy the cocktail!"
+        when 3
+          selection = "Black russian"
+          puts "Black russian: "
+          puts "Vodka - 50 ml\nKahlua - 50 ml"
+          puts "Enjoy the cocktail!"
+        when 4
+          selection = "Screwdriver"
+          puts "Screwdriver: "
+          puts "Vodka - 50 ml\nOrange juice - 150 ml"
+          puts "Enjoy the cocktail!"
+        else
+          selection = "Unknown"
+          puts "There is no such kind of cocktails. Please try again!"
+          puts "Enjoy the cocktail!"
+      end
+    end while selection == "Unknown"
+  end
+
+  def greeting
+    puts "Welcome to the In shaker programm!"
   end
 end
 
-puts "Migration Service"
-serj = MigrationService.new('Serj', 'Petrenko')
-cms = Cash_machine_service.new('Check for payment')
-serj.hello
-serj.cash_machine_way('Serj', 'Petrenko')
-puts "Start cash machine service"
-cms.second_initialize('Serj', 'Petrenko')
-cms.cash_machine('Check for payment')
-puts "At the employee cabinet"
-emp = Employee.new
-emp.final('Check for payment','Serj', 'Petrenko')
 
+In_shaker.new.run
 
