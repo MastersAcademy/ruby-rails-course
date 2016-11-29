@@ -1,7 +1,7 @@
-class Software
+﻿class Software
 
-  @@update_v = 9
-  @@license_v = 0
+  @@update_current_v = 9
+  @@license_current_v = 0
 
   attr_accessor :update_v
 
@@ -10,7 +10,7 @@ class Software
   end
 
   def update
-    if :update_v == @@update_v
+    if :update_v == @@update_current_v
       puts "У вас актуальна версія оновлення"
     else
       puts "Доступні нові оновлення"
@@ -18,16 +18,16 @@ class Software
   end
 
   def license
-    if @@license_v == 0
+    if @@license_current_v == 0
       puts "Демонстраційний режим"
+      puts "Локальна версія"
+    end
+    if @@license_current_v > 0
+      puts "Робочий режим"
+      puts "Мережева версія"
     end
   end
 
-  def amount_of_jobs
-  end
-
-  def technical_support
-  end
 end
 
 a = Software.new (8)
