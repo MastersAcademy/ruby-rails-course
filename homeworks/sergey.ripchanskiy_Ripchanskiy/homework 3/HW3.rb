@@ -1,75 +1,79 @@
-# Pattern Mediator - the manager is the intermediary
-the sender and receiver.
 
-class Sender
-
-  attr_accessor :name, :surname, :adress
-  
-  def initialize(name, surname, adress)
-    @name = name
-    @surname = surname 
-    @adress = adress
-    puts "Sender #{name} come to Ukrpost"
-  end
-  
-  def oplata(cost)
-    if cost == 10
-    puts "#{name} you paid #{cost} grn"
-    else
-    puts "#{name} shipping costs #{cost} grn"
-    end
-  end
-  
-end
-
-
-class Reciplient
-
-  attr_accessor :name, :surname, :adress
-  
-  def initialize(name, surname, adress)
-    @name = name
-    @surname = surname 
-    @adress = adress
-
-    puts "Respected #{name} #{surname} you sent parcel to #{adress}"
-  end
-
-  def status(stat)
-    @stat = stat
-    if @stat == 'true'
-    puts "Your parcel arrived"
-    else
-    puts "Wait, parcel not yet come" 
-    end
-  end
-
-end
+#Inheritance
 
 class Manager
 
-  attr_accessor :name
-  
-  def initialize(name)
-    @name = name
+  attr_accessor :manager_name
 
-    puts "My name is #{name}, wellcome in Ukrpost"
+  def cashier(cashier_name)
+    @@manager_name = cashier_name
+    
   end
-  
-  def doc(rec_doc, verdoc)
-    @rec_doc = rec_doc
-    @verdoc = verdoc
-    if 'rec_doc' == 'verdoc'
-    puts "Identity determined. Take your parcel!"
-    else
-    puts "Now call the police, go here!"
+
+  def hello(status, name)
+    puts "Добрый день #{name}. Меня зовут #{@@manager_name}. Рада Вас приветствовать в нашем отделении"
+    puts "Вы хотите поучить или отправить посылку?"
+    if status == "send"
+      puts "Я бы хотел отправить посылку"
+    else 
+      puts "Я бы хотел получить посылку"
     end
   end
-  
+
 end
-sender1 = Sender.new('Sergey', 'Ripchanskiy', 'Cherkassy') 
-sender1.oplata(10)
-reciplient1 = Reciplient.new('Ivan', 'Dudin', 'Kirovograd') 
-reciplient1.status("true")
-manager1 = Manager.new('Marina')
-manager1.doc("MS341232", "MS341232")
+
+
+class Sender < Manager
+  
+  def declaration(name_rec, adress_rec)
+    puts "Я хочу отправить посылку #{name_rec} в #{adress_rec}, спасибо!"
+  end
+
+  def pay(money)
+    puts "С вас 10 грн за отправку"
+    if money == 10
+      puts "Вы дали #{money} гривен. Оплачено"
+    elsif money >= 100
+      puts "У вас не будет купюры поменьше. У меня не будет из #{money} грн сдачи."
+    elsif money > 10
+      a = money - 10
+      puts "Вы дали #{money} грн. Возьмите, пожалуйста, сдачу, #{a} грн."
+      puts "Хорошего дня!"
+    else i = 10 - money
+      puts "Пожалуйста, заплатите #{i} грн"
+    end
+  end
+
+end
+
+
+class Reciplient < Manager
+  
+  def verified(documents)
+    if documents == "yes"
+      puts "Возьмите вашу посылку и расспишитесь"
+      puts "Удачи Вам!"
+    else
+      puts "Извините, мне нужны Ваши документы для удостоверения личности"
+    end
+    
+  end
+
+end
+  
+  puts "В отделение пришёл отправитель"
+  puts "*********************************************************************"
+  cashier1 = Manager.new
+  cashier1.cashier("Svetlana")
+  sender1 = Sender.new
+  sender1.hello("send", "Sergey Ripchanskiy")
+  sender1.declaration("Gopko Taras", "Kirovograd")
+  sender1.pay(11)
+  puts "*********************************************************************"
+  puts "В отделение заходит получатель"
+  puts "*********************************************************************"
+  cashier1 = Manager.new
+  cashier1.cashier("Olga")
+  reciplient1 = Reciplient.new
+  reciplient1.hello("get", "Gopko Taras")
+  reciplient1.verified("yes")
