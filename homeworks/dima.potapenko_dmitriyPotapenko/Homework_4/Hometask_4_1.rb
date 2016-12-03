@@ -34,8 +34,8 @@ puts
 #Hashes
 puts '#Hashes'
 
-hash_1 ={:a=> 10, :b=> 25, :c=> 50, :d=> 75, :e=> 100 }
-hash_2 ={:f=> 100, :g=> 150, :h=> 200, :i=> 250, :l=> 300 }
+hash_1 ={ a: 10, b: 25, c: 50, d: 75, e: 100 }
+hash_2 ={ f: 100, g: 150, h: 200, i: 250, l: 300 }
 puts hash_1.values.join ", "
 puts hash_2.values.join ", "
 
