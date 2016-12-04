@@ -59,7 +59,7 @@ puts "--------------------"
 puts domains1.keys
 puts domains1.delete("Krym")
 # Display count
-print "Count: ", domains1.count(), "\n"
+puts "Count: #{domains1.count}"
 
 # Set
 puts "==========Work with Set==========="
@@ -68,7 +68,7 @@ set2 = Set.new([50, 60, 100])
 print set1 == set2
 set2.add("Krym")
 puts set2.inspect
-puts set2.size()
+puts set2.size
 puts set2.include?("Krym")
 puts (set1+set2).inspect
 
