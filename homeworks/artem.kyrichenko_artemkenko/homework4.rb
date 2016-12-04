@@ -24,5 +24,5 @@ puts lol.key("top")
 puts lol.key("mid")
 lol = { "Master YI" => "1 button", "Garen" => "Good", "Ahri" => "Good girl"}
 puts lol
-lol.delete ("Master YI")
+lol.delete("Master YI")
 puts lol
