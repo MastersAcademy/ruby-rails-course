@@ -1,12 +1,6 @@
 puts "Ruby collections"
 
-
-puts "4.Enumerable module mixin - Міксін додає методи до колекцій"
-
-
-
-
-puts "1. Arrays -"
+puts "1. Arrays"
 
 array_first = [1, 4, 5, 3, 2, "a", "d", "c", "g", "f", "b"]      #Manualy array creatinon
 
@@ -24,48 +18,38 @@ end
 puts""
 puts "Using sort method and creating array_second"
 array_second = array_first.sort { |x,y| x.to_s <=> y.to_s }
-array_second.each do |n|
-  puts n
-end
+puts array_second
 
 puts""
-as_lenght = array_second.length
+as_lenght = array_second.size
 puts"Length array_second = #{as_lenght} symbols"
 
 puts""
 array_second_ins = array_second.insert(0, "a", "b", "c", "d", "e")
-as_lenght = array_second_ins.length
+as_lenght = array_second_ins.size
 puts"After insertion length array_second = #{as_lenght} symbols"
 
 puts"Array after insertion"
-array_second_ins.each do |n|
-puts n
-end
+puts array_second_ins
 
 puts""
-oneElem = array_second_ins[1]
-puts"Value one of  array element with index 1 = #{oneElem}"
+one_Elem = array_second_ins[1]
+puts"Value one of  array element with index 1 = #{one_Elem}"
 
 puts""
-rangeElem = array_second_ins[0..10]
-puts"Value one of  array elements with range indexes from 0 to 10"
-
-rangeElem.each do |n|
-  puts n
-end
+range_Elem = array_second_ins[0..10]
+puts"Values one of  array elements with range indexes from 0 to 10"
+puts range_Elem
 
 puts ""
-rangeElem = array_second_ins[2, 10]
-puts"Value one of array 10 elements  with range begining index 2"
-
-rangeElem.each do |n|
-  puts n
-end
+range_Elem = array_second_ins[2, 10]
+puts"Values one of array 10 elements  with range begining index 2"
+puts range_Elem
 
 puts ""
 puts "Snake join array to string #{array_second_ins.join("_")}"
 
-puts "2. Hashes "
+puts "2. Hashes"
 
 first_hash = {gender: "female", age: 22, weight: 65}    #New hash
 
@@ -83,9 +67,9 @@ first_hash.fetch_values(:age, :weight)                  #Fetch values by several
 
 first_hash.each {|key, value| puts "#{key} = #{value}"}  #Showing all hashe keys and elements 
 
-first_hash.length                                        #Showing hash lenght 
+first_hash.size                                          #Showing hash lenght 
 
-second_hash = first_hash.flatten(2)                     # Flattening hash to new array
+second_hash = first_hash.flatten(2)                      # Flattening hash to new array
 
 
 second_hash.each {|key, value| puts "#{key}  #{value}"} #Showing flattened array elements 
