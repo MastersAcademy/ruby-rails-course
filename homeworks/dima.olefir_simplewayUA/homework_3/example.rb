@@ -2,33 +2,30 @@
 puts "Здравствуйте, Ваш номер карты?"
 
 class Receptionist
-  attr_reader :id_card
+  attr_reader :last_name, :first_name, :location, :medical_history, :id_card
 
-  def initialize(id_card = "2913")
+  def initialize( id_card = "2913",
+                  last_name = "Петрович",
+                  first_name = "Петр",
+                  location = "Черкасская обл., Черкассы",
+                  medical_history = "история больного(записи)")
     @id_card = id_card
+    @last_name = last_name
+    @first_name = first_name
+    @location = location
+    @medical_history = medical_history
   end
-  
+    
   def say_hi
     puts "Номер моей карты, - #{@id_card}!"
   end
 end
 
 class Patient < Receptionist
-  attr_reader :last_name, :first_name, :location, :medical_history, :id_card
-
-  def initialize( last_name = "Петрович",
-                  first_name = "Петр",
-                  location = "Черкасская обл., Черкассы",
-                  medical_history = "история больного(записи)")
-    @last_name = last_name
-    @first_name = first_name
-    @location	= location
-    @medical_history = medical_history
-  end
 
   def medical_record
     puts ""
-    puts "Данные по мед. карте №#{@id_card}"
+    puts "Данные по мед. карте № #{@id_card}"
     puts "#{@last_name} #{@first_name}"
     puts "#{@location}"
     puts "#{@medical_history}"
@@ -80,7 +77,7 @@ class Check
   end
 end
 
-salute = Receptionist.new
+salute = Receptionist.new('2913')
 salute.say_hi
 
 record = Patient.new
