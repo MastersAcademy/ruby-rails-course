@@ -10,7 +10,7 @@ b = [1, 4, 5, "yoda", 2,"gendalf"]
 puts "Number of elements in this array is #{b.count}"
 y = ["white", "red", "blue", "green"]
 puts "ther are colors #{y}"
-puts y.collect{ |x| x + " ranger"}
+puts y.map { |x| x + " ranger"}
 h = { "a" => 100, "b" => 200, "c" => "gif"}
 puts h.has_key?("a")
 puts h.has_key?("zimbabve")
