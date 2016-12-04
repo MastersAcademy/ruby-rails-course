@@ -1,4 +1,4 @@
-class Array
+class Arrayexamples
 
   def initialize
     replace_arr
@@ -35,7 +35,7 @@ class Array
 
 end
 
-class Hash
+class Hashexamples
 
   def initialize
     include_method
@@ -76,5 +76,5 @@ class Hash
   end
 
 end
-Hash.new
-Array.new
+Hashexamples.new
+Arrayexamples.new
