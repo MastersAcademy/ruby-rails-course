@@ -33,18 +33,18 @@ puts"Array after insertion"
 puts array_second_ins
 
 puts""
-one_Elem = array_second_ins[1]
-puts"Value one of  array element with index 1 = #{one_Elem}"
+one_elem = array_second_ins[1]
+puts"Value one of  array element with index 1 = #{one_elem}"
 
 puts""
-range_Elem = array_second_ins[0..10]
+range_elem = array_second_ins[0..10]
 puts"Values one of  array elements with range indexes from 0 to 10"
-puts range_Elem
+puts range_elem
 
 puts ""
-range_Elem = array_second_ins[2, 10]
+range_elem = array_second_ins[2, 10]
 puts"Values one of array 10 elements  with range begining index 2"
-puts range_Elem
+puts range_elem
 
 puts ""
 puts "Snake join array to string #{array_second_ins.join("_")}"
