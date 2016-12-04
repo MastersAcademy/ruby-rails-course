@@ -65,4 +65,4 @@ info_ceh_2.check_subscribers('Heroshi', 'Slavik', 'manufactory', 'IT')
 info_room_1.room_number_subscriber('Brom', 'Yriu', 'manufactory', 'electric power supply', "'107'")
 info_room_2.room_number_subscriber('Heroshi', 'Slavik', 'manufactory', 'IT', "'314'")
 
-puts
+puts ''
