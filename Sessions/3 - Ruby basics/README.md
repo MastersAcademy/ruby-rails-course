@@ -24,5 +24,5 @@ Ruby programming language
   * Multithreading
 
 * Examples
-  * https://github.com/fritzvl/moc-ruby-2014/tree/master/2/examples
+  * folder examples
 

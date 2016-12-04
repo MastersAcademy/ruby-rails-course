@@ -1,19 +1,19 @@
-#Ruby and RubyOnRails course examples by masterofcode.com
-#Copyright (C) 2014  Masterofcode LLC
+# Ruby and RubyOnRails course examples by masterofcode.com
+# Copyright (C) 2014  Masterofcode LLC
 
 # Class as value
-mary = class Cow
+mary =
+  class Cow
+    def moo
+      puts 'Moo as a cow'
+    end
 
-  def moo
-    puts "Moo as a cow"
+    self
   end
 
-  self
-end
+z = mary.new
 
-z= mary.new
-
-puts "Class by value"
-puts "==================================================================="
+puts 'Class by value'
+puts '==================================================================='
 z.moo
 puts
