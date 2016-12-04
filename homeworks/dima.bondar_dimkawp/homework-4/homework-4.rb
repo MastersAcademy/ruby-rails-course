@@ -11,12 +11,12 @@ puts
 puts a.join('-')
 
 # examples with Hashs
-chelsea = {'1':	 "Asmir Begovic",
-           '2':	 "ranislav Ivanovic",
-           '3':	 "Marcos Alonso",
-           '4':	 "Cesc Fàbregas",
-           '7':	 "N'Golo Kanté",
-           '8':	 "Oscar",
+chelsea = {'1': "Asmir Begovic",
+           '2': "ranislav Ivanovic",
+           '3':	"Marcos Alonso",
+           '4':	"Cesc Fàbregas",
+           '7':	"N'Golo Kanté",
+           '8':	"Oscar",
            '10': "Eden Hazard",
            '11': "Pedro"}
 
