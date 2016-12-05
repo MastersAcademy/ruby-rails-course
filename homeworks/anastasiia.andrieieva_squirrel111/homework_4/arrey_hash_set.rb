@@ -6,13 +6,12 @@ puts @my_array
 puts "==================================================================="
 puts "Iterate with each"
 @my_array.each {|a| puts "Element : #{a}"}
-puts "Length on array"
-puts @my_array.length
+puts "Size on array"
+puts @my_array.size
 puts "Show only odd elements:"
 puts @my_array.select {|a| a.odd?}
 puts "Map on array"
-puts (@my_array.map {|a| if a.to_s!= "b";then a;end}).join ","
-
+puts @my_array.select {|a| a.to_s != "b"}.join ","
 puts "=========================HASH==========================="
 
 h = { "a" => 33, "b" => 1067}
@@ -30,10 +29,10 @@ h2 = { "s" => 41, "q" => 67, "u" => 23, "i" => 765}
 
 puts h2
 puts "=============================================================="
-puts "Length, delete on hash"
-puts h2.length
+puts "Size, delete on hash"
+puts h2.size
 puts h2.delete("u")
-puts h2.length
+puts h2.size
 puts "Merge on hashes"
 puts h.merge!(h2)
 
@@ -47,7 +46,7 @@ q = Set.new([3,9,8])
 puts "Merge on sets"
 u = s + q
 puts  u.inspect
-puts "Length on set"
-puts u.length
+puts "Size on set"
+puts u.size
 
 
