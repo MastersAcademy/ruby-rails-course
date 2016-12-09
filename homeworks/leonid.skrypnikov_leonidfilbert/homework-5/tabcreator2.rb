@@ -1,8 +1,15 @@
-﻿puts ""
+puts 
 puts "создание первого чека "
-puts ""
+puts 
 
 #считать цену товаров нам нужно будет не только в чеке. вынесем этот метод в модуль
+
+module Global
+  class << self
+    attr_accessor :k
+    attr_accessor :a
+  end
+end
 
 module Calculator
   def total_price(value)
@@ -13,8 +20,8 @@ end
 module Discount
   def self.extended(base)
     #задействовать скидку
-    $k *= 0.98
-    $k = sprintf("%.2f", $k).to_f 
+    Global.k *= 0.98
+    Global.k = sprintf("%.2f", Global.k).to_f 
   end
 end
   
@@ -23,7 +30,7 @@ class TabCounter
   
   def count=(value)
     @count = value
-    $a = @count
+    Global.a = @count
     change_roll if max_count?
   end 
   
@@ -45,7 +52,9 @@ end
 
 class TabCreator
   
-  def self.new  
+  include Calculator
+  
+  def self.new
     tab = super 
     @counter.count += 1 
     tab 
@@ -56,7 +65,7 @@ class TabCreator
   end
   
   def write_date(day, month, year)
-    puts "         #{day}.#{month}.#{year}"
+    puts "\t\t#{day}.#{month}.#{year}"
   end
   
   def tab_number(value)
@@ -71,8 +80,6 @@ class TabCreator
     puts "список продуктов: #{list}"
   end
   
-  include Calculator
-  
   def discount_card(number)
     puts "номер дисконтной карты: #{number}$"
   end
@@ -81,18 +88,18 @@ end
 
 TabCreator.counter = TabCounter.new
 myfirsttab = TabCreator.new
-$k = 27.45
+Global.k = 27.45
 myfirsttab.write_date(25,11,2016)
-myfirsttab.tab_number($a)
+myfirsttab.tab_number(Global.a)
 myfirsttab.seller_number("0230564f32")
 # вот тут нужно будет добавить цену.
 myfirsttab.goods("фольга, ножницы, негазированная минеральная вода")
 myfirsttab.extend Discount
-myfirsttab.total_price($k)
+myfirsttab.total_price(Global.k)
 myfirsttab.discount_card("1482245k2s35")
-puts ""
+puts 
 puts "а теперь создадим 1000 пустых чеков и заставим продавца заменить рулон"
-puts ""
+puts 
 1000.times do
   TabCreator.new
 end
