@@ -1,42 +1,98 @@
-class Car
-  def start_car
-    puts 'Автомобіль можна заводити!'
-    puts   
+class Humen
+
+  def hellow
+    puts "Дброго дня!!!"
   end
-  
+
+  def goodbye
+    puts "Допобачення."
+  end
+end
+
+class Driver
+   attr_accessor :name
+
+  def initialaize
+    @name = name
+  end
+
+  def say_hellow(hellow )
+    hellow
+  end
+
+  def answer(name)
+    puts "Так, звісно перевірте"
+    puts "Дякую #{name}."
+  end  
+
+  def say_goodbye(goodbye)
+    goodbye
+  end
+
   def actuation_machines
     puts 'Заводимо автомобіль.'
-    puts
-     puts 'Автомобіль заведено.'
-    puts
+    puts 'Автомобіль заведено.'
   end
 
   def press_clutch_pedal
     puts 'Натискаємо педаль зчеплення.'
-    puts
     puts 'Педаль зчеплення натиснута!'
-    puts
   end
 
   def transmission
     puts 'Вимикаємо першу передачу.'
-    puts
-    puts 'Першу передачу ввімкнено.'
-    puts  	
+    puts 'Першу передачу ввімкнено.'  
   end
 
   def releaxse_clutch_pedal
     puts 'Відпускаєио педаль зчеплення.'
-    puts
     puts 'Педаль зчеплення відпущено'
-    puts
   end
 
   def press_gas
     puts 'Натискаємо педаль газу'
-    puts
-    puts 'Педальгазу натиснута'
-    puts  	
+    puts 'Педальгазу натиснута'   
+  end
+end
+
+class Checking_fuel
+  attr_accessor :name
+
+  def initialaize
+    @name = name
+  end
+
+  def say_hellow(hellow , name)
+    hellow
+    puts "Мене звати #{name}"
+  end  
+
+  def question
+    puts "Дозвольте перевірю рівень палива"
+  end
+
+  def say_goodbye (goodbye)
+    goodbye
+    puts ("Щасливої дороги.")
+  end
+end 
+
+class Car
+  attr_accessor :fuel_count
+
+  def initialize
+    @fuel_count = fuel_count
+  end
+
+  def fuel_count
+    @fuel_count = rand(100)
+  end
+
+  def  refuel_count
+     refuel_count = 1+rand(99)
+  end
+  def start
+    puts 'Автомобіль можна заводити!' 
   end
 
   def run
@@ -45,41 +101,38 @@ class Car
 end
 
 class AuditFuel
-  attr_accessor :audit, :fuel_count
 
-  def initialize(audit = 'Перевірка наявності палива!')
-    @audit = audit
-    puts @audit
-    puts
-    self  
-  end
+  def audit_fuel (fuel_count ,refuel_count) 
 
-  def audit_fuel (fuel_count)  
-    if fuel_count >= 1
+    if fuel_count <= 100
       fuel = "Паливa  #{fuel_count}л з 100л, можна заводити автомобіль."
     else 
       fuel = "Палива  #{ fuel_count } !!! Потрібно заправити Автомобіль!"    
-      def refuel
-        fuel_count = 1+rand(99)
-        refuel = "Автомобіль заправлено до #{fuel_count}л."
-        
-      end
+     
+      refuel = "Автомобіль заправлено до #{refuel_count}л." 
     end
   puts fuel 
-  puts 
   puts refuel
-  puts
   end 
 end  
 
 auditFuel = AuditFuel.new
-auditFuel.audit_fuel(0)
-
-
 car = Car.new
-car.start_car
-car.actuation_machines
-car.press_clutch_pedal
-car.transmission
-car.press_gas
-car.run 
+humen = Humen.new
+driver = Driver.new
+checking_fuel = Checking_fuel.new
+
+driver.say_hellow(humen.hellow)
+checking_fuel.say_hellow(humen.hellow, "Андій")
+checking_fuel.question
+driver.answer("Андрій")
+
+auditFuel.audit_fuel(car.fuel_count, car.refuel_count)
+checking_fuel.say_goodbye(humen.goodbye)
+driver.say_goodbye(humen.goodbye)
+car.start
+driver.actuation_machines
+driver.press_clutch_pedal
+driver.transmission
+driver.press_gas
+car.run
