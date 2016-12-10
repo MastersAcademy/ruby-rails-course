@@ -37,7 +37,7 @@ end
 class Trainer
   include Ifnformation
   @@counter = 0
-  attr_accessor :email, :name, :surname, :trainerid , :experience, :price
+  attr_accessor :trainerid , :experience, :price
 
   def initialize(email, name, surname, experience)
     input_info(email, name, surname)
@@ -70,7 +70,6 @@ end
 
 class Manager
   include Ifnformation
-  attr_accessor :email, :name, :surname
 
   def initialize(email, name, surname)
     input_info(email, name, surname)
