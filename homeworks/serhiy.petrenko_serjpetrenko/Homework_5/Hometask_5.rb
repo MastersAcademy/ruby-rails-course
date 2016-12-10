@@ -5,8 +5,7 @@ module ClassicCocktails
 
     begin
       puts "Here is a coctails, you can choose one and we show ingredients:"
-      puts "Mojito - 1\nCuba libre - 2\nBlack russian - 3\nGod father - 4\n"
-      puts "Make your  choice: "
+      puts "Mojito - 1\nCuba libre - 2\nBlack russian - 3\nGod father - 4\nMake your  choice: "
       choice = gets.to_i
       cocktails = {
         1 => {name: 'Mojito', recipe: "White rum - 50 ml,\nlime - 2 slices,\nmint - 15 gr.,\nsimple syrup - 20 gr."},
@@ -31,8 +30,7 @@ module NewEra
 
       begin
         puts "Here is a coctails, you can choose one and we show ingredients:"
-        puts "Bramble - 1\nFrench martini - 2\nSpritz veneziano - 3\nVesper - 4\n"
-        puts "Make your choice: "
+        puts "Bramble - 1\nFrench martini - 2\nSpritz veneziano - 3\nVesper - 4\nMake your choice: "
         choice = gets.to_i
         cocktails = {
           1 => {name: 'Bramble', recipe: "Gin - 40 ml,\nSugar syrup - 10 ml,\nFresh lemon juice - 15 ml.,\nBlackberry liqueur - 15 ml."},
@@ -58,8 +56,7 @@ class InShaker
   def main
 
     begin
-      puts "Welcome to the 'In shaker' programm!"
-      puts "Enter - 1 for choose 'Classic cocktails' or 2 for 'New era cocktails'!"
+      puts "Welcome to the 'In shaker' programm!\nEnter - 1 for choose 'Classic cocktails' or 2 for 'New era cocktails'!"
       choice = gets.to_i
       case choice
 
