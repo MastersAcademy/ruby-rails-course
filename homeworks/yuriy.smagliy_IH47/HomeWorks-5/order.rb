@@ -1,50 +1,16 @@
 require 'date'
 
-class Ticket
+module Counterable
   @@counter = 0
-  attr_reader :id, :price, :from, :to, :date
-  attr_accessor :user
 
-  def initialize(price, from, to, date)
-    @id = @@counter += 1
-    @price = price
-    @from = from
-    @to = to
-    @date = date
+  attr_reader :id
+
+  def set_id
+  	@id = @@counter += 1
   end
-
 end
 
-module User
-  attr_reader :id, :email, :registered, :tickets
-  attr_accessor :first_name, :last_name
-
-  @@counter = 0
-  @@users = []
-
-  def initialize(first_name, last_name, email)
-    @id = @@counter += 1
-    @first_name = first_name
-    @last_name = last_name
-    @email = email
-    @tickets = []
-  end
-
-  def self.add(user)
-    @@users += [user]
-  end
-
-  def self.all
-    @@users
-  end
-
-  def self.registered
-    @@users.select { |u| u.registered == true }
-  end
-
-  def self.guests
-    @@users.select { |u| u.registered == false }
-  end
+module TicketsBuyer
 
   def buy_ticket(ticket)
     ticket.user = self
@@ -56,28 +22,76 @@ module User
     @tickets -= [ticket]
   end
 
+end
+
+module User
+  include Enumerable
+  attr_reader :email, :registered, :tickets
+  attr_accessor :first_name, :last_name
+
+  @@list = []
+
+  def self.extended(base)
+    base.include(User)
+  end
+
+  def initialize(first_name, last_name, email)
+    @first_name = first_name
+    @last_name = last_name
+    @email = email
+    @tickets = []
+    @@list += [self]
+  end
+
+  def self.add(user)
+    @@list += [user]
+  end
+
+  def self.all
+    @@list
+  end
+
+  def self.registered
+    @@list.select { |u| u.registered == true }
+  end
+
+  def self.guests
+    @@list.select { |u| u.registered == false }
+  end
+
+  def each(&block)
+  	@@list.each(&block)
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
 end
 
 class GuestUser
-  include User
+  extend User
+  include Counterable
+  include TicketsBuyer
+
   def initialize(first_name, last_name, email)
     super
+    set_id
     @registered = false
-    User.add(self)
   end
 end
 
 class RegisteredUser
-  include User
+  extend User
+  include Counterable
+  include TicketsBuyer
+
   attr_accessor :nickname
+
   def initialize(first_name, last_name, email, nickname)
     super(first_name, last_name, email)
+    set_id
     @nickname = nickname
     @registered = true
-    User.add(self)
   end
 
 end
@@ -89,6 +103,22 @@ class Airport
     @name = name
     @city = city
     @country = country
+  end
+
+end
+
+class Ticket
+  include Counterable
+
+  attr_reader :price, :from, :to, :date
+  attr_accessor :user
+
+  def initialize(price, from, to, date)
+    set_id
+    @price = price
+    @from = from
+    @to = to
+    @date = date
   end
 
 end
@@ -108,3 +138,5 @@ puts "User's tickets: #{guest.tickets.inspect}"
 
 guest.return_ticket(ticket)
 puts "User's tickets after return: #{guest.tickets.inspect}"
+
+puts "Users count: #{GuestUser.count}"
