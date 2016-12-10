@@ -53,9 +53,10 @@ end
 class InShaker
 
   include ClassicCocktails
+  extend NewEra
 
   def main
-    extend NewEra
+
     begin
       puts "Welcome to the 'In shaker' programm!"
       puts "Enter - 1 for choose 'Classic cocktails' or 2 for 'New era cocktails'!"
@@ -65,7 +66,7 @@ class InShaker
       when 1
         run1
       when 2
-        run2
+        InShaker.run2
       end
 
     end
