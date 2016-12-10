@@ -6,7 +6,7 @@ module Counterable
   attr_reader :id
 
   def set_id
-  	@id = @@counter += 1
+    @id = @@counter += 1
   end
 end
 
@@ -60,7 +60,7 @@ module User
   end
 
   def each(&block)
-  	@@list.each(&block)
+    @@list.each(&block)
   end
 
   def full_name
