@@ -1,7 +1,4 @@
 module Cashier_name
-
-  attr_accessor :manager_name
-
   def cashier(cashier_name)
     $manager_name = cashier_name
   end
