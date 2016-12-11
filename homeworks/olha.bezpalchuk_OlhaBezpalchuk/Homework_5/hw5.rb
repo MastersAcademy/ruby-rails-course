@@ -13,8 +13,6 @@ end
 
 module Transport
 
-#  attr_accessor :number_of_places, :max_number_of_places
-
   def initialize(number_of_places, max_number_of_places)
     @number_of_places = number_of_places
     @max_number_of_places = max_number_of_places
