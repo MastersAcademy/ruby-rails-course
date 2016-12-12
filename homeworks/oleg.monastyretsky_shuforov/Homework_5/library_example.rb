@@ -8,18 +8,69 @@ module BookPresentation
  wroted by #{author}"
   end
 end
+# Module of faveorite books
+module FavoriteBooks
+  def favorite_books
+    p "Favorite books list of #{self.name}"
+    @list_of_favorite_books
+  end
 
-# Module with function for registered reader
-module TakeBookHome
-  def take_book_home(book_name)
-    p "#{@name} looking for #{book_name}"
-    if @library.on_work.key('working').give_book_to_reader(book_name, self)
-      p "#{self.name} take book #{book_name} home"
+  def add_new_favorite_book(book_name)
+    p "#{book_name} was added to favorite"
+    @list_of_favorite_books << book_name
+  end
+end
+# Librarry class
+class Library
+  attr_accessor :book_shelf,
+                :list_of_librarions,
+                :list_of_registered_readers,
+                :on_work
+  def initialize(book_list, librarion_list)
+    @list_of_registered_readers = []
+    @book_shelf = {}
+    @list_of_librarions = {}
+    @on_work = {}
+    book_list.each do |book|
+      @book_shelf[book.title] = book.number_of_books
+    end
+    librarion_list.each do |librarion|
+      @list_of_librarions[librarion] = librarion.working_days
+      librarion.working_place = self
+    end
+  end
+
+  extend BookPresentation
+
+  def worker_for_today(day)
+    @list_of_librarions.each do |librarian, days|
+      next unless days.include?(day)
+      @on_work[librarian] = 'working'
     end
   end
 end
-# Module with functions for Librarian
-module LibrarianJobResponsibilities
+# Book class
+class Book
+  attr_reader :author, :title, :year, :edition, :number_of_books
+  def initialize(author, title, year, number_of_books, edition = 'first')
+    @author = author
+    @title = title
+    @year = year
+    @edition = edition
+    @number_of_books = number_of_books
+  end
+end
+# Librarian class
+class Librarian
+  attr_reader :name, :surname, :working_days, :list_of_favorite_books
+  attr_accessor :working_place
+  def initialize(name, surname, working_days)
+    @name = name
+    @surname = surname
+    @working_days = working_days
+    @working_place = working_place
+    @list_of_favorite_books = ['The Thing']
+  end
   def lunch
     @working_place.on_work[self] = 'on lunch'
     p "#{self.name} going to luch"
@@ -32,7 +83,12 @@ module LibrarianJobResponsibilities
 
   def register_reader(reader)
     class << reader
-      include TakeBookHome
+      def take_book_home(book_name)
+        p "#{@name} looking for #{book_name}"
+        if @library.on_work.key('working').give_book_to_reader(book_name, self)
+          p "#{self.name} take book #{book_name} home"
+        end
+      end
     end
     @working_place.list_of_registered_readers << reader
     p "#{reader.name} registered successfully"
@@ -61,69 +117,16 @@ module LibrarianJobResponsibilities
       p "Book #{book_name} was add to the library"
     end
   end
+
+  include FavoriteBooks
 end
-# Librarry class
-class Library
-  attr_accessor :book_shelf,
-                :list_of_librarions,
-                :list_of_registered_readers,
-                :on_work
-
-  def initialize(book_list, librarion_list)
-    @list_of_registered_readers = []
-    @book_shelf = {}
-    @list_of_librarions = {}
-    @on_work = {}
-    book_list.each do |book|
-      @book_shelf[book.title] = book.number_of_books
-    end
-    librarion_list.each do |librarion|
-      @list_of_librarions[librarion] = librarion.working_days
-      librarion.working_place = self
-    end
-  end
-
-  extend BookPresentation
-
-  def worker_for_today(day)
-    @list_of_librarions.each do |librarian, days|
-      next unless days.include?(day)
-      @on_work[librarian] = 'working'
-    end
-  end
-end
-
-# Book class
-class Book
-  attr_reader :author, :title, :year, :edition, :number_of_books
-  def initialize(author, title, year, number_of_books, edition = 'first')
-    @author = author
-    @title = title
-    @year = year
-    @edition = edition
-    @number_of_books = number_of_books
-  end
-end
-
-# Librarian class
-class Librarian
-  attr_reader :name, :surname, :working_days
-  attr_accessor :working_place
-  def initialize(name, surname, working_days)
-    @name = name
-    @surname = surname
-    @working_days = working_days
-    @working_place = working_place
-  end
-  include LibrarianJobResponsibilities
-end
-
 # Reader classp
 class Reader
-  attr_reader :surname, :name, :library
+  attr_reader :surname, :name, :library, :list_of_favorite_books
   def initialize(surname, name)
     @surname = surname
     @name = name
+    @list_of_favorite_books = ['The Hobbit']
   end
 
   def enter_to_library(library, day)
@@ -164,6 +167,8 @@ class Reader
       p "Librarian is't here right now, i will came later"
     end
   end
+
+  include FavoriteBooks
 end
 
 p ''
@@ -213,4 +218,9 @@ Library.notification_about_event('The Last Mortal Bond',
                                  'Brian Staveley',
                                  'Tuesday',
                                  'School Library')
+# Favorite books list of James
+james.add_new_favorite_book('Lord of the Rings: the Fellowship of the Ring')
+p james.favorite_books
+# Favorite books list of Dave
+p dave_mustain.favorite_books
 p ''
