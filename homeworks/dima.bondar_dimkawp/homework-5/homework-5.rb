@@ -16,7 +16,7 @@ module FactoryBall
     end
     p
     p "SizeBall    - #{size}"
-    p '_______________________'
+    p '__________________________'
   end
 
   def textile_ball(textile)
@@ -36,7 +36,7 @@ module FactoryBall
     end
 
     p "TextileBall - #{textile}"
-    p '_______________________'
+    p '__________________________'
   end
 
   def color_ball(color)
@@ -56,7 +56,7 @@ module FactoryBall
     end
 
     p "ColorBall    -#{color}"
-    p '_______________________'
+    p '__________________________'
   end
 
   def weigh_ball(weigh)
@@ -74,7 +74,7 @@ module FactoryBall
     end
 
     p "WeighBall    - #{weigh}"
-    p '_______________________'
+    p '__________________________'
 
   end
 
@@ -97,29 +97,88 @@ module Ball_Name
 
 end
 
-class SoccerBall
+module Unique
 
-  extend Ball_Name
-  include FactoryBall
-
-  def type_ball(type)
-
-    type_check = ['Soccer','Basketball','Volleyball']
-
-    if type_check.include?(type) == true
-      p type
-    else
-      p 'type error'
-    end
+  def unique_def
+    p 'unique'
   end
 
 end
 
-soccer_ball = SoccerBall.new
+module Type_ball_check
 
+  attr_accessor :types
+
+  def type_ball(type)
+
+    if types.include?(type) == true
+      p type
+    else
+      p 'type error'
+    end
+
+  end
+
+end
+
+class SoccerBall
+
+  extend Ball_Name
+  include FactoryBall
+  include Unique
+  include Type_ball_check
+
+  def initialize
+    @types = ['Soccer','soccer','Soccer-Ball']
+  end
+
+end
+
+class BasketBall
+
+  extend Ball_Name
+  include FactoryBall
+  include Type_ball_check
+
+  def initialize
+    @types = ['BasketBall','basketball','Basket-Ball']
+  end
+
+end
+
+class ValleyBall
+
+  extend Ball_Name
+  include FactoryBall
+  include Type_ball_check
+
+  def initialize
+    @types = ['ValleyBall','valleyball','Vally-Ball']
+  end
+
+end
+# Builder
+
+soccer_ball = SoccerBall.new
 soccer_ball.type_ball('soccer')
 SoccerBall.ball_name()
 soccer_ball.size_ball('default')
 soccer_ball.textile_ball('default')
 soccer_ball.color_ball('default')
 soccer_ball.weigh_ball('default')
+p '__________________________'
+basket_ball = BasketBall.new
+basket_ball.type_ball('default')
+BasketBall.ball_name('default')
+basket_ball.size_ball('default')
+basket_ball.color_ball('default')
+basket_ball.weigh_ball('default')
+p '__________________________'
+vally_ball = ValleyBall.new
+vally_ball.type_ball('Vally-Ball')
+ValleyBall.ball_name('default')
+vally_ball.size_ball('default')
+vally_ball.color_ball('default')
+vally_ball.weigh_ball('default')
+
+
