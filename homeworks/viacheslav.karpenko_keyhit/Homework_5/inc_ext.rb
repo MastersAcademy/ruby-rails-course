@@ -1,8 +1,10 @@
 puts ""
 puts "Автомобільна фабрика демонструє паттерн BUILDER"
 
-module GeneralCar
 
+#-- Modules --
+module Engine
+  
   def gathering_engine
     puts "Взяти деталі двигуна об'ємом #{@liters} літрів."
     puts "Зібрати головку блоку циліндрів."
@@ -11,12 +13,20 @@ module GeneralCar
     puts "Закрити піддоном."
   end
 
+end
+
+module CarBody
+
   def gathering_car_body
     puts "Взяти елементи для автомобіля #{@type}."
     puts "З’єднати готові елементи точковою зваркою."
     puts "Пофарбувати."
   end
 
+end
+
+module Chassis
+  
   def gathering_chassis
     puts "Встановити #{@whels} колеса на осі."
     puts "Встановити #{@dampers} амортизатори."
@@ -24,13 +34,17 @@ module GeneralCar
 
 end
 
-module SpecialCar
+module Cabin
 
   def driver_cabin
     puts "Зватити кабіну."
     puts "Встановити двері."
     puts "Встановити органи керування."
   end
+
+end
+
+module Base
 
   def vehicle_base
     puts "Нарізати #{@material} #{@material_form}."
@@ -40,102 +54,140 @@ module SpecialCar
 
 end
 
-module MaxWeightSpeed
-  
-  def hevy_vehicle_speed_max(m_speed)
-    puts "При повні завантаженості вантажівка розвиває швидкість #{m_speed} км/год."
+module Color
+
+  def paint(painting)
+    puts "Фарбувати в #{painting} колір."
   end
 
 end
+#-- Classes --
 
-class VehicleBuilder
+class PassengerCar
+  
+  attr_accessor :liters, :type, :whels, :dampers
 
-attr_accessor :liters, :type, :whels, :dampers, :material, :material_form, :connector
-
-  def initialize(liters = "", type = "", whels = 4, dampers = 4, material = "", material_form = "", connector = "")
+  def initialize(liters, type, whels, dampers)
     @liters = liters
     @type = type
     @whels = whels
     @dampers = dampers
+  end
+  
+  include Engine
+  include CarBody
+  include Chassis
+  extend Color
+
+end
+
+class Truck
+  
+  attr_accessor :liters, :whels, :dampers, :material, :material_form, :loading
+
+  def initialize(liters = "", whels = "", dampers = "", material = "", material_form = "", loading = "")
+    @liters = liters
+    @whels = whels
+    @dampers = dampers
     @material = material
     @material_form = material_form
-    @connector = connector
+    @loading = loading
+  end
+  
+  include Engine
+  include Cabin
+  include Base
+  include Chassis
+  extend Color
+
+  def max_load
+    puts "Максимальна вага для перевезення #{@loading} кг."
   end
 
-  include GeneralCar
-  include SpecialCar
-  extend MaxWeightSpeed
+end
+
+class Motorcycle
+  
+  attr_accessor :liters, :whels, :dampers, :material, :material_form
+
+  def initialize(liters = "", whels = "", dampers = "", material = "", material_form = "")
+    @liters = liters
+    @whels = whels
+    @dampers = dampers
+    @material = material
+    @material_form = material_form
+  end
+  
+  include Engine
+  include Base
+  include Chassis
+  extend Color
 
 end
 
-puts ""
-puts ""
-puts "__ Конвеєр автомобілів седан __"
-puts ""
+#-- Objects
 
-sedan_car = VehicleBuilder.new
+puts""
+puts"-- SEDAN car --"
+sedan = PassengerCar.new(1.5, "седан", 4, 4)
 puts "_ Двигун _"
-sedan_car.liters = 1.5
-sedan_car.gathering_engine
+sedan.gathering_engine
 puts "_ Кузов _"
-sedan_car.type = "Седан"
-sedan_car.gathering_car_body
+sedan.gathering_car_body
 puts "_ Ходова _"
-sedan_car.gathering_chassis
+sedan.gathering_chassis
+puts "_ Фарбування _"
+PassengerCar.paint(" червоний ")
+puts""
 
-def sedan_car.speed(km_h) 
-  puts "Автомобіль розвиває максимальну швидкість #{km_h} км/год."
-end
-
-sedan_car.speed(250)
-
-puts " *  *  *"
-puts ""
-puts "__ Конвеєр автомобілів універсал __"
-puts ""
-
-universal_сar = VehicleBuilder.new(1.5, "універсал")
+puts""
+puts"-- UNIVERSAL car --"
+universal = PassengerCar.new(1.5, "універсал",  4, 4)
 puts "_ Двигун _"
-universal_сar.gathering_engine
+universal.gathering_engine
 puts "_ Кузов _"
-universal_сar.gathering_car_body
+universal.gathering_car_body
 puts "_ Ходова _"
-universal_сar.gathering_chassis
+universal.gathering_chassis
+puts "_ Фарбування _"
+PassengerCar.paint(" зелений ")
+puts""
 
-puts " *  *  *"
-puts ""
-puts "__ Конвеєр вантажних автомобілів __"
-puts ""
-
-hevy_car = VehicleBuilder.new(5, "", 10, 6, "сталеві", "профілі", "заклепками")
-puts "_ Кабіна _"
-hevy_car.driver_cabin
-puts "_ Рама _"
-hevy_car.vehicle_base
+puts""
+puts"-- TRUCK --"
+truck_vehi = Truck.new(5, 10, 6, "сталеві", "профілі")
 puts "_ Двигун _"
-hevy_car.gathering_engine
-puts "_ Ходова _"
-hevy_car.gathering_chassis
-VehicleBuilder.hevy_vehicle_speed_max(80)
-
-puts " *  *  *"
-puts ""
-puts "__ Конвеєр мотоциклів __"
-puts ""
-
-motorcycle = VehicleBuilder.new(0.5, "", 2, 4, "сталеві", "труби", "зваркою")
-puts "_ Двигун _"
-motorcycle.gathering_engine
+truck_vehi.gathering_engine
+truck_vehi.driver_cabin
 puts "_ Рама _"
-motorcycle.vehicle_base
+truck_vehi.vehicle_base
 puts "_ Ходова _"
-motorcycle.gathering_chassis
+truck_vehi.gathering_chassis
+puts "_ Фарбування _"
+Truck.paint(" блакитний ")
+puts "_ Максимальна вага _"
+truck_vehi.loading = 3000
+truck_vehi.max_load
+puts""
+
+puts""
+puts"-- MOTORCYCLE --"
+motor_byke = Motorcycle.new(1, "", "", "сталеві", "труби")
+puts "_ Двигун _"
+motor_byke.gathering_engine
+puts "_ Рама _"
+motor_byke.vehicle_base
+puts "_ Ходова _"
+motor_byke.whels = 2
+motor_byke.dampers = 4
+motor_byke.gathering_chassis
+puts "_ Фарбування _"
+Motorcycle.paint(" чорний ")
 puts "_ Додаткове обладнання _"
-
-def motorcycle.custom_equipment
+def motor_byke.custom_equipment
   puts "Встановити рацію."
   puts "Встановити стробоскопи."
   puts "Встановити сирену."
 end
 
-motorcycle.custom_equipment
+motor_byke.custom_equipment
