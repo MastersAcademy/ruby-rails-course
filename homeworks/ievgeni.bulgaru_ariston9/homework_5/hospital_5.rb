@@ -10,23 +10,6 @@ module CreatePatient
     @insuranc_number = insuranc_number
   end
 
-  def registration_card
-    @patient_record = []
-
-    info_p = STDIN.gets.chomp.strip
-
-    if @patient_record != info_p
-      @patient_record << info_p
-      puts "Patient #{info_p} registration is successful"
-    else
-      puts "Patient #{info_p} is not registration "
-    end
-  end
-
-  def visit_p(p_lastname, p_firstname)
-    puts "Visit #{p_lastname} #{p_firstname} to Hospital"
-  end
-
   # Print ambulatory patient cards
 
   def print_card(p_id, p_lastname, p_firstname, insuranc_number)
@@ -50,9 +33,60 @@ module Order
   def invoice_payment
     puts "Create invoice for payment"
   end
+
 end
 
 module DocSet
+
+  attr_accessor :operation, :number_protocol
+
+  # To get a prescription for the patient
+  def prescription(p_lastname, p_firstname, name_pr, dispense, refills)
+    puts "Prescription for #{p_lastname} #{p_firstname} #{name_pr}
+    dispense: #{dispense}
+    refills: #{refills} "
+  end
+
+  def protocol_operation
+    "Forming the protocol operation number #{number_protocol} for a patient"
+  end
+end
+
+module AdditionDoc
+
+  # Offers the possibility of ordering a patient without insurance policy
+  def self.included(not_invoice)
+    not_invoice.extend(DocSet)
+  end
+end
+
+class Registry
+
+  include CreatePatient
+  extend Order
+
+  def registration_card
+    @patient_record = []
+
+    info_p = STDIN.gets.chomp.strip
+
+    if @patient_record != info_p
+      @patient_record << info_p
+      puts "Patient #{info_p} registration is successful"
+    else
+      puts "Patient #{info_p} is not registration "
+    end
+
+    def visit_p(p_lastname, p_firstname)
+      puts "Visit #{p_lastname} #{p_firstname} to Hospital"
+    end
+  end
+end
+
+class Doctor
+
+  include CreatePatient
+  include DocSet
 
   attr_accessor :id_d, :name_doctor
 
@@ -64,35 +98,8 @@ module DocSet
     puts "Viewing medical card about patient #{p_lastname} #{p_firstname}"
   end
 
-  # To get a prescription for the patient
-  def prescription(p_lastname, p_firstname, name_pr, dispense, refills)
-    puts "Prescription for #{p_lastname} #{p_firstname} #{name_pr}
-    dispense: #{dispense}
-    refills: #{refills} "
-  end
-end
-
-module AdditionDoc
-
-  def self.included(qualification_d)
-    qualification_d.extend(DocSet)
-  end
-end
-
-class Registry
-
-  include CreatePatient
-  extend Order
-
-end
-
-class Doctor
-
-  include DocSet
-
   def establishing_diagnosis
     puts "Establishing diagnosis for the patient"
-
   end
 
   def drugs
@@ -103,10 +110,12 @@ end
 
 class Admission_department
 
+  include CreatePatient
+  include DocSet
+
   attr_reader :name_admission, :data_admission
 
   def initialize
-    super
     @name_admission = name_admission
     @data_admission = data_admission
   end
@@ -118,6 +127,14 @@ class Admission_department
 
   def report_department
     puts "Report admission departments"
+  end
+end
+
+Admission_department.class_eval do
+
+  def patient_discharge
+    @time = Time.new(2016, 05, 20)
+    "Register the patient for discharge #{@time}"
   end
 end
 
@@ -136,3 +153,6 @@ var3.register_hospitalization
 var4.card_doctor('Filimonov V.M', '0012')
 var4.view_patient_data('Babay', 'Olga')
 var4.prescription('Trial', 'Jhon', 'Analgin 20mg Tablet (Oral) daily', '10 pills', '2')
+var4.number_protocol = object_id
+puts var4.protocol_operation
+puts var3.patient_discharge
