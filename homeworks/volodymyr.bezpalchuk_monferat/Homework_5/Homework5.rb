@@ -1,24 +1,24 @@
-module Info
-  def get_info
-    puts "Basic methods of #{self} class: #{self.instance_methods(false)}"
-  end
-end
-
-module Groupify
-  def initialize
-    @groups = Hash.new{|hash, key| hash[key] = []}
+module Groupable
+  def groups
+    @groups ||= []
   end
 
-  def add_to_group(group, item)
-    @groups[group] << item
+  def add_to_group(group)
+    groups << group
+  end
+
+  def remove_from_group(group)
+    groups.delete(group)
   end
 
   def print_groups
-    puts "Groups: #{@groups.keys}"
+    puts "Groups: #{groups}"
   end
 end
 
 class Contact
+  include Groupable
+
   attr_reader :first_name, :last_name
   attr_reader :phone_numbers
 
@@ -48,69 +48,8 @@ class Contact
   end
 end
 
-# Saving and removing contacts
-class AddressBook
-  include Groupify
-
-  attr_reader :contacts, :groups
-
-  def initialize
-    @contacts = []
-    super
-  end
-
-  def print_contact_list
-    puts 'Contact List:'
-    puts '-------------'
-    contacts.each do |contact|
-      contact.to_s
-    end
-  end
-
-  def print_by_group(group)
-    puts "Group - #{group}:"
-    @groups[group].each{|g| g.to_s}
-  end
-
-  def add(contact)
-    contacts.push(contact)
-  end
-
-  def remove(first_name, last_name)
-    contacts.delete_if {|s| s.first_name.eql?(first_name) && s.last_name.eql?(last_name)}
-  end
-end
-
-#Backup and restore messages
-class Memento
-  attr_reader :acceptor, :body
-
-  def initialize(message)
-    @acceptor = message.acceptor
-    @body = message.body
-  end
-end
-
-class MsgVersion
-  attr_reader :versions
-
-  def initialize
-    @versions = {}
-    @version_number = 0
-  end
-
-  def add(version)
-    @versions[@version_number] = version
-    @version_number += 1
-  end
-
-  def version(number)
-    @versions[number]
-  end
-end
-
 class Message
-  extend Info
+  include Groupable
 
   attr_accessor :acceptor, :body
 
@@ -123,53 +62,66 @@ class Message
     print "to [#{acceptor}]: "
     puts body
   end
+end
 
-  def save
-    Memento.new(self)
+class AddressBook
+  attr_reader :contacts
+
+  def initialize
+    @contacts = []
   end
 
-  def restore(version)
-    @acceptor = version.acceptor
-    @body = version.body
+  def print_contact_list
+    puts 'Contact List:'
+    contacts.each do |contact|
+      contact.to_s
+    end
+  end
+
+  def add(contact)
+    contacts.push(contact)
+  end
+
+  def remove(contact)
+    contacts.delete(contact)
   end
 end
 
-thomas = Contact.new('Thomas','Berger')
-thomas.add_phone_number('+38(050)-873-9832')
-thomas.add_phone_number('+38(063)-231-8741')
+auror = Contact.new('Percival','Graves')
+auror.add_phone_number('+38(050)-873-9832')
+auror.add_phone_number('+38(063)-231-8741')
+auror.add_to_group('Work');
 
 clara = Contact.new('Clara','Oswald')
 clara.add_phone_number('+37(021)-413-1921')
 clara.add_phone_number('+37(012)-932-8643')
+clara.add_to_group('Work');
+clara.add_to_group('Friends');
 
 queenie = Contact.new('Queenie','Goldstein')
 queenie.add_phone_number('+35(103)-113-7863')
+queenie.add_to_group('Friends');
 
-auror = Contact.new('Percival','Graves')
-auror.add_phone_number('+32(121)-333-7222')
+queenie.print_groups
+clara.print_groups
+
+msg = Message.new(clara.first_name, 'Happy holidays')
+msg_draft = Message.new(clara.first_name, 'I will come soon')
+
+msg.add_to_group('Templates');
+msg.add_to_group('Drafts');
+msg_draft.add_to_group('Drafts');
+
+msg.print_groups
+msg_draft.print_groups
+msg.remove_from_group('Drafts')
+msg.print_groups
+msg.print_msg
+puts
 
 address_book = AddressBook.new
-draft = MsgVersion.new
 
-address_book.add(thomas)
 address_book.add(clara)
 address_book.add(queenie)
 address_book.add(auror)
-
-address_book.add_to_group('Friends',clara)
-address_book.add_to_group('Friends',auror)
-address_book.add_to_group('Work',queenie)
-address_book.print_by_group('Friends')
-address_book.print_by_group('Work')
-address_book.print_groups
-
-puts "\n======= Check Memento ============="
-msg = Message.new('Clara', 'Good morning!')
-msg.print_msg
-
-draft.add(msg.save)
-msg.body = 'Good evening!'
-msg.restore(draft.version(0))
-msg.print_msg
-
-Message.get_info
+address_book.print_contact_list
