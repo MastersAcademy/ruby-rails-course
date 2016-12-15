@@ -7,6 +7,10 @@ module BookPresentation
     p "At #{day} in #{library} will be presentation of book #{book_name} \
  wroted by #{author}"
   end
+  
+  def cost_of_book(sum)
+    p "Book will be cost #{sum}$"
+  end
 end
 # Module of faveorite books
 module FavoriteBooks
@@ -119,6 +123,8 @@ class Librarian
   end
 
   include FavoriteBooks
+  extend BookPresentation
+  
 end
 # Reader classp
 class Reader
@@ -181,6 +187,12 @@ rob_halford = Librarian.new('Rob', 'Halford', %w(Wed Thu Fri Sat))
 # Library
 school_library = Library.new([hobbit, silmarillion],
                              [dave_mustain, rob_halford])
+#Book Presentation
+Librarian.notification_about_event('The Last Mortal Bond',
+                                 'Brian Staveley',
+                                 'Tuesday',
+                                 'School Library')
+Librarian.cost_of_book(5)
 # Readers
 james = Reader.new('Hetfeald', 'James')
 randy = Reader.new('Rhoads', 'Randy')
