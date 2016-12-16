@@ -61,7 +61,7 @@ module NewEra
 
 end
 
-class InShaker < StandardError
+class InShaker 
 
   include ClassicCocktails
   extend NewEra
