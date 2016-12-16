@@ -80,13 +80,16 @@ class InShaker
       else
 
         if [1,2].include? choiсe
-          raise "Oops you enter a wrong number,try again and choose 1 or 2!"
+          raise "Try again!"
         end
       end
-    rescue
+    rescue StandardError
+        puts "Oops you enter a wrong number,try again and choose 1 or 2!"
       retry
     end
   end
 end
 
 InShaker.new.main
+
+
