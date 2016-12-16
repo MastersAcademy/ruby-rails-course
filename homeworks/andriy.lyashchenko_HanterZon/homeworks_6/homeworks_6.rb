@@ -77,11 +77,14 @@ class Checking_fuel
     @name = name
   end
 
-  def say_hellow(name)
+  def say_hellow
     hellow
+  end 
+
+  def my_name(name)
     raise ArgumentError.new("Name must be String") unless name.respond_to?(:to_str)
     puts "Мене звати #{name}"
-  end  
+  end
 
   def question
     puts "Дозвольте перевірю рівень палива"
@@ -126,12 +129,25 @@ car = Car.new
 driver = Driver.new
 checking_fuel = Checking_fuel.new
 
+  driver.say_hellow
+  checking_fuel.say_hellow
 
 begin
-  driver.say_hellow
-  checking_fuel.say_hellow(123)
+  checking_fuel.my_name(123)
   checking_fuel.question
-  driver.answer(123)
+  driver.answer(2312) 
+rescue Exception => e
+  puts "Помилка"
+  p e.message
+  p e.backtrace
+  puts "Write the name to String"
+  name = gets
+else 
+  puts "If no exception, but never goes here"
+ensure
+  checking_fuel.my_name(name)
+  checking_fuel.question
+  driver.answer(name)
   auditFuel.audit_fuel
   checking_fuel.say_goodbye
   driver.say_goodbye
@@ -140,13 +156,5 @@ begin
   driver.press_clutch_pedal
   driver.transmission
   driver.press_gas
-  car.run
-rescue Exception => e
-  puts "Помилка"
-  p e.message
-  p e.backtrace
-  puts "Write the name to String"
+  ar.run 
 end
-
-
-
