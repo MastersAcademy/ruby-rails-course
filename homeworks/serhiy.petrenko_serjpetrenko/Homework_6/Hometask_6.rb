@@ -61,11 +61,10 @@ module NewEra
 
 end
 
-class InShaker
+class InShaker < StandardError
 
   include ClassicCocktails
   extend NewEra
-
   def main
 
     begin
@@ -91,5 +90,3 @@ class InShaker
 end
 
 InShaker.new.main
-
-
