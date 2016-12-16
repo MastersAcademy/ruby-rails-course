@@ -58,7 +58,7 @@ class Message
     @body = body
   end
 
-  def print_msg
+  def print_text
     print "to [#{acceptor}]: "
     puts body
   end
@@ -116,7 +116,7 @@ msg.print_groups
 msg_draft.print_groups
 msg.remove_from_group('Drafts')
 msg.print_groups
-msg.print_msg
+msg.print_text
 puts
 
 address_book = AddressBook.new
