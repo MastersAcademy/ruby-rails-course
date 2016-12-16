@@ -156,5 +156,5 @@ ensure
   driver.press_clutch_pedal
   driver.transmission
   driver.press_gas
-  ar.run 
+  car.run 
 end
