@@ -1,6 +1,13 @@
+module Greeting
+  def greeting
+    puts "Hello! I'm a Food Machine.
+    I can give you some food but it's not for free."
+  end
+end
+
 module Food
   def Food.food_set
-     set = {"Cookies" => 3, "Cruasans" => 5, "Juice" => 5, "Water" => 1}
+    set = {"Cookies" => 3, "Cruasans" => 5, "Juice" => 5, "Water" => 1}
   end
 end
 
@@ -11,38 +18,48 @@ module MoneyAccounter
   end
 end
 
-class FoodMachine
+puts "------------------------------------------------"
 
+class Hello
+  include Greeting
+end
+
+class PrintPrice
+  include Food
+
+  puts "Here is price table:"
+  puts "******************"
+  i = 1
+  Food.food_set.each do |key, value|
+    print i, ". ", key, " - ", value, "$\n"
+    i += 1
+  end
+  puts "******************"
+
+end
+
+class FoodMachine
   include Food
   extend MoneyAccounter
 
-  def run
-    greeting
+  def select_food
 
+    num_food = {1 => "Cookies", 2 => "Cruasans" , 3 => "Juice" , 4 => "Water"}
     begin
-      puts "Here is price table:"
-      print_price
       puts "Make your choice: "
       choice = gets.to_i
 
-      case choice
-        when 1
-          selection = "Cookies"
-        when 2
-          selection = "Cruasans"
-        when 3
-          selection = "Juice"
-        when 4
-          selection = "Water"
-        else
-          selection = "Unknown"
-          puts "There is no such kind of foods. Please look carefully!"
+      selection = num_food[choice]
+      if (selection == nil)
+        puts "There is no such kind of foods. Please look carefully!"
       end
-    end while selection == "Unknown"
 
+    end while !selection
+    return selection
+  end
+
+  def check_price(selection)
     price = Food.food_set[selection]
-    #Food::set
-
     begin
       print "Your selection - ", selection, "\n"
       print "Give me ", price, "$\n"
@@ -60,19 +77,10 @@ class FoodMachine
       end
     end while rejected
   end
-
-  def greeting
-    puts "Hello! I'm a Food Machine.
-I can give you some food but it's not for free."
-  end
-
-  def print_price
-    i = 1
-    Food.food_set.each do |key, value|
-      print i, ". ", key, " - ", value, "$\n"
-      i += 1
-    end
-  end
 end
 
-FoodMachine.new.run
+Hello.new
+PrintPrice.new
+fm = FoodMachine.new
+selection = fm.select_food
+fm.check_price(selection)
