@@ -98,7 +98,6 @@ user1 = User.new('afk@bk.ru', 'Rocky', 'Balboa', 'New-York', 40)
 user1.work_with_weight(100)
 trainer1 = Trainer.new('fooboo@mail.ru', 'Bilbo', 'Begins', 15)
 trainer1.technique(50, 60)
-User.rest()
 manager1 = Manager.new('beast@mail.ua', 'Sasha', 'Grey')
 puts "==When there an error=="
 manager1.times_up(23)
