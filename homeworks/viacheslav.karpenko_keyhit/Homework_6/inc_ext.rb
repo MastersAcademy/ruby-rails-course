@@ -105,7 +105,7 @@ class Truck
 end
 
 class Motorcycle
-  attr_accessor :liters, :whels, :dampers, :material, :material_form
+  attr_accessor :liters, :whels, :dampers, :material, :material_form, :max_speed
 
   def initialize(liters = "", whels = "", dampers = "", material = "", material_form = "")
     @liters = liters
@@ -120,6 +120,23 @@ class Motorcycle
   include Chassis
   extend Color
 
+def self.add_new_method (name, &block)
+  define_method name, &block
+end
+
+  def max_speed(max_speed)
+    @max_speed = max_speed
+
+    if max_speed.class != Fixnum
+      raise CheckNumeralArgument, "Помилка в типі аргумента. Використовуйте тип аргументу Fixnum"
+    else
+      puts "Максимальна швидкість #{@max_speed}"
+
+    end
+  end
+end
+
+class CheckNumeralArgument < StandardError
 end
 
 #-- Objects
@@ -167,50 +184,83 @@ truck_vehi.loading = 3000
 truck_vehi.max_load
 puts""
 
-def lacks_method
-  begin
+begin
+puts""
+puts"-- MOTORCYCLE_1 --"
+motor_byke1 = Motorcycle.new(1, "", "", "сталеві", "труби")
+puts "_ Двигун _"
+motor_byke1.gathering_engine
+puts "_ Рама _"
+motor_byke1.vehicle_base
+puts "_ Ходова _"
+motor_byke1.whels = 2
+motor_byke1.dampers = 4
+motor_byke1.gathering_chassis
+puts "_ Фарбування _"
+Motorcycle.paint(" чорний ")
+puts "_ Додаткове обладнання _"
+def motor_byke1.custom_equipment
+  puts "Встановити рацію."
+  puts "Встановити стробоскопи."
+  puts "Встановити сирену."
+end
+motor_byke1.custom_equipment
+motor_byke1.optic("ксенон")                       # here absent method 
+motor_byke1.max_speed(60)
 
+rescue NoMethodError => e
+  puts e.message
+  puts e.backtrace
+  puts e.inspect
+  l = e.message[18,5]
+  puts "Відсутній метод #{l}!"
+  puts "Створюємо метод #{l}!"
+
+  motor_byke1.class.add_new_method l do |arg| 
+    puts "Оптика #{arg}"
+  end
+  puts "Метод #{l} - створений."
+retry
+else
+  puts "All methods present"
+ensure
+  puts "Якщо методи були відсутні то вони вже стрворилися."
+end
+
+#puts motor_byke1.methods  #Called for checking created absent method
+
+def motic
   puts""
-  puts"-- MOTORCYCLE --"
-  motor_byke = Motorcycle.new(1, "", "", "сталеві", "труби")
+  puts"-- MOTORCYCLE_2 --"
+  motor_byke2 = Motorcycle.new(1, "", "", "сталеві", "труби")
   puts "_ Двигун _"
-  motor_byke.gathering_engine
+  motor_byke2.gathering_engine
   puts "_ Рама _"
-  motor_byke.vehicle_base
+  motor_byke2.vehicle_base
   puts "_ Ходова _"
-  motor_byke.whels = 2
-  motor_byke.dampers = 4
-  motor_byke.gathering_chassis
+  motor_byke2.whels = 2
+  motor_byke2.dampers = 4
+  motor_byke2.gathering_chassis
   puts "_ Фарбування _"
   Motorcycle.paint(" чорний ")
   puts "_ Додаткове обладнання _"
-  def motor_byke.custom_equipment
+  def motor_byke2.custom_equipment
     puts "Встановити рацію."
     puts "Встановити стробоскопи."
     puts "Встановити сирену."
   end
-  motor_byke.custom_equipment
-  motor_byke.optic("ксенон")
-
-  rescue NoMethodError => e
-    puts e.message
-    puts e.backtrace
-    puts e.inspect
-    l = e.message[18,5]
-    puts "Відсутній метод #{l}!"
-    puts "Створюємо метод #{l}!"
-
-    def motor_byke.optic(opt_type)
-      puts "Обладнаний оптикою типу #{opt_type}."
-    end
-
-    motor_byke.optic("ксенон")
-
-  else
-    puts "All methods present"
-  ensure
-    puts "Метод #{l} - створений."
-  end
+  motor_byke2.custom_equipment
+  motor_byke2.max_speed("тридцять п'ять")   # Here given wrong argument
 end
 
-lacks_method
+begin
+  motic
+rescue CheckNumeralArgument => e
+  puts e.message
+  puts e.backtrace
+  
+else
+  puts "Помилки в типі даних аргуметну немає"
+ensure
+  puts "Тип аргумента перевірений."
+end
