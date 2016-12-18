@@ -3,7 +3,7 @@ module Name
 
   def name=(name)
     if name == ''
-      raise "Name can't be blank!"
+      raise ArgumentError.new("Name can't be blank!")
     end
     @name = name
   end
@@ -21,6 +21,16 @@ module Checker
 end
 
 
+class NoLicenceException < StandardError
+  attr_accessor :message
+
+  def initialize(message)
+    @message = message
+    puts message
+  end
+end
+
+
 class Driver
   include Name
 
@@ -34,7 +44,7 @@ class Driver
     if @licence
       stations.each { |station| puts stop(station)}
     else
-      raise "Driver can't work without licence!"
+      raise NoLicenceException.new("Driver can't work without licence!")
     end
   end
 
@@ -124,6 +134,18 @@ end
 
 driver = Driver.new
 driver.name = 'Sam'
+
+begin
+  driver.say_hi
+rescue NoMethodError => e
+  puts "No method #{e.name}."
+  define_method :rename do
+    puts "Hi, I'm driver"
+  end
+ensure
+  driver.rename
+end
+
 driver.licence = true
 stations = %w(Station1 Station2 Station3 Station4 Station5 Station6 Station7)
 puts 'Current way:'
