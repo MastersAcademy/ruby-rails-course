@@ -1,94 +1,38 @@
 class CreditProgram
-  attr_accessor :credit_currency,
-                :credit_period,
-                :credit_rate,
-                :secured_loan,
-                :in_cash,
-                :foreign_currency
+  attr_accessor :credit_currency, :credit_period, :credit_rate, 
+  :secured_loan, :in_cash, :foreign_currency, :credit_program_name
 
-  def initialize(credit_currency = 0,
-                 credit_period = 0,
-                 credit_rate = 0,
-                 secured_loan = false,
-                 in_cash = false,
-                 foreign_currency = false)
+  def initialize(credit_currency = 0, credit_period = 0, credit_rate = 0,
+  secured_loan = false, in_cash = false, foreign_currency = false, credit_program_name = "Def")
     credit_currency, credit_period, credit_rate, secured_loan,
-    in_cash, foreign_currency =
+    in_cash, foreign_currency, credit_program_name =
     credit_currency, credit_period, credit_rate, secured_loan,
-    in_cash, foreign_currency
+    in_cash, foreign_currency, credit_program_name
   end
 end
 
-module BuilderCreditProgram
+class BuilderCreditProgram
   attr_reader :credit_program
 
-  def build_new_credit_program
+  def initialize(credit_currency, credit_period, credit_rate, secured_loan,
+  in_cash, foreign_currency, credit_program_name)
     @credit_program = CreditProgram.new
+    @credit_program.credit_currency, @credit_program.credit_period, @credit_program.credit_rate,
+    @credit_program.secured_loan, @credit_program.in_cash, 
+    @credit_program.foreign_currency, @credit_program.credit_program_name = 
+    credit_currency, credit_period, credit_rate, secured_loan, 
+    in_cash, foreign_currency, credit_program_name
   end
 
   def get_credit_program
     print "Credit program: credit currency - #{@credit_program.credit_currency}, " \
     "credit rate - #{@credit_program.credit_rate}, secured loan - #{@credit_program.secured_loan}, " \
-    "in cash - #{@credit_program.in_cash}, foreign currency - #{@credit_program.foreign_currency}."
-  end
-end
-
-class BuilderCreditProgramHome
-  include BuilderCreditProgram
-
-  def build_credit_currency
-    @credit_program.credit_currency = 250_000
-  end
-
-  def build_credit_period
-    @credit_program.credit_period = 36
-  end
-
-  def build_credit_rate
-    @credit_program.credit_rate = 0.35
-  end
-
-  def build_secured_loan
-    @credit_program.secured_loan = true
-  end
-
-  def build_in_cash
-    @credit_program.in_cash = false
-  end
-
-  def build_foreign_currency
-    @credit_program.foreign_currency = true
+    "in cash - #{@credit_program.in_cash}, foreign currency - #{@credit_program.foreign_currency}, " \
+    "credit program name - #{@credit_program.credit_program_name}"
   end
 end
 
 
-class BuilderCreditProgramCar
-  include BuilderCreditProgram
-
-  def build_credit_currency
-    @credit_program.credit_currency = 400_000
-  end
-
-  def build_credit_period
-    @credit_program.credit_period = 48
-  end
-
-  def build_credit_rate
-    @credit_program.credit_rate = 0.36
-  end
-
-  def build_secured_loan
-    @credit_program.secured_loan = false
-  end
-
-  def build_in_cash
-    @credit_program.in_cash = false
-  end
-
-  def build_foreign_currency
-    @credit_program.foreign_currency = false
-  end
-end
 
 class StartBuild
   def set_builder_credit_program(bcr)
@@ -108,43 +52,31 @@ class StartBuild
 
       BuilderCreditProgram.class_eval do
         def greeting
-            puts 'You have chosen the best credit line! ;-)'
-            puts
+          puts 'You have chosen the best credit line! ;-)'
+          puts
         end
       end
 
       retry
     end
   end
-
-  def construct_credit_program
-    @builder_credit_program.build_new_credit_program
-    @builder_credit_program.build_credit_currency
-    @builder_credit_program.build_credit_period
-    @builder_credit_program.build_credit_rate
-    @builder_credit_program.build_secured_loan
-    @builder_credit_program.build_in_cash
-    @builder_credit_program.build_foreign_currency
-  end
 end
 
 class MyError < StandardError
-  def message
-    puts "My Error"
+  def initialize(msg = "MyError")
+    super
   end
 end
 
 start_build = StartBuild.new
 
-builder_credit_program_home = BuilderCreditProgramHome.new
+builder_credit_program_home = BuilderCreditProgram.new(400000, 48, 0.36, true, false, true, "HOME")
 start_build.set_builder_credit_program builder_credit_program_home
-start_build.construct_credit_program
 puts start_build.get_credit_program
 start_build.get_greeting
 
-builder_credit_program_car = BuilderCreditProgramCar.new
+builder_credit_program_car = BuilderCreditProgram.new(250000, 36, 0.35, false, false, false, "CAR")
 start_build.set_builder_credit_program builder_credit_program_car
-start_build.construct_credit_program
 puts start_build.get_credit_program
 start_build.get_greeting
 
