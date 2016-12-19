@@ -21,6 +21,14 @@ module Calculator
   
 end
 
+class ValueError < StandardError
+  
+  def initialize(msg="ValueError")
+    super
+  end
+  
+end
+
 module Discount
   
   def self.extended(base)
@@ -28,11 +36,14 @@ module Discount
     begin
       Global.k *= 0.98
       Global.k = sprintf("%.2f", Global.k).to_f 
+    rescue NoValue => e
+      e.message
+    end
+    
     rescue StandardError
-      puts "для начала введите общую сумму. Ошибка: #{$!}"
+      puts "для начала введите общую сумму."
       #пересылаем на шаг пересчета цены
     end
-  end
   
 end
   
@@ -104,13 +115,14 @@ def new_metod(a)
     def access_confirm
       puts "Подтвердите доступ"
     end
-    a.access_confirm
+    
+    retry
   
 end
 
 TabCreator.counter = TabCounter.new
 myfirsttab = TabCreator.new
-Global.k = 27.45
+#Global.k = 27.45
 myfirsttab.write_date(25,11,2016)
 myfirsttab.tab_number(Global.a)
 myfirsttab.seller_number("0230564f32")
@@ -136,4 +148,3 @@ puts
 puts "вторая попытка"
 puts
 new_metod(strangetab)
-puts
