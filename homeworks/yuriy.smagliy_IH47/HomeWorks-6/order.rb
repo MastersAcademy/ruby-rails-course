@@ -88,6 +88,7 @@ class GuestUser
     set_id
     @registered = false
   end
+
 end
 
 class RegisteredUser
@@ -114,7 +115,6 @@ class Airport
     @city = city
     @country = country
   end
-
 end
 
 class Ticket
@@ -160,10 +160,22 @@ puts "Users count: #{GuestUser.count}"
 begin
   guest.change_ticket(ticket)
   puts "User's tickets: #{guest.tickets.inspect}"
- rescue NoMethodError
+rescue NoMethodError => e
   puts "You are guest. You can't change tikets."
- else
+  def guest.metaclass
+    class << self; self;
+    end
+  end
+  guest.metaclass.send(:define_method, e.name) do |arg|
+    puts "method #{e.name} is here"
+  end
+else
   puts "Sorry but now the service is not available. Try later"
- ensure
-   puts "Loading..."
+ensure
+  puts "new method is #{e.name}"
+  puts "Loading..."
 end
+guest.change_ticket(ticket)
+guest.change_ticket(ticket)
+guest.change_ticket(ticket)
+guest.change_ticket(ticket)
