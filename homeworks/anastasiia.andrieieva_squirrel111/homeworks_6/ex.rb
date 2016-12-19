@@ -9,12 +9,10 @@ class Garden
     @length, @width = length, width
   end
 
-
   def hello
     puts "It is garden!"
     puts "it is impossible"
   end
-
 
   def v
     begin
@@ -24,16 +22,19 @@ class Garden
     end
   end 
 
-
-  def le
-    if @length > 10
+def le
+    unless @length >= 10
+    puts "LengthError"
     end
-    raise LengthError, "its Error"
     rescue LengthError => l
       puts l.message
       puts l.backtrace
     ensure  
-      puts "Normal" 
+      puts "good or bad" 
+  end
+   
+  def method_missing(method_name)
+    puts "There is no method: #{method_name}"
   end
 end
 
@@ -44,6 +45,7 @@ puts gargen.length
 puts gargen.width
 puts gargen.le
 puts gargen.v
+puts gargen.i
 
  
 
@@ -134,7 +136,7 @@ class Mother
   include Gardeners
 
   def hello
-    puts "She is Alice"
+    puts "She is " + @name
   end
 
   def watering
@@ -156,17 +158,22 @@ class Mother
   end
 end
 
-mother = Mother.new("Alice", "female", "35 years")
+ann = Mother.new("Ann", "female", 35)
+puts ann.hello
+
+mother = Mother.new("Alice", "female", 35)
 puts mother.hello
 puts mother.working
 puts mother.watering
 puts mother.plant
 
+
+
 class Son
   include Gardeners
 
   def hello
-    puts "He is Adam"
+    puts "He is " + @name
   end
 
   def waterning
@@ -188,7 +195,7 @@ class Son
 end
 
 
-son = Son.new("Adam", "male", "14 years")
+son = Son.new("Adam", "male", 14)
 puts son.hello
 puts son.working
 puts son.waterning
