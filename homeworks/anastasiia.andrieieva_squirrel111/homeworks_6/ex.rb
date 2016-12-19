@@ -4,7 +4,6 @@ end
 class Garden
   attr_reader :length, :width
   
-
   def initialize(length, width)
     @length, @width = length, width
   end
@@ -14,27 +13,22 @@ class Garden
     puts "it is impossible"
   end
 
-  def v
-    begin
-    raise NoMethodError  
-    rescue NoMethodError => n
-      puts n.message 
-    end
-  end 
-
-def le
+  def le
     unless @length >= 10
-    puts "LengthError"
+      raise LengthError, "Garden is too small"
     end
-    rescue LengthError => l
+  rescue LengthError => l
       puts l.message
-      puts l.backtrace
-    ensure  
-      puts "good or bad" 
   end
    
   def method_missing(method_name)
-    puts "There is no method: #{method_name}"
+    self.class.class_eval do
+      define_method(method_name) do
+        puts "There is no method: #{method_name}"
+      end
+    end
+
+    send(method_name)
   end
 end
 
@@ -47,7 +41,9 @@ puts gargen.le
 puts gargen.v
 puts gargen.i
 
- 
+garden = Garden.new(8,"10")
+puts garden.hello
+garden.le
 
 module Seedling
   def hello
