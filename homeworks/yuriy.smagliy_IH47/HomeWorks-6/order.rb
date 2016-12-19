@@ -31,7 +31,6 @@ module TicketsBuyer
     ticket.user = nil
     @tickets -= [ticket]
   end
-
 end
 
 module User
@@ -104,7 +103,6 @@ class RegisteredUser
     @nickname = nickname
     @registered = true
   end
-
 end
 
 class Airport
@@ -130,7 +128,6 @@ class Ticket
     @to = to
     @date = date
   end
-
 end
 
 user = RegisteredUser.new('Yura', 'Smagliy', 'email@email.com', 'ih47')
