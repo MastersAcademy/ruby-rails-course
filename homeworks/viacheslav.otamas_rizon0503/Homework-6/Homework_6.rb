@@ -41,8 +41,6 @@ class BuilderCreditProgram
   end
 end
 
-
-
 class StartBuild
   def set_builder_credit_program(bcr)
     @builder_credit_program = bcr
