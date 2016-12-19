@@ -1,3 +1,10 @@
+class WrongNumberError < StandardError
+
+  def initialize(msg="Please choose cocktail from 1 to 4")
+    super(msg)
+  end
+end
+
 module Welcome
   attr_accessor :type
 
@@ -40,13 +47,19 @@ class InShakerClassic
       puts "Mojito - 1\nCuba libre - 2\nBlack russian - 3\nGod father - 4\n"
       puts "Make your  choice: "
       choice = gets.to_i
-      cocktail = ClassicCocktails.cc_set[choice]
-      cocktail.each{|key, value| puts key, value}
-    rescue NoMethodError
-      puts "Please choose cocktail from 1 to 4"
-    retry
-    ensure
-      puts "Enjoy the cocktail and try another recipe from classic cocktails!"
+      if [1,2] == choice
+        cocktail = ClassicCocktails.cc_set[choice]
+        cocktail.each{|key, value| puts key, value}
+      else
+        begin
+        raise WrongNumberError.new
+        rescue WrongNumberError => e
+            p e.message
+            p e.backtrace
+        ensure
+          puts "Enjoy the cocktail and try another recipe from classic cocktails!"
+        end
+      end
     end
   end
 end
@@ -63,8 +76,9 @@ class InShakerNewEra
       choice = gets.to_i
       cocktail = NewEra.ne_set[choice]
       cocktail.each{|key, value| puts key, value}
-    rescue NoMethodError
-      puts "Please choose cocktail from 1 to 4"
+    rescue NoMethodError => e
+      p e.message
+      p e.backtrace
     retry
     ensure
       puts "Enjoy the cocktail and try another recipe from New era cocktails!"
