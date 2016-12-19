@@ -1,13 +1,18 @@
 class CreditProgram
-  attr_accessor :credit_currency, :credit_period, :credit_rate, 
-  :secured_loan, :in_cash, :foreign_currency, :credit_program_name
+  attr_accessor :credit_currency, :credit_period, :credit_rate, :secured_loan,
+                :in_cash, :foreign_currency, :credit_program_name
 
   def initialize(credit_currency = 0, credit_period = 0, credit_rate = 0,
-  secured_loan = false, in_cash = false, foreign_currency = false, credit_program_name = "Def")
-    credit_currency, credit_period, credit_rate, secured_loan,
-    in_cash, foreign_currency, credit_program_name =
-    credit_currency, credit_period, credit_rate, secured_loan,
-    in_cash, foreign_currency, credit_program_name
+                secured_loan = false, in_cash = false, foreign_currency = false,
+                credit_program_name = "Def")
+
+    @credit_currency = credit_currency
+    @credit_period = credit_period
+    @credit_rate = credit_rate
+    @secured_loan = secured_loan
+    @in_cash = in_cash
+    @foreign_currency = foreign_currency
+    @credit_program_name = credit_program_name
   end
 end
 
@@ -15,20 +20,24 @@ class BuilderCreditProgram
   attr_reader :credit_program
 
   def initialize(credit_currency, credit_period, credit_rate, secured_loan,
-  in_cash, foreign_currency, credit_program_name)
+                in_cash, foreign_currency, credit_program_name)
+
     @credit_program = CreditProgram.new
-    @credit_program.credit_currency, @credit_program.credit_period, @credit_program.credit_rate,
-    @credit_program.secured_loan, @credit_program.in_cash, 
-    @credit_program.foreign_currency, @credit_program.credit_program_name = 
-    credit_currency, credit_period, credit_rate, secured_loan, 
-    in_cash, foreign_currency, credit_program_name
+
+    @credit_program.credit_currency = credit_currency
+    @credit_program.credit_period = credit_period
+    @credit_program.credit_rate = credit_rate
+    @credit_program.secured_loan = secured_loan
+    @credit_program.in_cash = in_cash
+    @credit_program.foreign_currency = foreign_currency
+    @credit_program.credit_program_name = credit_program_name
   end
 
   def get_credit_program
     print "Credit program: credit currency - #{@credit_program.credit_currency}, " \
-    "credit rate - #{@credit_program.credit_rate}, secured loan - #{@credit_program.secured_loan}, " \
-    "in cash - #{@credit_program.in_cash}, foreign currency - #{@credit_program.foreign_currency}, " \
-    "credit program name - #{@credit_program.credit_program_name}"
+          "credit rate - #{@credit_program.credit_rate}, secured loan - #{@credit_program.secured_loan}, " \
+          "in cash - #{@credit_program.in_cash}, foreign currency - #{@credit_program.foreign_currency}, " \
+          "credit program name - #{@credit_program.credit_program_name}"
   end
 end
 
