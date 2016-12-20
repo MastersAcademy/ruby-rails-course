@@ -1,21 +1,22 @@
 
 module Fio
   attr_accessor :name, :surname
-    def name(name, surname)
-        @name = name 
-        @surname = surname
-        puts "Name: #{name}"
-        puts "Surname: #{surname}"
-     
-    end
+
+  def name(name, surname)
+    @name = name 
+    @surname = surname
+    puts "Name: #{name}"
+    puts "Surname: #{surname}"
+  end
 end
 
 module Sub
   attr_accessor :name_sub
-    def name_sub(name_sub)
-      @name_sub = name_sub
-      puts "Subject_name: #{name_sub}"
-    end
+
+  def name_sub(name_sub)
+    @name_sub = name_sub
+    puts "Subject_name: #{name_sub}"
+  end
 end
 
 class NoLicenceException < StandardError
@@ -29,7 +30,7 @@ end
 
 
 class Student
-  attr_accessor :group, :course  
+  attr_accessor :group, :course
    
   include Fio
 
@@ -45,21 +46,22 @@ class Student
 end
 
 class Teacher
-    include Fio
-    include Sub
+  include Fio
+  include Sub
 end
 
 class Subject
   attr_accessor :еxam_scores, :after_scores, :bals
+  
   include Sub
 
   def bal(еxam_scores, after_scores)
-      @еxam_scores = еxam_scores
-      puts "You had #{еxam_scores} points for exam"
-      @after_scores = after_scores
-      puts "Lecturer at the exam you put #{after_scores} points"
-      @bals = еxam_scores + after_scores
-      puts "You got #{bals} points"
+    @еxam_scores = еxam_scores
+    puts "You had #{еxam_scores} points for exam"
+    @after_scores = after_scores
+    puts "Lecturer at the exam you put #{after_scores} points"
+    @bals = еxam_scores + after_scores
+    puts "You got #{bals} points"
   end
 
   def mark
@@ -81,18 +83,16 @@ puts "Student's personal information"
 student = Student.new
 student.name('Vasiliy', 'Protsenko')
 
-
 begin
   student.age
 rescue NoMethodError => e
   puts "No method #{e.name}."
   define_method :rename do
-    puts "I did not tell my age"
+  puts "I did not tell my age"
   end
 ensure
   student.rename
 end
-
 
 student.group('PM')
 student.course(5)
