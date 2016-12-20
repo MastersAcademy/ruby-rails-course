@@ -47,15 +47,15 @@ class InShakerClassic
       puts "Mojito - 1\nCuba libre - 2\nBlack russian - 3\nGod father - 4\n"
       puts "Make your  choice: "
       choice = gets.to_i
-      if [1,2] == choice
+      if (1..4).include?(choice)
         cocktail = ClassicCocktails.cc_set[choice]
         cocktail.each{|key, value| puts key, value}
       else
         begin
         raise WrongNumberError.new
         rescue WrongNumberError => e
-            p e.message
-            p e.backtrace
+          p e.message
+          p e.backtrace
         ensure
           puts "Enjoy the cocktail and try another recipe from classic cocktails!"
         end
