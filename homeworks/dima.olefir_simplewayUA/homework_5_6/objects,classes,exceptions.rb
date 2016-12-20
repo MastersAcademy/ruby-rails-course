@@ -10,14 +10,13 @@ end
 
 module Inspection
   def number(value)
-    raise StatementError.new("Error! The '#{value}' must be a number and greater than zero.") unless value.respond_to?(:to_i) && value.to_i > 0
+    raise MyError.new("Error! The '#{@value}' must be a number and greater than zero.") unless value.respond_to?(:to_i) && value.to_i > 0
   end
 end
 
-class StatementError < StandardError
-
-  def initialize(part)
-    puts part
+class MyError < StandardError
+  def initialize(msg = "Error!")
+    super(msg)
   end
 end
 
@@ -30,50 +29,50 @@ class Receptionist
                   first_name = "Петр",
                   location = "Черкасская обл., Черкассы",
                   medical_history = "история больного(записи)")
-    $id_card = id_card
-    $last_name = last_name
-    $first_name = first_name 
-    $location = location
-    $medical_history = medical_history
+    @id_card = id_card
+    @last_name = last_name
+    @first_name = first_name 
+    @location = location
+    @medical_history = medical_history
   end
 
   def say_hi(id_card = 2913)
     begin
       number(id_card)
-    rescue StatementError
-      $id_card = 2913
+    rescue MyError
+      @id_card = 2913
     else
-      $id_card = id_card
+      @id_card = id_card
     end
-    describe "Номер моей карты, - #{$id_card}!"
+    describe "Номер моей карты, - #{id_card}!"
   end
 end
 
-class Patient
+class Patient < Receptionist
   include Describer
 
   def medical_record
-    describe "Данные по мед. карте № #{$id_card}\n#{$last_name} #{$first_name}\n#{$location}\n#{$medical_history}"  
+    describe "Данные по мед. карте № #{@id_card}\n#{@last_name} #{@first_name}\n#{@location}\n#{@medical_history}"  
   end
 end
 
-class Doctor
+class Doctor < Receptionist
   include Describer
 
   def initialize(consulting_room = "12",
                   name_doctor = "Ай-Болит",
                   recording_disease = "таблетку")
-    $consulting_room = consulting_room
-    $name_doctor = name_doctor
-    $recording_disease = recording_disease
+    @consulting_room = consulting_room
+    @name_doctor = name_doctor
+    @recording_disease = recording_disease
   end
 
   def visit
-    describe "Кабинет №#{$consulting_room}, врач #{$name_doctor}\nВрач вызывает пациента #{$last_name} #{$first_name}!"
+    describe "Кабинет №#{@consulting_room}, врач #{@name_doctor}\nВрач вызывает пациента #{@last_name} #{@first_name}!"
   end
 
   def review
-    describe "Осмотр пациента\nБоль в животе, врач назначил #{$recording_disease}"
+    describe "Осмотр пациента\nБоль в животе, врач назначил #{@recording_disease}"
   end
 end
 
@@ -87,6 +86,9 @@ class Check
   end
 
   def issue_check
+    raise MyError, "Price can't be less"
+    rescue MyError => e
+    puts e.message
     puts " Дата: #{@date}"
     puts "Время: #{@time}"
     puts " Цена: #{@price}"
