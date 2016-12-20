@@ -2,35 +2,37 @@ class CreditProgram
   attr_accessor :credit_currency, :credit_period, :credit_rate, :secured_loan,
                 :in_cash, :foreign_currency, :credit_program_name
 
-  def initialize(credit_currency = 0, credit_period = 0, credit_rate = 0,
-                secured_loan = false, in_cash = false, foreign_currency = false,
-                credit_program_name = "Def")
+  def initialize(secured_loan = false, in_cash = false, foreign_currency = false)
+    @secured_loan = secured_loan
+    @in_cash = in_cash
+    @foreign_currency = foreign_currency
+    credit_core
+  end
+
+  def credit_core(credit_currency = 0, credit_period = 0, credit_rate = 0, 
+                 credit_program_name = "Def")
 
     @credit_currency = credit_currency
     @credit_period = credit_period
     @credit_rate = credit_rate
-    @secured_loan = secured_loan
-    @in_cash = in_cash
-    @foreign_currency = foreign_currency
     @credit_program_name = credit_program_name
-  end
+  end  
 end
 
 class BuilderCreditProgram
   attr_reader :credit_program
 
-  def initialize(credit_currency, credit_period, credit_rate, secured_loan,
-                in_cash, foreign_currency, credit_program_name)
+  def initialize(secured_loan, in_cash, foreign_currency)
 
     @credit_program = CreditProgram.new
 
-    @credit_program.credit_currency = credit_currency
-    @credit_program.credit_period = credit_period
-    @credit_program.credit_rate = credit_rate
     @credit_program.secured_loan = secured_loan
     @credit_program.in_cash = in_cash
     @credit_program.foreign_currency = foreign_currency
-    @credit_program.credit_program_name = credit_program_name
+  end
+
+  def build_credit_core(credit_currency, credit_period, credit_rate, credit_program_name)
+    @credit_program.credit_core credit_currency, credit_period, credit_rate, credit_program_name
   end
 
   def get_credit_program
@@ -77,12 +79,14 @@ end
 
 start_build = StartBuild.new
 
-builder_credit_program_home = BuilderCreditProgram.new(400000, 48, 0.36, true, false, true, "HOME")
+builder_credit_program_home = BuilderCreditProgram.new(true, false, true)
+builder_credit_program_home.build_credit_core(400_000, 48, 0.36, "HOME")
 start_build.set_builder_credit_program builder_credit_program_home
 puts start_build.get_credit_program
 start_build.get_greeting
 
-builder_credit_program_car = BuilderCreditProgram.new(250000, 36, 0.35, false, false, false, "CAR")
+builder_credit_program_car = BuilderCreditProgram.new(false, false, false)
+builder_credit_program_car.build_credit_core(250_000, 36, 0.35, "CAR")
 start_build.set_builder_credit_program builder_credit_program_car
 puts start_build.get_credit_program
 start_build.get_greeting
