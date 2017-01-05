@@ -56,9 +56,11 @@ RESPONSE = '{
 
 response = JSON.parse(RESPONSE)
 
-def parse_movies(movies)
+class_name = -> (item) { item.split('_').map!{|a| a.capitalize}.join }
+
+def parse_movies(movies, &block)
   movies.each do |key, value|
-    name_class = key.split('_').map!{|a| a.capitalize}.join
+    name_class = yield(key)
     if value.is_a?(Hash)
       Struct.new(name_class,*value.keys.map(&:to_sym))
     else
@@ -68,7 +70,7 @@ def parse_movies(movies)
 end
 
 movie = response['movie']
-parse_movies(movie)
+parse_movies(movie, &class_name)
 
 Struct::Details.class_eval do
   def age_recommendation
