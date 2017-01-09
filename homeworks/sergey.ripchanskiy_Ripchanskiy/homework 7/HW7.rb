@@ -29,7 +29,7 @@ Struct::PersonalData.class_eval do
 end
 
 Struct::SocialProfiles.class_eval do
-  def twitter_account?
+  def instagram_account?
     social_profiles.join.downcase.scan(/instagram/).any?
   end
 end
@@ -59,7 +59,7 @@ p personal_data.adult?
 p "=================================================================="
 social_profiles = Struct::SocialProfiles.new(response["person"]["social_profiles"])
 p social_profiles.social_profiles
-p social_profiles.twitter_account?
+p social_profiles.instagram_account?
 p "=================================================================="
 additional_info = Struct::AdditionalInfo.new(*response["person"]["additional_info"].values)
 p "My hobby:"
