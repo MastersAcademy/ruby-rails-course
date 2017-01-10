@@ -1,0 +1,50 @@
+{
+  "aries": {
+    "dates_user": "21.03..19.04",
+    "text_user": "Highly energetic, and has no problem working long hours on a single project. Often take the initiative experiencing new breakthroughs and discoveries.Aries are thorough, painstaking, and have a knack for precise records and clarity. They live hard, love hard, and play hard."
+  },
+  "taurus": {
+    "dates_user": "21.04..21.05",
+    "text_user": "Taurus people almost always finish what they start. They are deliberate thinkers and when making decisions usually make the right one. Taurus are generally adaptable, adjusting easily to new circumstances especially if there is the reward of luxury, comfort, or sensual reward. This sign loves to laugh and spend time with family."
+  },
+  "gemini": {
+    "dates_user": "21.05..21.06",
+    "text_user": "Gemini are great conversationalists, and are charming people. Interesting to speak with, Gemini know a little bit about a lot of things. They have a great sense of humor and are generally optimistic people. Gemini often make their own fun, despising boredom."
+  },
+  "cancer": {
+    "dates_user": "22.06..22.07",
+    "text_user": "Cancer have an offbeat sense of humor, often finding something humorous that others don’t. They are extremely good listeners and have a heart for the problems of others."
+  },
+  "leo": {
+    "dates_user": "23.07..23.08",
+    "text_user": "Cancer have an offbeat sense of humor, often finding something humorous that others don’t. They are extremely good listeners and have a heart for the problems of others."
+  },
+  "virgo": {
+    "dates_user": "24.08..23.09",
+    "text_user": "Virgo have a heart for their fellow man. They are kind, patient and love to laugh. They are not loud ‘look at me’ signs, but rather prefer to be the strong, silent type. They are creative thinkers and true family oriented people."
+  },
+  "libra": {
+    "dates_user": "24.09..23.10",
+    "text_user": " Libra all have a sense of fair play about them and become completely upset if they perceive that something is unfair or unjust. They are prone to talking for long periods of time about their favorite subjects. "
+  },
+  "scorpion": {
+    "dates_user": "24.10..22.11",
+    "text_user": "Scorpio exhibit extreme self-control in many areas, and as a result expect that of those around them. They are disciplined, protective and are very interested in others."
+  },
+  "sagittarius": {
+    "dates_user": "23.11..22.12",
+    "text_user": "Sagittarians are highly intelligent and love to be around intelligent people. They enjoy learning new things, traveling to new places, and experiencing unique adventures."
+  },
+  "capricorn": {
+    "dates_user": "23.12..20.01",
+    "text_user": "Capricorns are the superheroes when It comes to making realistic, logical decisions. Their ability to cut through the red tape and see the bottom line is what makes them a real asset to any relationship or occupation where teamwork is valued."
+  },
+  "aquarius": {
+    "dates_user": "21.01..18.02",
+    "text_user": "Aquarians are among the friendliest of the signs, making friends everywhere. They are often chosen among co-workers and family for special awards and honors because of their ability to network."
+  },
+  "pisces": {
+    "dates_user": "19.02..20.03",
+    "text_user": "Pisces are empathetic people, often feeling badly for someone whose life is not going well. They feel the need to reach out to those who are less fortunate and will often find themselves involved in drama that they hadn’t intended."
+  }
+}
