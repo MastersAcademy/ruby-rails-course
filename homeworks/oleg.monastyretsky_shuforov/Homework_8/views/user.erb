@@ -1,0 +1,33 @@
+<h1><%=@@user_name%></h1>
+<a href="/">Home</a>
+<p></p>
+<a href="/posts">All posts</a>
+<p></p>
+<form action="/create_post" method="post">
+<label>Title</label>
+<br>
+<textarea name="title_name" rows="1"></textarea>
+<br>
+<label>Body</label>
+<br>
+<textarea name="body_text" rows="5"></textarea>
+<br>
+<input type="submit" value="Create post">
+</form>
+<% if @posts.length >0 %>
+<% @posts.each do |element|%>
+<table>
+   <tr>
+   <th style ="text-align: left"><%=element.title%></th>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black"><%=element.body%></td>
+   </tr>
+</table>
+<a href="/edit_post/<%=element.id%>">Edit post</a>
+<a href="/delete_post/<%=element.id%>">Delete post</a>
+<%end%>
+<% else %>
+<p>This user dont have any post</p>
+<%end%>
+

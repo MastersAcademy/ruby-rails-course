@@ -1,0 +1,25 @@
+<h1><%=@@user_name%></h1>
+<form action="/create_post">
+<label>Title</label>
+<input type="text" name="title"/>
+<label>Body</label>
+<input type="text" name="body">
+<input type="submit" value="Create post">
+</form>
+<% if @posts.length >0 %>
+<% @posts.each do |element|%>
+<table>
+   <tr>
+   <th style ="text-align: left"><%=element.title%></th>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black"><%=element.body%></td>
+   </tr>
+</table>
+<a href="/edit_post/<%=element.id%>">Edit post</a>
+<a href="/delete_post/<%=element.id%>">Delete post</a>
+<%end%>
+<% else %>
+<p>This user dont have any post</p>
+<%end%>
+

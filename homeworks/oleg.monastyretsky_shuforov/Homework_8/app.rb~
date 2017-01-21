@@ -1,0 +1,43 @@
+require 'sinatra'
+require 'sinatra/activerecord'
+require './models/user'
+require './models/post'
+
+ActiveRecord::Base.connection
+
+get '/' do
+  @users = User.all.map {|user| user.name}
+  erb :index
+end
+
+post '/' do
+  User.create name: params[:user_name]
+  redirect '/'
+end
+
+get '/users/:name' do
+  @@user_name = params[:name]
+  @user_id = User.find_by_name(params['name']).id
+  @posts = Post.where(user_id: @user_id)
+  erb :users
+end
+
+get '/delete_post/:id' do
+  Post.destroy(params[:id])
+  redirect "/users/#{@@user_name}"
+end
+
+get '/create_post' do
+  
+end
+
+get '/edit_post' do
+  Post.where(id: @@post_id).update(body: params[:edit_post])
+  redirect "/users/#{@@user_name}"
+end
+
+get '/edit_post/:id' do
+  @@post_id = params[:id]
+  @edit_text = Post.where(id: @@post_id).first.body
+  erb :edit_post
+end
