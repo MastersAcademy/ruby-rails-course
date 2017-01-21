@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Masters Academy - Sinatra</title>
+
+    <!-- css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" rel="stylesheet">
+    <!-- /css -->
+  </head>
+  <body>
+    <section class="content">
+      <div class="ui basic segment">
+        <%= yield %>
+      </div>
+    </section>
+
+    <!-- js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+    <!-- /js -->
+
+    <!-- scripts-->
+    <script>
+      $(function()
+      {
+          $('.dropdown').dropdown();
+
+          $('#add_user-form').form
+          ({
+              fields: {
+                  email: ['empty', 'email'],
+                  first_name: ['empty'],
+                  last_name: ['empty'],
+                  bio: []
+              }
+          });
+
+          $('#edit_user-form').form
+          ({
+              fields: {
+                  email: ['empty', 'email'],
+                  first_name: ['empty'],
+                  last_name: ['empty'],
+                  bio: []
+              }
+          });
+
+          $('#add_post-form').form
+          ({
+              fields: {
+                  user_id: ['empty'],
+                  title: ['empty'],
+                  description: ['empty']
+              }
+          });
+
+          $('#edit_post-form').form
+          ({
+              fields: {
+                  title: ['empty'],
+                  description: ['empty']
+              }
+          });
+      });
+    </script>
+    <!-- /scripts -->
+  </body>
+</html>

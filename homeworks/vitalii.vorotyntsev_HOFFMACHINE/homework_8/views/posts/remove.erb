@@ -1,0 +1,12 @@
+<div class="ui dividing header">Remove post</div>
+
+<div class="ui form">
+  <form id="remove_post-form" action="/posts/<%= @post.id %>/remove" method="post">
+    <p>Are you sure?</p>
+
+    <div class="actions">
+      <button class="ui red button" type="submit">Yes</button>
+      <a class="ui button" href="/">Cancel</a>
+    </div>
+  </form>
+</div>
