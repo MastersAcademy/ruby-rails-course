@@ -7,4 +7,4 @@ To start sinatra
 ```sh
 $ rake start
 ```
-Go to [localhost](localhost:4567) to test app
+Go to [localhost_machine](localhost:4567) to test app
