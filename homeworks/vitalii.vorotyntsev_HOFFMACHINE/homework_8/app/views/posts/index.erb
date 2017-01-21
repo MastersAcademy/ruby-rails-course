@@ -1,0 +1,28 @@
+<h2 class="ui dividing header">List of posts</h2>
+
+<a class="ui button" href="/posts/new">Add new</a>
+
+<div class="ui hidden divider"></div>
+
+<div class="ui items">
+  <% @posts.each do |post| %>
+  <div class="item">
+    <div class="ui small image">
+      <img src="http://placehold.it/150x125">
+    </div>
+    <div class="content">
+      <div class="header"><%= post.title %></div>
+      <div class="meta">
+        <span class="author"><%= post.user.first_name %> <%= post.user.last_name%></span>
+      </div>
+      <div class="description">
+        <p><%= post.description %></p>
+      </div>
+      <div class="extra">
+        <a class="ui button" href="/posts/<%= post.id %>/edit">Edit</a>
+        <a class="ui button" href="/posts/<%= post.id %>/remove">Remove</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
