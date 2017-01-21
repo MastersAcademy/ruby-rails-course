@@ -1,3 +1,0 @@
-<h1>Comments here</h1>
-
-<%=@post%>

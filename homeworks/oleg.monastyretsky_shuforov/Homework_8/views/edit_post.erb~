@@ -1,4 +1,0 @@
-<form action="/edit_post">
-<input type="text" name="edit_post" value="<%=@edit_text%>" />
-<input type="submit" value="Edit" />
-</form>
