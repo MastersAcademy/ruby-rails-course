@@ -1,0 +1,12 @@
+<div>
+  <h1><a href="/posts/<%= @post.id %>"><%= @post.title %></a></h1>
+  <h2> By <a href="/users/<%= @by.id %>"><%= @by.first_name %></a></h2>
+  <br>
+  <p><%= @post.body %></p>
+</div>
+
+<h3><a href="<%= @post.id %>/edit">Edit Post</a></h3>
+<h3><a href="<%= @post.id %>/delete">Delite Post</a></h3>
+
+<h4><a href="/posts">all posts</a></h4>
+<h4><a href="/users">all users</a></h4>

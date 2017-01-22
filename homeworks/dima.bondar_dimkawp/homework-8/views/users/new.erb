@@ -1,0 +1,17 @@
+<h1>Add User</h1>
+
+<form action="/users" method="post">
+  <h2>First Name:</h2>
+  </br>
+  <input name="user[first_name]" type="text" value="<%= @user.first_name %>" />
+  </br>
+
+  <h2>Last Name:</h2>
+  </br>
+  <input name="user[last_name]" type="text" value="<%= @user.last_name %>" />
+  </br>
+
+  <input type="submit" value="Create" />
+</form>
+
+<h4><a href="/users">all users</a></h4>

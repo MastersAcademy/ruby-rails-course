@@ -1,0 +1,6 @@
+development:
+  adapter: sqlite3
+  encoding: utf8
+  database: db/base.sqlite3
+  pool: 10
+  timeout: 50000
