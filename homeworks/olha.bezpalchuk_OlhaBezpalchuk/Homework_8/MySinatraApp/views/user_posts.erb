@@ -1,0 +1,11 @@
+<h3><%= @user.name %>'s posts:</h3>
+<a href="/<%= @user.id %>/add_post">Add post</a>
+<% @posts.each do |post| %>
+    <hr />
+    <%= post.body %>
+    <br />
+    <a href="/<%= post.id %>/edit">Edit post</a>
+<% end %>
+<br />
+<hr />
+<a href="/">Back to Home</a>

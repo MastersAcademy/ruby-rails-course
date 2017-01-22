@@ -1,0 +1,8 @@
+<h3>Edit Post</h3>
+<form action="/<%= @post.id %>/submit_edit_post" method="POST">
+  <label for="post_body">Edit text:</label>
+  <textarea id="post_body" name="post[body]" ><%= @post.body %></textarea>
+  <br />
+  <input type="submit" value="Submit" />
+</form>
+<a href="/">Back to Home</a>
