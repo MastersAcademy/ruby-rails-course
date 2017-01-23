@@ -1,0 +1,16 @@
+<h3 class="noblack">Edit Post</h3>
+<form action="/edit_post">
+<lable>Title</lable>
+<br>
+<textarea name="title_name" rows="1"><%=@edit_title%></textarea>
+<br>
+<lable>Body</lable>
+<br>
+<textarea name="body_name" rows="5"><%=@edit_text%></textarea>
+<br>
+<input type="submit" value="Edit" />
+</form>
+<a href="/all_users">All users</a>
+<a href="/posts">All posts</a>
+<a href="/last_post">Last post</a>
+<a href="/"><h2>Home</h2></a>

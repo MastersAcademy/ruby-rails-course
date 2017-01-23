@@ -1,0 +1,6 @@
+require './app'
+require 'sinatra/activerecord/rake'
+
+task :start do
+  ruby './app.rb'
+end
