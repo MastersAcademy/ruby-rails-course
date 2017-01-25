@@ -9,8 +9,8 @@
    <td style="border: 1px solid black"><%=element.body%></td>
    </tr>
 </table>
-<a href="/posts/<%=@element.id%>">Edit post</a>
-<a href="/posts/<%=@element.id%>/delete">Delete post</a>
+<a href="/users/<%=element.user_id%>/posts/<%=element.id%>/edit">Edit post</a>
+<a href="/users/<%=element.user_id%>/posts/<%=element.id%>/delete">Delete post</a>
 <%end%>
 <% else %>
 <p>This user dont have any post</p>

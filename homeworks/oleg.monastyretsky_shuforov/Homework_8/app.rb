@@ -14,18 +14,13 @@ get '/posts' do
   erb :'/posts/index'
 end
 
-get '/posts/show/:id' do
+get '/users/:id/posts/show' do
   @posts = Post.where(user_id: params[:id])
   erb :'/posts/show'
 end
 
-get '/posts/new/:id' do
-  @user = User.find(params[:id])
-  erb :'/posts/new'
-end
-
-get '/posts/:id/edit' do
-  @post = Post.find(params[:id])
+get '/users/:id/posts/:post_id/edit' do
+  @post = Post.find(params[:post_id])
   erb :'/posts/edit'
 end
 
@@ -35,18 +30,22 @@ end
 
 put '/posts/:id' do
   @post = Post.find(params[:id])
-  @post.update(body: params[:body_name])
-  @post.update(title: params[:title_name])
+  @post.update_attributes(title: params[:title_name], body: params[:body_name])
   redirect "/posts/#{@post.user_id}"
 end
 
-get '/posts/:id/delete' do
-  @user_id = Post.find(params[:id]).user_id
-  Post.delete(params[:id])
+get '/users/:id/posts/:post_id/delete' do
+  @user_id = Post.find(params[:post_id]).user_id
+  Post.delete(params[:post_id])
   redirect "/users/#{@user_id}"
 end
 
-post '/posts/new/:id' do
+get '/users/:id/posts/new' do
+  @user = User.find(params[:id])
+  erb :'/posts/new'
+end
+
+post '/users/:id/posts/new' do
   user = User.find(params[:id])
   user.posts.create title: params[:title_name], body: params[:body_text]
   redirect "/users/#{params[:id]}"
