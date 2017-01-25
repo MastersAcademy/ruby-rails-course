@@ -5,6 +5,6 @@ $ bundler install
 ```
 To start sinatra
 ```sh
-$ rake start
+$ rackup
 ```
 Go to [localhost](http://localhost:4567/) to test app
