@@ -7,4 +7,4 @@ To start sinatra
 ```sh
 $ rackup
 ```
-Go to [localhost](http://localhost:4567/) to test app
+Go to [localhost](http://localhost:9292/) to test app
