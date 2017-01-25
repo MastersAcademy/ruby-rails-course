@@ -1,8 +1,11 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+source "https://rubygems.org"
 
-gem 'rake'
-gem 'activerecord'
-gem 'sinatra'
-gem 'sqlite3'
-gem 'active_model_serializers'
-gem 'json'
+ruby "2.3.0"
+
+gem "sinatra"
+gem "activerecord"
+gem "sinatra-activerecord"
+gem "pg"
+gem "rake"
+gem "thin"

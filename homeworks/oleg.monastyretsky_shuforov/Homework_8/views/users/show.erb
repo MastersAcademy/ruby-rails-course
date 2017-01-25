@@ -1,0 +1,26 @@
+<h1><%=@user.name%></h1>
+<form action="/users/<%=@user.id%>/delete">
+<input type="submit" value="Delete user"/>
+</form>
+<hr>
+<p>Last user post</p>
+<% if @posts.length >0 %>
+<table>
+   <tr>
+   <th style ="text-align: left"><%=@posts.last.title%></th>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black"><%=@posts.last.body%></td>
+   </tr>
+</table>
+<a href="/posts/<%=@posts.last.id%>/edit">Edit post</a>
+<a href="/posts/<%=@posts.last.id%>/delete">Delete post</a>
+<% else %>
+<p>This user dont have any post</p>
+<%end%>
+<hr>
+<a href="/posts/new/<%=@user.id%>">Creat new post</a>
+<br>
+<% if @posts.length >0 %>
+<a href="/posts/show/<%=@user.id%>">User posts</>
+<%end%>

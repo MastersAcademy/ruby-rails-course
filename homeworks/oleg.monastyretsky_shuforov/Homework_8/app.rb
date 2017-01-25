@@ -4,69 +4,80 @@ require 'json'
 require './models/user'
 require './models/post'
 
-ActiveRecord::Base.connection
-
 get '/' do
-  @@users = User.all.map {|user| user.name}
-  erb :index
-end
-
-post '/' do
-  if params[:user_name].length <= 0 or @@users.include?(params[:user_name])
-    'name too short or other user have the same name'
-  else
-    User.create name: params[:user_name]
-    redirect '/'
-  end
+  redirect '/users'
 end
 
 get '/posts' do
-  @all_users = User.all
-  @all_posts = Post.all
-  erb :posts
+  @posts = Post.all
+  @users = User.all
+  erb :'/posts/index'
 end
 
-get '/posts.json' do
-  content_type :json
-  Post.all.to_json  
+get '/posts/show/:id' do
+  @posts = Post.where(user_id: params[:id])
+  erb :'/posts/show'
 end
 
-get '/user/:name' do
-  @@user_name = params[:name]
-  @user_id = User.find_by_name(params['name']).id
-  @posts = Post.where(user_id: @user_id)
-  erb :user
+get '/posts/new/:id' do
+  @user = User.find(params[:id])
+  erb :'/posts/new'
 end
 
-get '/users.json' do
-  content_type :json
-  User.all.to_json
+get '/posts/:id/edit' do
+  @post = Post.find(params[:id])
+  erb :'/posts/edit'
 end
 
-get '/delete_post/:id' do
-  Post.destroy(params[:id])
-  redirect "/user/#{@@user_name}"
+get '/posts/:id' do
+  redirect "/users/#{params[:id]}"
 end
 
-get '/create_post' do
-  redirect "/user/#{@@user_name}"
+put '/posts/:id' do
+  @post = Post.find(params[:id])
+  @post.update(body: params[:body_name])
+  @post.update(title: params[:title_name])
+  redirect "/posts/#{@post.user_id}"
 end
 
-post '/create_post' do
-  user = User.find_by_name(@@user_name)
+get '/posts/:id/delete' do
+  @user_id = Post.find(params[:id]).user_id
+  Post.delete(params[:id])
+  redirect "/users/#{@user_id}"
+end
+
+post '/posts/new/:id' do
+  user = User.find(params[:id])
   user.posts.create title: params[:title_name], body: params[:body_text]
-  redirect "/user/#{@@user_name}"
+  redirect "/users/#{params[:id]}"
 end
 
-get '/edit_post' do
-  Post.where(id: @@post_id).update(title: params[:title_name])
-  Post.where(id: @@post_id).update(body: params[:body_name])
-  redirect "/user/#{@@user_name}"
+get '/users' do
+  @users = User.all
+  erb :'/users/index'
 end
 
-get '/edit_post/:id' do
-  @@post_id = params[:id]
-  @edit_title = Post.where(id: @@post_id).first.title
-  @edit_text = Post.where(id: @@post_id).first.body
-  erb :edit_post
+get '/users/:id' do
+  @user = User.find(params[:id])
+  @posts = @user.posts
+  erb :'/users/show'
+end
+
+get '/users/:id/delete' do
+  User.find(params[:id]).destroy
+  redirect :'/users'
+end
+
+get '/user/new' do
+  erb :'/users/new'
+end
+
+post '/users' do
+  @user = User.new
+  @user.name = params[:user_name]
+  if @user.save
+    redirect '/users'
+  else
+    redirect '/user/new'
+  end
 end

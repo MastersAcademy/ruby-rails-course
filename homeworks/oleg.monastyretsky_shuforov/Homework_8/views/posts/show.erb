@@ -1,0 +1,20 @@
+<h1>User posts</h1>
+<% if @posts.length > 0 %>
+<% @posts.each do |element| %>
+<table>
+   <tr>
+   <th style ="text-align: left"><%=element.title%></th>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black"><%=element.body%></td>
+   </tr>
+</table>
+<a href="/posts/<%=@element.id%>">Edit post</a>
+<a href="/posts/<%=@element.id%>/delete">Delete post</a>
+<%end%>
+<% else %>
+<p>This user dont have any post</p>
+<%end%>
+<br>
+<hr>
+<a href="/users/<%=@posts.first.user_id%>">User</a>

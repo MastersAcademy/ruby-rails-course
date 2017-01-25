@@ -1,5 +1,24 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: oleg
+  password: rs4xvp5a
+
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 30
-  timeout: 50000
+  <<: *defaults
+  database: db_development
+  host: localhost
+
+test:
+  <<: *defaults
+  database: db_test
+  host: localhost
+
+production:
+  <<: *defaults
+  database: db_production
+  host: localhost
+  username: test_name
+  password:

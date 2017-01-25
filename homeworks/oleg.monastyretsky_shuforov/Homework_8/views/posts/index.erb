@@ -1,11 +1,9 @@
-<h3>All posts</h3>
-<a href="/">Home</a>
-<p></p>
-<% @all_posts.each do |post| %>
+<h1>Posts</h1>
+<%@posts.each do |post|%>
 <table>
    <tr>
    <th style ="text-align: left">
-   <%=@all_users.where(id: post.user_id).first.name%>
+   <%=@users.where(id: post.user_id).first.name%>
    </th>
    </tr>
    <tr>
@@ -15,5 +13,6 @@
    <td style="border: 1px solid black"><%=post.body%></td>
    </tr>
 </table>
-<hr>
 <%end%>
+<hr>
+<a href="/users">Users<a>
