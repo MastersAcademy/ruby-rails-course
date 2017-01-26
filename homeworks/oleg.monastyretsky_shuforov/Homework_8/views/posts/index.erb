@@ -1,0 +1,18 @@
+<h1>Posts</h1>
+<%@posts.each do |post|%>
+<table>
+   <tr>
+   <th style ="text-align: left">
+   <%=@users.where(id: post.user_id).first.name%>
+   </th>
+   </tr>
+   <tr>
+   <td><%=post.title%></td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black"><%=post.body%></td>
+   </tr>
+</table>
+<%end%>
+<hr>
+<a href="/users">Users<a>
