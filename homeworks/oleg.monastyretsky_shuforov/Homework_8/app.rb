@@ -19,7 +19,7 @@ get '/posts', :provides => [:html, :json] do
   @posts = Post.all
   @users = User.all
   respond_to do |format|
-    format.json { @users.to_json }
+    format.json { @posts.to_json }
     format.html { erb :'/posts/index' }
   end
 end
