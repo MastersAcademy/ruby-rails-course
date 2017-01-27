@@ -1,0 +1,14 @@
+<head><h2>Users: </h2></head>
+
+<ul>
+  <% @users.each do |user| %>
+      <article>
+        <h3><a href="/users/<%= user.id %>"><%= user.name %> <%= user.surname %></a></h3>
+      </article>
+      <hr>
+  <% end %>
+</ul>
+
+<span><h3><a href="/user/new">Add User</a></h3></span>
+
+<h4><a href="/posts">All Posts</a></h4>
