@@ -1,17 +1,27 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require 'json'
+require 'sinatra/contrib'
 require './models/user'
 require './models/post'
 
+before (/.*/) do
+  if request.url.match(/.json$/)
+    request.accept.unshift('application/json')
+    request.path_info = request.path_info.gsub(/.json$/,'')
+  end
+end
+          
 get '/' do
   redirect '/users'
 end
 
-get '/posts' do
+get '/posts', :provides => [:html, :json] do
   @posts = Post.all
   @users = User.all
-  erb :'/posts/index'
+  respond_to do |format|
+    format.json { @users.to_json }
+    format.html { erb :'/posts/index' }
+  end
 end
 
 get '/users/:id/posts/show' do
@@ -51,9 +61,12 @@ post '/users/:id/posts/new' do
   redirect "/users/#{params[:id]}"
 end
 
-get '/users' do
+get '/users', :provides => [:html, :json] do
   @users = User.all
-  erb :'/users/index'
+  respond_to do |format|
+    format.json { @users.to_json }
+    format.html { erb :'/users/index' }
+  end
 end
 
 get '/users/:id' do
@@ -79,5 +92,5 @@ post '/users' do
   else
     redirect '/user/new'
   end
-  end
+end
 
