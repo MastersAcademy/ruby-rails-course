@@ -1,0 +1,10 @@
+<% if @user %>
+    <p>Are you sure?</p>
+    <form action="/users/<%= @user.id %>/" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Yes, Delete It!">
+      <a href="<%="#{SITE_URL}"%>/users/<%= @user.id %>/">Cancel</a>
+    </form>
+<% else %>
+    <p>user not found.</p>
+<% end %>

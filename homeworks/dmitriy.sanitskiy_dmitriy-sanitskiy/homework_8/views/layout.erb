@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% if @title  %>
+    <title><%= @title + " | #{SITE_NAME}" %></title>
+  <% else %>
+    <title><%="#{SITE_NAME}" %></title>
+  <% end %>
+  <% if @summary %>
+    <meta name="description" content="<%= @summary || @post.summary %>">
+  <% end %>
+  <meta charset="utf-8">
+  # путь к иконке из public
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  # путь к css из public
+  <link href="/style.css" rel="stylesheet" type="text/css" />
+</head>
+  <body>
+      <div id="main">
+        <%= yield %>
+      </div>
+  </body>
+</html>

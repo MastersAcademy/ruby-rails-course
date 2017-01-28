@@ -1,0 +1,10 @@
+<form method="post" action="/users/<%= @user.id%>/posts/new/">
+  <label for="title"><strong>Title:</strong></label>
+  <input id="title" type="text" name="title" value="" style="width: 250px;"><br><br>
+
+  <label for="body"><strong>Content:</strong></label>
+  <textarea id="body" type="text" name="body" value="" style="width: 250px;"></textarea><br><br>
+
+  <input id="user_id" name="user_id" type="hidden" value="">
+  <input type="submit" name="submit" value="Add post">
+</form>
