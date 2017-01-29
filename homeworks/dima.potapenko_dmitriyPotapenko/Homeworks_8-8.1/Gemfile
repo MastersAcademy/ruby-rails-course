@@ -1,0 +1,28 @@
+source 'https://rubygems.org'
+ruby '2.4.0'
+
+gem 'sinatra'
+gem 'rake'
+gem 'activerecord'
+gem 'sinatra-activerecord'
+gem 'active_model_serializers'
+gem 'json'
+gem 'thin'
+gem 'sinatra-reloader'
+gem 'rack'
+gem 'pry'
+gem 'heroku'
+
+group :develoment do
+  gem 'shotgun'
+  gem 'postgresql'
+end
+
+group :production do
+  gem 'pg'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end

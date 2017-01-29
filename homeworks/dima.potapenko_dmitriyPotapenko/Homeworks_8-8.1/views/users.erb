@@ -1,0 +1,12 @@
+<h3>All Users</h3>
+<hr />
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <a href="/<%= user.id %>"><%= user.name %></a>
+    </li>
+  <% end %>
+</ul>
+<a href="/add_user">Add user</a>
+<hr />
+<a href="/">Back</a>
