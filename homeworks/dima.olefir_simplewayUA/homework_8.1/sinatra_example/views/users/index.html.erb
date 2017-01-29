@@ -1,0 +1,11 @@
+<h2 style="text-align: center;">Users:</h2>
+    <% @users.each do |user| %>
+    <ul style="list-style-type: square;">
+      <li>
+          <h3><a href="/users/<%= user.id %>"><%= user.name %></a></h3>
+      </li>
+    </ul>
+    <% end %>
+
+<p style="text-align: left;"><em> <a href="/user/new">Create user</a></em></p>
+<p style="text-align: left;"><em> <a href="/posts">All Posts</a></em></p>

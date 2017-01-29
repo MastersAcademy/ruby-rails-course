@@ -1,0 +1,7 @@
+ <h2><%= @post.title %></h2>
+ <p class="seperate noblack"><%= @post.body %></p>
+
+ <h4 class="tighten" ><p style="text-align: right;"><span class="noblack">author by </span><a href="/users/<%= @author.id %>"><%= @author.name %></a></p></h4>
+<h3><a href="<%= @post.id %>/edit">Edit Post</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/posts/<%= @post.id %>/delete">Delete this post</a></h3>
+
+<h4><a href="/users">Home</a></h4>

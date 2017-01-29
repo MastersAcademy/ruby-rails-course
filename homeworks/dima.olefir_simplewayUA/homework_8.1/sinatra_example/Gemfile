@@ -1,0 +1,20 @@
+source 'https://rubygems.org'
+
+gem 'rake'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-contrib', '~> 1.4', '>= 1.4.7'
+gem 'sinatra-active-model-serializers', '~> 0.3.0'
+gem 'activerecord'
+gem 'pry'
+gem 'pry-byebug'
+gem 'slim'
+gem 'rspec'
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
