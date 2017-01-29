@@ -1,0 +1,11 @@
+<article>
+  <h3><a href="/posts/<%= @post.id %>"><%= @post.title %></a></h3>
+  <h4 class="tighten"><span class="noblack">Written by </span><a href="/users/<%= @author.id %>"><%= @author.name %></a></h4> <br>
+  <p class="seperate noblack"><%= @post.body %></p>
+</article>
+
+<h3><a href="<%= @post.id %>/edit">Edit Post</a></h3>
+<h3><a href="<%= @post.id %>/delete">Delete Post</a></h3>
+
+<h4><a href="/posts">All Posts</a></h4>
+<h4><a href="/users">All users</a></h4>
