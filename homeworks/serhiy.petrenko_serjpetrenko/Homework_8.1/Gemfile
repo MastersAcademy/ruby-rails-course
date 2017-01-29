@@ -1,0 +1,26 @@
+source 'https://rubygems.org'
+
+ruby "2.3.3"
+
+gem 'rake'
+gem 'activerecord'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-active-model-serializers'
+gem 'json'
+gem 'slim'
+gem 'shotgun'
+
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
+
+group :test do
+  gem "rspec"
+  gem "rack-test"
+end

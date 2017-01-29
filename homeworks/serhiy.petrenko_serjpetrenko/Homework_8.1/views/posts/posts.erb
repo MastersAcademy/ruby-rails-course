@@ -1,0 +1,18 @@
+<h3>All posts</h3>
+<p></p>
+<% @posts.each do |post| %>
+<table>
+   <tr>
+   <th style ="text-align: left">
+   </th>
+   </tr>
+   <tr>
+   <td><%=post.title%></td>
+   </tr>
+<td style="border: 1px solid black"><%=post.body%></td>
+   </tr>
+</table>
+<hr>
+<%end%>
+<a href="/index">Home</a>
+<a href="/post/last">Last post</a>

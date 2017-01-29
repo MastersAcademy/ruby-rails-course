@@ -1,0 +1,16 @@
+<h3 class="noblack">Edit Post</h3>
+<form action="/posts/<%=@post.id%>" method="post">
+<lable>Title</lable>
+<br>
+<textarea name="title_name" rows="1" cols="30"><%=@post.title%></textarea>
+<br>
+<lable>Body</lable>
+<br>
+<textarea name="body_name" rows="5" cols="30"><%=@post.body%></textarea>
+<br>
+<input type="submit" value="Edit" />
+</form>
+<a href="/index">Home</a>
+<a href="/users">All users</a>
+<a href="/posts">All posts</a>
+<a href="/post/last">Last post</a>
