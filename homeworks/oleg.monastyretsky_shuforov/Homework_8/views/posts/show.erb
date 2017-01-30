@@ -9,8 +9,15 @@
    <td style="border: 1px solid black"><%=element.body%></td>
    </tr>
 </table>
-<a href="/users/<%=element.user_id%>/posts/<%=element.id%>/edit">Edit post</a>
-<a href="/users/<%=element.user_id%>/posts/<%=element.id%>/delete">Delete post</a>
+<span style="float: left;">
+<form action="/users/<%=element.user_id%>/posts/<%=element.id%>/edit">
+<input type="submit" value="Edit">
+</form>
+</span>
+<form action="/users/<%=element.user_id%>/posts/<%=element.id%>" method="post">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete">
+</form>
 <%end%>
 <% else %>
 <p>This user dont have any post</p>

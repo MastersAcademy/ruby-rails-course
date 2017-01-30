@@ -24,7 +24,7 @@ get '/posts', :provides => [:html, :json] do
   end
 end
 
-get '/users/:id/posts/show' do
+get '/users/:id/posts' do
   @posts = Post.where(user_id: params[:id])
   erb :'/posts/show'
 end
@@ -34,20 +34,16 @@ get '/users/:id/posts/:post_id/edit' do
   erb :'/posts/edit'
 end
 
-get '/posts/:id' do
-  redirect "/users/#{params[:id]}"
-end
-
-put '/posts/:id' do
-  @post = Post.find(params[:id])
+put '/users/:id/posts/:post_id' do
+  @post = Post.find(params[:post_id])
   @post.update_attributes(title: params[:title_name], body: params[:body_name])
-  redirect "/posts/#{@post.user_id}"
+  redirect "/users/#{@post.user_id}"
 end
 
-get '/users/:id/posts/:post_id/delete' do
-  @user_id = Post.find(params[:post_id]).user_id
-  Post.delete(params[:post_id])
-  redirect "/users/#{@user_id}"
+delete '/users/:id/posts/:post_id' do
+  @post = Post.find(params[:post_id])
+  @post.destroy
+  redirect "/users/#{@post.user_id}"
 end
 
 get '/users/:id/posts/new' do
@@ -55,7 +51,7 @@ get '/users/:id/posts/new' do
   erb :'/posts/new'
 end
 
-post '/users/:id/posts/new' do
+post '/users/:id/posts' do
   user = User.find(params[:id])
   user.posts.create title: params[:title_name], body: params[:body_text]
   redirect "/users/#{params[:id]}"
@@ -75,7 +71,7 @@ get '/users/:id' do
   erb :'/users/show'
 end
 
-get '/users/:id/delete' do
+delete '/users/:id' do
   User.find(params[:id]).destroy
   redirect :'/users'
 end
@@ -85,8 +81,7 @@ get '/user/new' do
 end
 
 post '/users' do
-  @user = User.new
-  @user.name = params[:user_name]
+  @user = User.new(name: params[:user_name])
   if @user.save
     redirect '/users'
   else

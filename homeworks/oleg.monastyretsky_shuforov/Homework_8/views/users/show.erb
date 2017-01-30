@@ -1,5 +1,6 @@
 <h1><%=@user.name%></h1>
-<form action="/users/<%=@user.id%>/delete">
+<form action="/users/<%=@user.id%>" method="post">
+<input type="hidden" name="_method" value="DELETE">
 <input type="submit" value="Delete user"/>
 </form>
 <hr>
@@ -13,8 +14,15 @@
    <td style="border: 1px solid black"><%=@posts.last.body%></td>
    </tr>
 </table>
-<a href="/users/<%=@user.id%>/posts/<%=@posts.last.id%>/edit">Edit post</a>
-<a href="/users/<%=@user.id%>/posts/<%=@posts.last.id%>/delete">Delete post</a>
+<span style="float: left;">
+<form action="/users/<%=@user.id%>/posts/<%=@posts.last.id%>/edit">
+<input type="submit" value="Edit">
+</form>
+</span>
+<form action="/users/<%=@posts.last.user_id%>/posts/<%=@posts.last.id%>" method="post">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete"/>
+</form>
 <% else %>
 <p>This user dont have any post</p>
 <%end%>
@@ -24,5 +32,5 @@
 <a href="/users/<%=@user.id%>/posts/new">Creat new post</a>
 <br>
 <% if @posts.length >0 %>
-<a href="/users/<%=@user.id%>/posts/show">User posts</a>
+<a href="/users/<%=@user.id%>/posts">User posts</a>
 <%end%>
