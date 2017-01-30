@@ -1,0 +1,12 @@
+<form action="/users/<%=@post.user_id%>/posts/<%=@post.id%>" method="post">
+<input type="hidden" name="_method" value="PUT">
+<lable>Title</lable>
+<br>
+<textarea name="title_name" rows="1"><%=@post.title%></textarea>
+<br>
+<lable>Body</lable>
+<br>
+<textarea name="body_name" rows="5"><%=@post.body%></textarea>
+<br>
+<input type="submit" value="Edit" />
+</form>

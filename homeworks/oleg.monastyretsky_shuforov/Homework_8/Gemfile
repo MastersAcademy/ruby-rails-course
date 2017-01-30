@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+ruby "2.3.0"
+
+gem "sinatra"
+gem "activerecord"
+gem "sinatra-activerecord"
+gem "rake"
+gem "thin"
+gem "sinatra-contrib"
+gem "pg"
+gem "active_model_serializers"
+
+group :test do
+  gem "rspec"
+  gem "rack-test"
+end
