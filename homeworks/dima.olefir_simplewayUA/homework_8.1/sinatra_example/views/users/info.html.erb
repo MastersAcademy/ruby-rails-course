@@ -1,7 +1,10 @@
-<h2 style="text-align: center;">Name: <%= @user.name %></h2>
+<h2 style="text-align: center;">Name: <%= user.name %></h2>
 
-<p style="text-align: left;"><em> <a href="<%= @user.id %>/posts"><%= @user.name %> posts</a></em></p>
-<p style="text-align: left;"><em> <a href="<%= @user.id %>/posts/new">Create Post</a></em></p>
-<p style="text-align: right;"><a href="/users/<%= @user.id %>/delete">Delete this user</a></p></em>
+<p style="text-align: left;"><em> <a href="<%= user.id %>/posts"><%= user.name %> posts</a></em></p>
+<p style="text-align: left;"><em> <a href="<%= user.id %>/posts/new">Create Post</a></em></p>
+<form action="/users/<%= user.id %>/delete" method="post">
+  <input type="submit" value="Delete User" />
+</form>
+
 
 <span><h4><a href="/users">Home</a></h4></span>

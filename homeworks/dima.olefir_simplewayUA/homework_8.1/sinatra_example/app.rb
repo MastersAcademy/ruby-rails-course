@@ -12,7 +12,7 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    redirect to '/users'
+    redirect '/users'
   end
 
   # work with users
@@ -53,18 +53,17 @@ class App < Sinatra::Base
 
   get '/posts/:id' do
     @post = Post.find(params[:id])
-    @author = User.find_by_id(@post.user_id)
+    @author = @post.user
     html_erb :'posts/info'
   end
 
 
   get '/users/:user_id/posts/new' do
-    @post = Post.new
-    @post.user_id = params[:user_id]
+    @post = Post.new(user_id: params[:user_id])
     html_erb :'posts/new'
   end
 
-  post '/users/:user_id/posts/create' do
+  post '/users/:user_id/posts/:id' do
     @post = Post.new(params[:post])
     @post.user_id = params[:user_id]
     if @post.save
@@ -90,14 +89,17 @@ class App < Sinatra::Base
   end
 
   # delete post
-  get '/posts/:id/delete' do
-    @post = Post.destroy(params[:id])
-    redirect to '/users'
+  # app.rb
+  post '/posts/:id/delete' do
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    redirect "/users/#{@post.user_id}"
   end
 
   #delete user
-  get '/users/:id/delete' do
+  post '/users/:id/delete' do
     @user = User.destroy(params[:id])
-    redirect to '/'
+    redirect '/'
   end
 end
