@@ -1,0 +1,33 @@
+<h2>Твої нотатки:</h2>
+<hr/>
+<hr/>
+<ul>
+  <% if @posts.length > 0 %>
+      <% @posts.each do |post| %>
+          <b/><%=post.body%><br/>
+          <br/>
+          <form action="/users/<%=post.user_id%>/posts/<%=post.id%>/edit" method="get">
+          <input type="submit" value="ВІДРЕДАГУВАТИ"/>
+          </form>
+          <form action="/users/<%=post.user_id%>/posts/<%=post.id%>/delete" method="get">
+          <input type="submit" value="ВИДАЛИТИ"/>
+          </form>
+          <hr/>
+    <%end%>
+<% else %>
+    <a>У тебе немає нотаток</a>
+<%end%>
+</ul>
+<br/>
+<form action="<%= @user.nil? %>/posts/add" method="get">
+  <input type="submit" value="ДОДАТИ НОТАТКУ"/>
+</form>
+<br/>
+<hr/>
+<hr/>
+<form action="/users" method="get">
+  <input type="submit" value="КОРИСТУВАЧІ"/>
+</form>
+<form action="/" method="get">
+  <input type="submit" value="ДОДОМУ"/>
+</form>

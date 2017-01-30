@@ -1,0 +1,24 @@
+<h2>Всі нотатки:</h2>
+<a><b>(1. Щоб відредагувати нотатку, достатньо просто клікнути на її текст)</a><br/>
+<a>(2. Щоб додати нову або видалити існуючу нотатку, потрібно клікнути на ім'я користувача)</b></a>
+<hr/>
+<hr/>
+<ul>
+  <% if @posts.length > 0 %>
+      <% @posts.each do |post| %>
+          <b><a href="/users/<%= post.user.id %>/u_posts"><%= post.user.name %></b></a> написав:
+          <a href="/posts/<%= post.id %>/edit"><%= post.body %></a><br/>
+          <br/>
+      <% end %>
+  <% else %>
+      <a>Ще немає нотаток. Щоб написати щось, потрібно клікнути </a><a href="/users"><b>сюди</b></a><a>.</a>
+  <%end%>
+</ul>
+<br/>
+<hr/>
+<hr/>
+<form action="/" method="get">
+  <input type="submit" value="ДОДОМУ"/>
+</form>
+<a href="/posts.json">всі нотатки.json</a><br/>
+<a href="/posts.html">всі нотатки.html</a>
