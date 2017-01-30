@@ -1,7 +1,23 @@
-<h2>Firsts Name: <%= @user.first_name %></h2>
-<h2>Last   Name: <%= @user.last_name %></h2>
-<h3><a href="<%= @user.id %>/posts/new">Create Post</a></h3>
-<h3><a href="<%= @user.id %>/posts"><%= @user.first_name %> Posts</a></h3>
-<br>
-<h4><a href="/users">All users</a></h4>
-<h4><a href="/posts">All Posts</a></h4>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Users</title>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome your profile, <%= @user.first_name %> <%= @user.last_name %></h2>
+    <hr>
+  <form action="<%= @user.id %>/posts/new">
+    <button type="submit" class="btn btn-success">  Create Post  </button>
+  </form>
+    <br>
+  <form action="<%= @user.id %>/posts">
+    <button type="submit" class="btn btn-primary"><%= @user.first_name%> Posts</button>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,15 +1,16 @@
 # myapp.rb
+require 'rspec'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 require './models/user'
 require './models/post'
+require 'sinatra/contrib'
 
 ActiveRecord::Base.configurations = YAML::load(IO.read('config/database.yml'))
 ActiveRecord::Base.establish_connection(:development)
 
 get '/' do
-  'Hello Sinatra!'
   erb :index
 end
 
@@ -18,23 +19,35 @@ get '/users' do
   erb :"users/index"
 end
 
-get '/users.json' do
-  @users = User.all
-  content_type :json
-  @users.to_json
-end
-
-get "/users/:id.?:format?" do
-  @user = User.find(params[:id])
-  if params[:format] == 'json'
-    content_type :json
-    @user.to_json
-  else
-    erb :"users/show"
+before /.*/ do
+    if request.url.match(/.json$/)
+       request.accept.unshift('application/json')
+       request.path_info = request.path_info.gsub(/.json$/,'')
+         end
   end
+
+get '/post', :provides => [:html, :json] do
+  @posts = Post.all
+  respond_to do |format|
+      format.json { @posts.to_json }
+      format.html { erb :'/post/index' }
+    end
 end
 
-get '/user/new' do
+get '/user', :provides => [:html, :json] do
+  @users = User.all
+  respond_to do |format|
+      format.json { @users.to_json }
+      format.html { erb :'/user/index' }
+    end
+end
+
+get "/user/:id" do
+  @user = User.find(params[:id])
+    erb :"users/show"
+end
+
+get '/users/new' do
   @user = User.new
   erb :"users/new"
 end
@@ -42,13 +55,13 @@ end
 post "/users" do
   @user = User.new(params[:user])
   if @user.save
-    redirect "/users/#{@user.id}"
+    redirect "/user/#{@user.id}"
   else
     erb :"users/new"
   end
 end
 
-get '/users/:user_id/posts' do
+get '/user/:user_id/posts' do
   @posts = Post.where(user_id: params[:user_id])
   erb :'posts/index'
 end
@@ -58,30 +71,19 @@ get '/posts' do
   erb :'posts/index'
 end
 
-get '/posts.json' do
-  @posts = Post.all
-  content_type :json
-  @posts.to_json
-end
-
-get '/posts/:id.?:format?' do
+get '/posts/:id' do
   @post = Post.find(params[:id])
-  @by = User.find_by_id(@post.user_id)
-  if params[:format] == 'json'
-    content_type :json
-    @post.to_json
-  else
-    erb :"posts/show"
-  end
+  @by = @post.user
+erb :"posts/show"
 end
 
-get '/users/:user_id/posts/new' do
+get '/user/:user_id/posts/new' do
   @post = Post.new
   @post.user_id = params[:user_id]
   erb :"posts/new"
 end
 
-post '/users/:user_id/posts/create' do
+post '/user/:user_id/posts/create' do
   @post = Post.new(params[:post])
   @post.user_id = params[:user_id]
   if @post.save
