@@ -80,7 +80,7 @@ end
 describe "Delete user from db" do
   it "Delete user" do
     user_id = User.all.first.id
-    get "/users/#{user_id}/delete"
+    delete "/users/#{user_id}/delete"
   end
 end
 

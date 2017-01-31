@@ -1,7 +1,9 @@
 <h1><%=@user.name%></h1>
-<form action="/users/<%=@user.id%>/delete">
-<input type="submit" value="Delete user"/>
+<form action="/users/<%=@user.id%>/delete" method="post">
+  <input type="submit" value="Delete user"/>
+  <input type="hidden" name="_method" value="DELETE">
 </form>
+
 <h2>User's posts</h2>
 <% if @posts.length >0 %>
 <table>

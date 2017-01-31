@@ -2,8 +2,17 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
 require 'shotgun'
+require 'sinatra/contrib'
 require './models/users'
 require './models/posts'
+
+before /.*/ do
+  if request.url.match(/.json$/)
+    request.accept.unshift('application/json')
+    request.path_info = request.path_info.gsub(/.json$/,'')
+  end
+end
+
 
 #Operations with users
 get '/' do
@@ -14,14 +23,12 @@ get '/index' do
   erb :"users/index"
 end
 
-get '/users' do
+get '/users', :provides => [:html, :json] do
   @users = User.all
-  erb :"users/users"
-end
-
-get '/users.json' do
-  content_type :json
-  User.all.to_json
+  respond_to do |format|
+    format.json { @users.to_json }
+    format.html { erb :'/users/users' }
+  end
 end
 
 get '/user/new' do
@@ -29,8 +36,7 @@ get '/user/new' do
 end
 
 post '/user/new' do
-  @user = User.new
-  @user.name = params[:username]
+  @user = User.new(name: params[:username])
   if @user.save
     redirect '/users'
   else
@@ -44,7 +50,12 @@ get '/users/:id' do
   erb :"/users/user"
 end
 
-get '/users/:id/delete' do
+delete '/article/:id' do
+  @article_object = Article.delete(params[:id])
+  redirect to("/")
+end
+
+delete '/users/:id/delete' do
   User.find(params[:id]).destroy
   redirect  "/users"
 end
@@ -66,22 +77,19 @@ get '/users/:id/posts/:post_id/edit' do
 end
 
 get '/users/:id/posts/:post_id/delete' do
-  @user_id = Post.find(params[:post_id]).user_id
-  Post.delete(params[:post_id])
-  redirect "/users/#{@user_id}"
+  @post = Post.find(params[:post_id])
+  @post.destroy
+  redirect "/users/#{@post.user_id}"
 end
 
-get '/posts' do
-  @users = User.all
+get '/posts', :provides => [:html, :json] do
   @posts = Post.all
-  erb :"posts/posts"
+  @users = User.all
+  respond_to do |format|
+    format.json { @posts.to_json }
+    format.html { erb :'/posts/posts' }
+  end
 end
-
-get '/posts.json' do
-  content_type :json
-  Post.all.to_json
-end
-
 
 get '/posts/:id' do
   redirect "/users/#{params[:id]}"

@@ -7,8 +7,8 @@ gem 'activerecord'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-active-model-serializers'
+gem 'sinatra-contrib'
 gem 'json'
-gem 'slim'
 gem 'shotgun'
 
 
