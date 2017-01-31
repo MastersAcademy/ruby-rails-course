@@ -50,9 +50,9 @@ describe "Creating of post" do
     last_request.url.should == "http://example.org/users/#{user_id}/posts/new"
   end
   it "Create post" do
-    user_id = User.all.first.id
-    post "/users/#{user_id}/posts/new", {:title_name => 'first',
-                                         :body_name => 'hello'}
+    user = User.all.first
+    post "/users/#{user.id}/posts", {:title_name => 'first',
+                                     :body_name => 'hello'}
   end
   it "Chack creating of post" do
     Post.all.first.title.should == 'first'
@@ -82,8 +82,8 @@ describe "Edit post of user" do
     last_request.url.should == "http://example.org/users/#{user_id}/posts/#{post_id}/edit"
   end
   it "Edit post" do
-    post_id = Post.all.first.id
-    put "/posts/#{post_id}", {:title_name => 'Edited title', :body_name => 'Edited body'}
+    post = Post.all.first
+    put "/users/#{post.user_id}/posts/#{post.id}", {:title_name => 'Edited title', :body_name => 'Edited body'}
   end
   it "Chack changes of post" do
     Post.all.first.title.should == 'Edited title'
@@ -94,7 +94,7 @@ describe "Delete post of user" do
   it "Delete user post" do
     post_id = Post.all.first.id
     user_id = User.all.first.id
-    get "/users/#{user_id}/posts/#{post_id}/delete"
+    delete "/users/#{user_id}/posts/#{post_id}"
     follow_redirect!
     last_request.url.should == "http://example.org/users/#{user_id}"
     end
