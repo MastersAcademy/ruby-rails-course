@@ -60,12 +60,12 @@ delete '/users/:id/delete' do
   redirect  "/users"
 end
 #Operations with posts
-get '/users/:id/posts/create' do
+get '/users/:id/posts/new' do
   @user = User.find(params[:id])
-  erb :'/posts/create'
+  erb :'/posts/new'
 end
 
-post '/users/:id/posts/create' do
+post '/users/:id/posts/new' do
   user = User.find(params[:id])
   user.posts.create title: params[:title_name], body: params[:body_text]
   redirect "/users/#{params[:id]}"

@@ -35,13 +35,13 @@ end
 describe "Create a new post" do
   it "Show the form for post create" do
     user_id = User.all.first.id
-    get "/users/#{user_id}/posts/create"
-    last_request.url.should == "http://example.org/users/#{user_id}/posts/create"
+    get "/users/#{user_id}/posts/new"
+    last_request.url.should == "http://example.org/users/#{user_id}/posts/new"
   end
 
   it "Create new user's post" do
     user_id = User.all.first.id
-    post "/users/#{user_id}/posts/create", {:title_name => 'Hello',
+    post "/users/#{user_id}/posts/new", {:title_name => 'Hello',
                                         :body_name => 'Hello world!'}
   end
 
