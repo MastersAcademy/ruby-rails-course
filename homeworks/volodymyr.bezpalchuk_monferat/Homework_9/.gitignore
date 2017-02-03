@@ -12,6 +12,7 @@
 /test/*
 /vendor/*
 /lib/*
+/public/*
 /config/initializers/*
 /config/locales/*
 /config/secrets.yml
