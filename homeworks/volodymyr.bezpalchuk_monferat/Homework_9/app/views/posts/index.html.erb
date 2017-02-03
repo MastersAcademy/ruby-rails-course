@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing posts</h1>
+
+<% @posts.each do |post| %>
+    <div class="boxBody">
+      <h2><%= post.title %></h2>
+      <p><%= post.text %></p>
+      <p>Author: <%= post.user.name %></p>
+
+      <p><%= link_to 'Show', post %></p>
+      <p><%= link_to 'Edit', edit_post_path(post) if post.user.eql?(current_user)  %></p>
+      <p><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } if post.user.eql?(current_user) %></p>
+
+    </div>
+<% end %>
+
+
+<br>
+
+<%= link_to 'New Post', new_post_path if current_user %>

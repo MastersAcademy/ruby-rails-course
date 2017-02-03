@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.text %>
+</p>
+
+<p>
+  <strong>Create by:</strong>
+  <%= @post.user.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_path(@post) if @post.user.eql?(current_user) %> |
+<%= link_to 'Back', posts_path %>

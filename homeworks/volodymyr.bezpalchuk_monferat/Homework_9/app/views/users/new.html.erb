@@ -1,0 +1,28 @@
+<h1>Registration</h1>
+<p>Fill the form</p>
+
+<body>
+<div class="box _login">
+
+  <%= form_for(@user) do |f| %>
+      <div class="boxBody">
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </div>
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </div>
+      </div>
+      <div class="actions" id="btnLogin">
+        <%= f.submit 'Register '%>
+      </div>
+  <% end %>
+
+</div>
+</body>
