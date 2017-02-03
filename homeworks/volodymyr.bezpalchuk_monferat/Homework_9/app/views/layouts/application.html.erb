@@ -9,12 +9,7 @@
   </head>
 
   <body>
-  <p><%= link_to 'Main page', root_path %></p>
-  <p><%= link_to 'Registration', users_new_path unless current_user %></p>
-  <%= link_to 'Login', sessions_login_path unless current_user %>
-  <%= link_to 'Logout', sessions_logout_path if current_user %>
-
-  <%= current_user.name if current_user%>
+  <%= render 'layouts/header' %>
 
     <%= yield %>
   </body>

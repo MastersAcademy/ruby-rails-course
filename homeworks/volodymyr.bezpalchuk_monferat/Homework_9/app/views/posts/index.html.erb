@@ -1,21 +1,30 @@
-<p id="notice"><%= notice %></p>
+<body>
+<div class="container">
+  <div class="blog-header">
+    <h1 class="blog-title">Listing posts</h1>
+  </div>
 
-<h1>Listing posts</h1>
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      <% @posts.each do |post| %>
+          <div class="blog-post">
+            <h2 class="blog-post-title"><%= post.title %></h2>
+            <p class ="blog-post-meta">Author: <%= post.user.name %></p>
+            <p><%= post.text %></p>
 
-<% @posts.each do |post| %>
-    <div class="boxBody">
-      <h2><%= post.title %></h2>
-      <p><%= post.text %></p>
-      <p>Author: <%= post.user.name %></p>
+            <%= link_to 'Show', post, :class => 'btn btn-primary' %>
+            <% if post.user.eql?(current_user) %>
+                <%= link_to 'Edit', edit_post_path(post), :class => 'btn btn-primary' %>
+                <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %>
+            <% end %>
+          </div>
+      <% end %>
 
-      <p><%= link_to 'Show', post %></p>
-      <p><%= link_to 'Edit', edit_post_path(post) if post.user.eql?(current_user)  %></p>
-      <p><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } if post.user.eql?(current_user) %></p>
-
+      <%= link_to 'New Post', (new_post_path if current_user), :class => 'btn btn-primary post' %>
     </div>
-<% end %>
 
+    <br>
+  </div>
 
-<br>
-
-<%= link_to 'New Post', new_post_path if current_user %>
+</div>
+</body>

@@ -1,26 +1,21 @@
 <h1>Registration</h1>
-<p>Fill the form</p>
 
 <body>
-<div class="box _login">
 
-  <%= form_for(@user) do |f| %>
-      <div class="boxBody">
-        <div class="field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :email %>
-          <%= f.email_field :email %>
-        </div>
-        <div class="field">
-          <%= f.label :password %>
-          <%= f.password_field :password %>
-        </div>
-      </div>
-      <div class="actions" id="btnLogin">
-        <%= f.submit 'Register '%>
+<div class="container">
+
+  <%= form_for @user, :html => {:class => 'form-signin', :role=> 'form'} do |f| %>
+      <h2 class="form-signin-heading">Please fill in the form</h2>
+
+      <%= f.label :name, :class => 'sr-only' %>
+      <%= f.text_field :name, :class => 'form-control', :placeholder => 'Name' %>
+      <%= f.label :email, :class => 'sr-only', :for => 'inputEmail' %>
+      <%= f.email_field :email, :class => 'form-control', :id => 'inputEmail', :placeholder => 'Email address' %>
+      <%= f.label :password, :class => 'sr-only', :for => 'inputPassword' %>
+      <%= f.password_field :password, :class => 'form-control', :id => 'inputPassword', :placeholder => 'Password' %>
+
+      <div class="actions">
+        <%= f.submit 'Register ', :class => 'btn btn-lg btn-primary btn-block' %>
       </div>
   <% end %>
 

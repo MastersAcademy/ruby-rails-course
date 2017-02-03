@@ -2,4 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', posts_path %>
+<span aria-hidden="true">&larr;</span><%= link_to 'Back', posts_path, :class => 'btn btn-default btn-sm' %>
+<%= link_to 'Show', @post, :class => 'btn btn-default btn-sm' %>

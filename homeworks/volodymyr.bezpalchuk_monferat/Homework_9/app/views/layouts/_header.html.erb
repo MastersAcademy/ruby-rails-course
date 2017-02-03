@@ -1,0 +1,12 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <ul class="nav nav-pills">
+    <li role="presentation"><%= link_to 'Main page', root_path %></li>
+    <li role="presentation"><%= link_to 'My Blog', controller: 'posts' %></li>
+    <li role="presentation"><%= link_to 'Registration', users_new_path unless current_user %></li>
+    <li role="presentation"><%= link_to 'Login', sessions_login_path unless current_user %></li>
+    <li role="presentation"><%= link_to 'Logout', sessions_logout_path if current_user %></li>
+    <% if current_user %>
+        <li class="navbar-text navbar-right">Welcome: <%= current_user.name %></li>
+    <% end %>
+  </ul>
+</nav>
