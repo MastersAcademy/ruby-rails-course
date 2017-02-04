@@ -1,0 +1,16 @@
+<h2>For The Empire!</h2>
+
+<% if logged_in? %>
+    Welcome, <%= current_user.name %>
+    <%= link_to 'Show my posts', user_path(current_user) %>
+    <%= link_to 'Edit my profile', edit_user_path(current_user) %>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+<% else %>
+    <%= link_to 'Sign Up', new_user_path %> or
+    <%= link_to 'Log In', login_path %>
+<% end %>
+<hr />
+
+<%= link_to 'All Users', users_path %>
+<br />
+<%= link_to 'All Posts', posts_path %>

@@ -1,0 +1,23 @@
+<% if logged_in? && @user.id == current_user.id %>
+  <h2> My posts: </h2>
+  <%= link_to 'New post', new_post_path %>
+<% else %>
+  <h2> <%= @user.name %>'s posts:</h2>
+<% end %>
+<br />
+
+<% @posts.each do |post| %>
+  <strong> <%= post.title %></strong>
+  <br />
+  <%= post.body %>
+  <br />
+  <% if logged_in? && @user.id == current_user.id %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+
+  <hr />
+<% end %>
+
+<br />
+<%= link_to 'Home', root_path %>

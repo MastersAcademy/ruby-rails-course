@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+<hr />
+
+<% @posts.each do |post| %>
+  <h4><strong><%= post.user.name %></strong></h4>
+  <h3><%= post.title %></h3>
+  <%= post.body %>
+  <% if logged_in? && post.user.id == current_user.id %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <hr />
+<% end %>
+
+<%= link_to 'New Post', new_post_path if logged_in? %>
+
+<br />
+
+<%= link_to 'Home', root_path %>
