@@ -1,0 +1,19 @@
+<h1 align="center">Posts:</h1>
+
+<table  width="100%">
+  <tbody>
+  <% @posts.each do |post| %>
+      <tr>
+        <td align="center">Title:<%= post.title %></td>
+        <td align="center">Author: <%= User.find(post.user_id).name %></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><%= post.body.html_safe %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><br><br><br><br><br><br></td>
+      </tr>
+
+  <% end %>
+  </tbody>
+</table>

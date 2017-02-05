@@ -1,0 +1,18 @@
+<h1>Add new post</h1>
+<% if flash[:logged_in] %>
+    <div class="notice"><%= flash[:logged_in] %></div>
+  <%= form_tag :action => 'create' do %>
+      <p><label for = "post_title">Title</label>:
+
+        <%= text_field 'posts', 'title' %></p>
+      <p><label for = "post_body">Body</label>:
+
+        <%= text_area 'posts', 'body' %></p>
+
+      <%= submit_tag "Create" %>
+
+  <% end -%>
+<% else -%>
+  <p>You are not authorized!</p>
+<% end -%>
+

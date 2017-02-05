@@ -1,0 +1,17 @@
+<h1>Login</h1>
+<p id="notice"><%= flash[:notice] %></p>
+
+
+<%= form_tag :action => 'login' do %>
+    <p><label for = "user_email">Email</label>:
+
+      <%= text_field 'users', 'email' %></p>
+    <p><label for = "user_password">Password</label>:
+
+      <input type="text" name="user_password"></p>
+
+    <%= submit_tag "Create" %>
+<% end -%>
+</br>
+</br>
+<td><%= link_to 'Back', users_index_path%></td>
