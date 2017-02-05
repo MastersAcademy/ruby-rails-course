@@ -1,0 +1,24 @@
+<p>
+  <strong>Title:</strong><br>
+  <%= @post.title %>
+</p>
+<p>
+  <strong>Body:</strong><br>
+  <%= @post.body %>
+</p>
+<p>
+  <strong>Created at:</strong>
+  <%= @post.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @post.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %><br>
+<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+<hr />
+<%= link_to 'Show my posts', user_path(current_user) %>
+<br />
+<%= link_to 'Start page', root_path %>
