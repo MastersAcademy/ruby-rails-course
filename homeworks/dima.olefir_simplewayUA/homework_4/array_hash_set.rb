@@ -30,13 +30,16 @@ require 'set'
   puts "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
 
   class Elclasico < Hash
-    match = Elclasico.new { |hash, key| hash[key] = "Go play #{key}" }
-    puts match["Ronaldo"]
-    puts match["Bale"]
-    puts match["Benzema"]
-    puts match.keys.join ", "
-    puts ""
+    def initialize
+      super { |hash, key| hash[key] = "Go play #{key}" } 
+    end
   end
+  
+  match = Elclasico.new
+  puts match['Ronaldo']
+  puts match["Bale"]
+  puts match["Benzema"]
+  puts ""
   
   #method assoc
   languages = {"programming_languages" => ["Ruby", "C", "C++", "objective C", "swift"],
