@@ -1,0 +1,10 @@
+<h2 class="noblack">Add User</h2>
+
+<form action="/users" method="post">
+  <label for="user_name">Name:</label> </br>
+  <input id="user_name" name="user[name]" type="text" value="<%= @user.name %>" /> </br>
+
+  <input type="submit" value="Create" />
+</form>
+
+<span><h4><a href="/users">Back</a></h4></span>
