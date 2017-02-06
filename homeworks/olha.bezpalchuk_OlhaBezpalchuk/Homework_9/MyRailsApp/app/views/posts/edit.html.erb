@@ -1,0 +1,15 @@
+<% if logged_in? && @post.user_id == current_user.id %>
+
+  <h1>Editing Post</h1>
+
+  <%= render 'form', post: @post %>
+
+  <%= link_to 'Show post', @post %>
+  <br />
+  <%= link_to 'Home', root_path %>
+
+<% else %>
+
+  <h1>404. Nice try.</h1>
+
+<% end %>

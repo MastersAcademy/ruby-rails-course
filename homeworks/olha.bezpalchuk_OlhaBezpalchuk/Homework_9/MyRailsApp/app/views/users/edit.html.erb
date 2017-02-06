@@ -1,0 +1,17 @@
+<% if logged_in? %>
+
+  <h1>Editing User</h1>
+
+  <%= render 'form', user: current_user %>
+
+  <br />
+  <%= link_to 'Delete my account', current_user, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% else %>
+
+  <h1>404. Nice try.</h1>
+
+<% end %>
+
+<hr />
+<%= link_to 'Home', root_path %>
