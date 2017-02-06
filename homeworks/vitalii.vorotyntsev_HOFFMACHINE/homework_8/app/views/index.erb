@@ -1,0 +1,61 @@
+<!--<div class="ui dividing header">Users</div>-->
+
+<!--<a class="ui button" href="/users/new">Add new</a>-->
+
+<!--<div class="ui segment">-->
+  <!--<div class="ui cards">-->
+    <!--<% @users.each do |user| %>-->
+    <!--<div class="ui card">-->
+      <!--<div class="image">-->
+        <!--<img src="http://placehold.it/300x300">-->
+      <!--</div>-->
+      <!--<div class="content">-->
+        <!--<a class="header"><%= user.first_name %> <%= user.last_name %></a>-->
+
+        <!--<div class="meta">-->
+          <!--<span class="email"><%= user.email %></span>-->
+        <!--</div>-->
+        <!--<div class="description">-->
+          <!--<p><%= user.about %></p>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="extra content">-->
+        <!--<i class="sticky note icon"></i> <%= user.posts.count %> posts-->
+      <!--</div>-->
+      <!--<div class="extra content">-->
+        <!--<a class="ui button" href="/users/<%= user.id %>/edit">Edit</a>-->
+        <!--<a class="ui button" href="/users/<%= user.id %>/remove">Remove</a>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<% end %>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<h2 class="ui dividing header">Posts</h2>-->
+
+<!--<a class="ui button" href="/posts/new">Add new</a>-->
+
+<!--<div class="ui segment">-->
+  <!--<div class="ui items">-->
+    <!--<% @posts.each do |post| %>-->
+    <!--<div class="item">-->
+      <!--<div class="ui small image">-->
+        <!--<img src="http://placehold.it/150x125">-->
+      <!--</div>-->
+      <!--<div class="content">-->
+        <!--<div class="header"><%= post.title %></div>-->
+        <!--<div class="meta">-->
+          <!--<span class="author"><%= post.user.first_name %> <%= post.user.last_name%></span>-->
+        <!--</div>-->
+        <!--<div class="description">-->
+          <!--<p><%= post.description %></p>-->
+        <!--</div>-->
+        <!--<div class="extra">-->
+          <!--<a class="ui button" href="/posts/<%= post.id %>/edit">Edit</a>-->
+          <!--<a class="ui button" href="/posts/<%= post.id %>/remove">Remove</a>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<% end %>-->
+  <!--</div>-->
+<!--</div>-->

@@ -1,0 +1,14 @@
+<div class="ui dividing header">Remove post</div>
+
+<div class="ui form">
+  <form id="remove_post-form" action="/posts/<%= @post.id %>" method="post" novalidate>
+    <input type="hidden" name="_method" value="delete">
+
+    <p>Are you sure?</p>
+
+    <div class="actions">
+      <button class="ui red button" type="submit">Yes</button>
+      <a class="ui button" href="/posts">Cancel</a>
+    </div>
+  </form>
+</div>

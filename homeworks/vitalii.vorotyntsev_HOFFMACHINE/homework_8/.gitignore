@@ -1,0 +1,4 @@
+# Files
+/db/*.sqlite3
+.ruby-gemset
+.ruby-version
