@@ -1,0 +1,19 @@
+<h2><%= @user.name %></h2>
+<p><%= @user.email %></p>
+<p><%= @user.age %></p>
+<a href="/users/<%=@user.id%>/edit">Edit</a><br><br><hr>
+<% @user.posts.each do |post|%>
+    <h2><%= post.title %></h2>
+    <p><%= post.body %></p>
+    <small><%= post.created_at %></small>
+    <a href="/users/<%=post.user_id%>/posts/<%=post.id%>/edit">Edit post</a>
+    <form action="/users/<%=post.user_id%>/">
+      <input type="submit" value="Delete post"/>
+    </form>
+    <form action="/users/<%=post.user_id%>/" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+    <hr>
+<% end%>
+<a href="/users/<%=@user.id%>/posts/new">Creat new post</a>
