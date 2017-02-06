@@ -1,0 +1,27 @@
+<div class="ui dividing header">Add new post</div>
+
+<div class="ui form">
+  <form id="add_post-form" action="/posts/add" method="post">
+    <div class="required  field">
+      <label>User</label>
+      <select class="dropdown" name="user_id">
+        <% @users.each do |user| %>
+        <option value="<%= user.id %>"><%= user.first_name %> <%= user.last_name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="required field">
+      <label>Title</label>
+      <input type="text" name="title">
+    </div>
+    <div class="required field">
+      <label>Description</label>
+      <textarea name="description"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="ui green button" type="submit">Save</button>
+      <a class="ui button" href="/">Cancel</a>
+    </div>
+  </form>
+</div>

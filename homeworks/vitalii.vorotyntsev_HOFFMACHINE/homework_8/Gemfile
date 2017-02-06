@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+gem 'sqlite3'
+gem 'sinatra'
+gem 'activerecord'
+gem 'sinatra-activerecord'
+gem 'sinatra-reloader'
+gem 'rest-client'
+gem 'jbuilder'
+gem 'rake'
+gem 'faker'

@@ -1,0 +1,23 @@
+<div class="ui dividing header">Edit post</div>
+
+<div class="ui form">
+  <form id="edit_post-form" action="/posts/<%= @post.id %>/edit" method="post">
+    <div class="disabled field">
+      <label>User</label>
+      <input type="text" name="user_id" value="<%= @post.user.first_name %> <%= @post.user.last_name %>" disabled>
+    </div>
+    <div class="required field">
+      <label>Title</label>
+      <input type="text" name="title" value="<%= @post.title %>">
+    </div>
+    <div class="required field">
+      <label>Description</label>
+      <textarea name="description"><%= @post.description %></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="ui green button" type="submit">Save</button>
+      <a class="ui button" href="/">Cancel</a>
+    </div>
+  </form>
+</div>
