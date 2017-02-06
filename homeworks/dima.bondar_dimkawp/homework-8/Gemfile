@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
+
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-reloader'
-
+gem 'sinatra-contrib'
 
 gem 'rake', '~> 10.4', '>= 10.4.2'
 gem 'activerecord', '~> 4.2', '>= 4.2.5'

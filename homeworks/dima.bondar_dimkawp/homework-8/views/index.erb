@@ -1,3 +1,26 @@
-<h1>Welcome</h1>
-<h3><a href="/users">Users</a></h3>
-<h3><a href="/posts">Post</a></h3>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Welcome Sinatra</title>
+</head>
+<body>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+      <h1 align="center">Welcome to Sinatra</h1>
+      <hr>
+      <form action="/users">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">All Users</button>
+      </form>
+    <br>
+      <form action="/posts">
+        <button type="submit" class="btn btn-default btn-lg btn-block">All Posts</button>
+    </form>
+  </div>
+</div>
+
+</body>
+
+</html>
