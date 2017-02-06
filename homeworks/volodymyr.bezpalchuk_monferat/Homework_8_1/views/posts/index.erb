@@ -1,0 +1,14 @@
+<head><h2>Posts: </h2></head>
+
+<ul>
+  <% @posts.each do |post| %>
+      <article>
+        <h3><a href="/posts/<%= post.id %>"><%= post.title %></a></h3>
+        <br>
+        <p class="seperate noblack"><%= post.body %></p>
+      </article>
+      <hr>
+  <% end %>
+</ul>
+
+<h4><a href="/users">All users</a></h4>

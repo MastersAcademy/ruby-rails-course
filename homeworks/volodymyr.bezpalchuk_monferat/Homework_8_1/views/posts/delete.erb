@@ -1,0 +1,10 @@
+<% if @post %>
+    <p>Are you sure?</p>
+    <form action="/posts/<%= @post.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Yes, Delete It!">
+      <a href="/posts/<%= @post.id %>">Cancel</a>
+    </form>
+<% else %>
+    <p>Post not found.</p>
+<% end %>
