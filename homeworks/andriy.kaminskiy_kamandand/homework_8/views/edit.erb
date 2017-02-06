@@ -1,0 +1,15 @@
+<br/>
+<form action="/posts/<%= @post.id %>" method="post">
+  <input type="hidden" name="_method" value="put"/>
+  <textarea id="post_body" name="post[body]" cols="40" rows="10"><%= @post.body %></textarea></br><br/>
+  <input type="submit" value="Зберегти зміни"/>
+</form>
+<br/>
+<hr/>
+<hr/>
+<form action="/users" method="get">
+  <input type="submit" value="КОРИСТУВАЧІ"/>
+</form>
+<form action="/" method="get">
+  <input type="submit" value="ДОДОМУ"/>
+</form>

@@ -1,0 +1,15 @@
+<br/>
+<form action="add" method="post">
+  <textarea id="post_body" name="post[body]" cols="40" rows="10"
+            placeholder="Писати потрібно тут"><%= @post.body %></textarea> </br>
+  <input type="submit" value="ДОДАТИ"/>
+</form>
+<br/>
+<hr/>
+<hr/>
+<form action="/users" method="get">
+  <input type="submit" value="КОРИСТУВАЧІ"/>
+</form>
+<form action="/" method="get">
+  <input type="submit" value="ДОДОМУ"/>
+</form>

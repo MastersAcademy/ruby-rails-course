@@ -1,0 +1,26 @@
+<h2>Всі користувачі:</h2>
+<a><b>(1. Якщо немає користувача, його потрібно додати)</a><br/>
+<a>(2. Щоб працювати з нотатками існуючого користувача, достатньо просто клікнути на його ім'я)</b></a>
+<hr/>
+<hr/>
+<ul>
+  <% @users.each do |user| %>
+      <h4><a href="/users/<%= user.id %>/u_posts"><%= user.name %></a></h4>
+      <form action="/users/<%=user.id%>/delete" method="get">
+        <input type="submit" value="ВИДАЛИТИ"/>
+      </form>
+      <hr/>
+  <% end %>
+</ul>
+<br/>
+<form action="/new_u" method="get">
+  <input type="submit" value="ДОДАТИ КОРИСТУВАЧА"/>
+</form>
+<br/>
+<hr/>
+<hr/>
+<form action="/" method="get">
+  <input type="submit" value="ДОДОМУ"/>
+</form>
+<a href="/users.json">всі користувачі.json</a><br/>
+<a href="/users.html">всі користувачі.html</a>
