@@ -1,0 +1,19 @@
+<h1>Edit post</h1>
+
+<%= form_for :post, url: user_post_path(params[:user_id], params[:id]), method: :patch  do |f| %>
+<p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, value: "#{@posts.find(params[:id]).title}" %>
+  </p>
+ 
+  <p>
+    <%= f.label :body%><br>
+    <%= f.text_area :body, value: "#{@posts.find(params[:id]).body}" %>
+  </p>
+ 
+  <p>
+    <%= f.submit 'Edit post'%>
+  </p>
+<% end %>
+
+<%= link_to 'Back', user_path %>

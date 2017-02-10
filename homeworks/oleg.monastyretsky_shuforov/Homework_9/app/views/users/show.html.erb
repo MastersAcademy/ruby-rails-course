@@ -1,0 +1,35 @@
+<%= current_user.name %> <%= link_to 'Log out', logout_path, method: "delete"%>
+<p>
+<%= link_to 'Delete user', user_path(@user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+</p>
+
+<%= link_to 'User posts', user_posts_path(current_user.id)%>
+<br>
+<%= link_to 'Create post', new_user_post_path(current_user.id)%>
+<br>
+<%= link_to 'All users', users_path%>
+<hr>
+<h3>All posts</h3>
+<% @post.reverse_each do |post| %>
+<table>
+  <tr>
+    <th style="text-align: left"><%= @user.find_by(id: post.user_id).name %></th>
+  </tr>      
+  <tr>
+    <th style="text-align: left"><%=post.title%></th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black"><%=post.body%></td>
+  </tr>
+  <br>
+</table>
+  <% if post.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_user_post_path(current_user.id, post.id) %>
+  <%= link_to 'Delete', user_post_path(post.user_id, post.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<br>
+<% end %>
