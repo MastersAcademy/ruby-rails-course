@@ -1,0 +1,22 @@
+<div class="container">
+  <div>
+    <h1><a href="/posts/<%= @post.id %>"><%= @post.title %></a></h1>
+
+    <br>
+    <p><%= @post.body %></p>
+  </div>
+  <div>
+    <form style="display: inline;"action="<%= @post.id %>/edit">
+      <button type="submit" class="btn btn-primary">Edit Post</button>
+    </form>
+    <form style="display: inline;"action="<%= @post.id %>/delete">
+      <button type="submit" class="btn btn-danger">Delete </button>
+    </form>
+    <form style="display: inline;"action="/users">
+      <button type="submit" class="btn btn-info">All Users</button>
+    </form>
+    <form style="display: inline;"action="/posts">
+      <button type="submit" class="btn btn-success">All Posts</button>
+    </form>
+  </div>
+</div>

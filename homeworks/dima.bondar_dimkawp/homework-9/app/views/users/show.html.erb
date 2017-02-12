@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Welcome your profile, <%= @user.name %> <%= @user.email %></h2>
+  <hr>
+  <ul>
+  <% @posts.each do |post| %>
+    <li>
+      <h4><a href="/posts/<%= post.id %>"><%= post.title %></a></h4>
+    </li>
+  <% end %>
+  </ul>
+    <button type="button" class="btn btn-primary"><%= link_to 'Back', users_path %></button>
+    <button type="button" class="btn btn-success"><%= link_to 'Edit Profile', edit_user_path(@user) %></button>
+</div>
