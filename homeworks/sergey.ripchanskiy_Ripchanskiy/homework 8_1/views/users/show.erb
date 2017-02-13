@@ -1,0 +1,11 @@
+<article>
+  <h3>Name: <%= @user.name %></h3>
+  <h3>Surname: <%= @user.surname %></h3>
+  <h3>Email: <%= @user.email %></h3>
+</article>
+
+<span><h3><a href="<%= @user.id %>/posts/new">Create Post</a></h3></span>
+<span><h3><a href="<%= @user.id %>/posts"><%= @user.name %>'s Posts</a></h3></span><br>
+
+<span><h4><a href="/users">All users</a></h4></span>
+<span><h4><a href="/posts">All Posts</a></h4></span>

@@ -1,0 +1,14 @@
+<h2 class="noblack">Add User</h2>
+
+<form action="/users" method="post">
+  <label for="user_name">Name:</label> </br>
+  <input id="user_name" name="user[name]" type="text" value="<%= @user.name %>" /> </br>
+
+  <label for="user_surname">Surname:</label> </br>
+  <input id="user_surname" name="user[surname]" type="text" value="<%= @user.surname %>" /> </br>
+
+  <label for="user_email">Email:</label> </br>
+  <input id="user_email" name="user[email]" type="email" value="<%= @user.email %>" /> </br>
+
+  <input type="submit" value="Create" />
+</form>

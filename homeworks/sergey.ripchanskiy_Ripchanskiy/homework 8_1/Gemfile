@@ -1,0 +1,22 @@
+source 'http://rubygems.org'
+
+ruby "2.3.3"
+
+gem "sinatra"
+gem "activerecord"
+gem "sinatra-activerecord"
+gem "rake"
+#gem 'sinatra-contrib'
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
+
+group :test do
+  gem "rspec"
+  gem "rack-test"
+end
