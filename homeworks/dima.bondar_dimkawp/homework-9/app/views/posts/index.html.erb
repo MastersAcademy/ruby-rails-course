@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Posts</h1>
+  <div>
+    <% @posts.each do |post| %>
+        <div>
+          <table class="table table-striped">
+          <tr>
+            <td><h4 style="width: 100px;"><a href="/posts/<%= post.id %>"><%= post.title %></a></h4></td>
+            <td><div class="container" style="width: 200px;"><%= post.body %></div></td>
+            <td><%= post.user.email %></td>
+            <td><%= link_to 'Show', post %></td>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          </table>
+        </div>
+    <% end %>
+  </div>
+  <button class="btn btn-default btn-success"><%= link_to 'New Post', new_post_path %></button>
+</div>
+

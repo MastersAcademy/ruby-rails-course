@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Create Post</h1>
+
+  <form action="/posts" method="post">
+    <div class="col-xs-2">
+      <p>Title:</p>
+      <input id="post_title" name="post[title]" type="text" class="form-control" placeholder="col-xs-2" value="<%= @post.title %>" /> </br>
+    </div>
+    <div class="col-xs-4">
+      <p>Body</p>
+      <textarea class="form-control" id="post_body" name="post[body]" cols="50" rows="10"><%= @post.body %></textarea> </br>
+      <input class="btn btn-default" type="submit" value="Create" />
+    </div>
+  </form>
+</div>
