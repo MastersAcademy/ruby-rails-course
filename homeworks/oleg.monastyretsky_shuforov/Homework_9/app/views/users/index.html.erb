@@ -1,0 +1,5 @@
+<h1>Users</h1>
+<% @user.each do |user|%>
+<p><%=user.name%></p>
+<% end %>
+<%= link_to 'Back', user_path(current_user.id)%>
