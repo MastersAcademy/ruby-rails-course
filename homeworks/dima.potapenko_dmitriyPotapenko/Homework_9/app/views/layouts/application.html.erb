@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homework 9</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <h2>Homework 9</h2>
+
+
+  <% if logged_in? %>
+    Logged in as <strong><%= current_user.name %></strong>
+    <%= link_to 'Show posts', user_path(current_user) %>
+    <%= link_to 'Profile settings', edit_user_path(current_user) %>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+<% else %>
+    <%= link_to 'Sign Up', new_user_path %>
+    <br>
+    <%= link_to 'Log In', login_path %>
+    
+<% end %>
+    <%= yield %>
+  </body>
+</html>

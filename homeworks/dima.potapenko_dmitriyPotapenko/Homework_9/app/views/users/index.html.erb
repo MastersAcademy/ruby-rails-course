@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All users</h1>
+
+<table>
+  <thead>
+    <tr>
+    <th>Name</th>
+    <th>Posts</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if logged_in? %>
+      <tr>
+        <td><strong><%= current_user.name %></strong></td>
+        <td><strong><%= link_to 'Show posts', current_user %></strong></td>
+      </tr>
+    <% end %>
+    <% @users.each do |user| %>
+      <tr>
+        <% if !logged_in? || logged_in? && user.id != current_user.id %>
+          <td><%= user.name %></td>
+          <td><%= link_to "Show posts", user %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'Start page', root_path %>

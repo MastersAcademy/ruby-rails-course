@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+<hr />
+
+<% @posts.each do |post| %>
+  <h4><strong><%= post.user.name %></strong></h4>
+<p>
+  <strong>Title:</strong><br>
+  <%= post.title %>
+</p>
+<p>
+  <strong>Body:</strong><br>
+  <%= post.body %>
+</p>
+<p>
+  <strong>Created at:</strong>
+  <%= post.created_at %>
+</p>
+  <% if logged_in? && post.user.id == current_user.id %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <hr />
+<% end %>
+
+<%= link_to 'New Post', new_post_path if logged_in? %>
+<br />
+<%= link_to 'Start page', root_path %>
