@@ -1,0 +1,13 @@
+<h3>Add Post</h3>
+<hr />
+<form action="/<%= @user_id %>/submit_post" method="POST">
+  <textarea name="post[title]" placeholder="Type title here." ></textarea>
+  <br />
+  <textarea name="post[content]" placeholder="Type text here." ></textarea>
+  <br />
+  <input type="submit" value="Submit" />
+</form>
+<hr />
+<a href="/users">Users</a>
+<br />
+<a href="/">Back</a>

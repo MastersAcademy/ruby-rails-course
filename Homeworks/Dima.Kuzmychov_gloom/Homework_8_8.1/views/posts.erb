@@ -1,0 +1,21 @@
+<h3>All Posts</h3>
+
+<hr />
+<% @posts.each do |post| %>
+  <h7>Username:</h7>
+  <b><%= User.find(post.user_id).name %></b>:
+  <br />
+  <h7>Created at:</h7>
+  <%= post.created_at %>
+  <br />
+  <h7>Title:</h7>
+  <br />
+  <%= post.title %>
+  <br />
+  <h7>Post:</h7>
+  <br />
+  <%= post.content %>
+  <br />
+<% end %>
+<hr />
+<a href="/">Back</a>
