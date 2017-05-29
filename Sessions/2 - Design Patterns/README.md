@@ -11,7 +11,7 @@ Design patterns
   * Low coupling(Низька зв'язаність)
   * Indirection(Посередництво)
   * Information Expert(Інформаційний експерт)
-  * Polymorphism(Поліморфізм)
+  * Polymorphism(Поліморфізмочко)
   * Protected variations(Стійкість до змін)
   * Pure fabrication(Вигадані сутності)
 
